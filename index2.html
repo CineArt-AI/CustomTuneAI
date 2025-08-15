@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CustomTuneAI - Your Story in Song</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      background: #fff;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(135deg, #6b73ff 0%, #000dff 100%);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    header h1 {
+      font-size: 3em;
+      margin: 0.2em 0;
+    }
+    header p {
+      font-size: 1.2em;
+      margin-bottom: 1em;
+    }
+    .cta-button {
+      background: #ffcb05;
+      color: #000;
+      padding: 15px 30px;
+      border: none;
+      font-weight: bold;
+      font-size: 1em;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .cta-button:hover {
+      background: #ffd633;
+    }
+    .section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .section h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    .how-it-works {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .step {
+      flex: 1 1 300px;
+      margin: 20px;
+      background: #f4f4f4;
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .step h3 {
+      margin-top: 0;
+    }
+    .packages {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .package {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 10px;
+      width: 250px;
+    }
+    .audio-samples audio {
+      margin: 10px 0;
+    }
+    footer {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    footer a {
+      color: #ffcb05;
+      text-decoration: none;
+    }
+    img.hero-img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Your Moment, Your Song</h1>
+    <p>Turn your special moments into unforgettable, AI‑crafted songs starting at just $15.</p>
+    <button class="cta-button" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });">Get Your Free Snippet</button>
+    <img class="hero-img" src="https://tse3.mm.bing.net/th/id/OIP.DYpgi58gZTi5qyZT9YfUbwHaFj?pid=Api" alt="AI music hero">
+  </header>
+
+  <section class="section">
+    <h2>How It Works</h2>
+    <div class="how-it-works">
+      <div class="step">
+        <h3>1. Tell Us Your Story</h3>
+        <p>Share names, occasion, music style—even a favorite lyric—through our easy form.</p>
+      </div>
+      <div class="step">
+        <h3>2. Hear Your Snippet</h3>
+        <p>We’ll create a free 15‑second audio preview so you can feel the emotion before you commit.</p>
+      </div>
+      <div class="step">
+        <h3>3. Choose Your Package</h3>
+        <p>Select from affordable options to receive your full song and optional lyric video.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Pricing Packages</h2>
+    <div class="packages">
+      <div class="package">
+        <h3>Basic – $15</h3>
+        <p>Full instrumental custom song</p>
+      </div>
+      <div class="package">
+        <h3>Premium – $35</h3>
+        <p>Includes vocals</p>
+      </div>
+      <div class="package">
+        <h3>Ultimate – $50</h3>
+        <p>Includes lyric video – perfect for sharing</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section audio-samples">
+    <h2>Sample Songs</h2>
+    <p>Click below to hear what we’ve created for others.</p>
+    <div>
+      <h4>Birthday Jingle for Mia</h4>
+      <audio controls src="sample-birthday.mp3"></audio>
+
+      <h4>Anniversary Ballad for Emma</h4>
+      <audio controls src="sample-anniversary.mp3"></audio>
+
+      <h4>Love Message Melody</h4>
+      <audio controls src="sample-love.mp3"></audio>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <h2>Get Started</h2>
+    <p>Ready to turn your story into a song? Get your 15-second free snippet today!</p>
+    <a href="mailto:info@yourcustomsong.com" class="cta-button">Email Us to Start</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 CustomTuneAI – Your Moment, Your Song.</p>
+    <p>Share your song with <strong>#CustomSongChallenge</strong></p>
+    <p>Contact: <a href="mailto:info@yourcustomsong.com">info@yourcustomsong.com</a></p>
+  </footer>
+</body>
+</html>
