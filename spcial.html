@@ -1,0 +1,43 @@
+<!-- Add this HTML where you want the share button, e.g., in a new section in your index.html -->
+<section id="share-discount">
+    <div class="container">
+        <h2>Share and Get 50% Off!</h2>
+        <p>Share our site on social media and unlock a 50% discount code for your first custom song.</p>
+        <button id="shareButton" onclick="handleShare()">Share Now</button>
+        <div id="discountCode" style="display: none; margin-top: 20px; text-align: center; font-weight: bold; color: green;"></div>
+    </div>
+</section>
+
+<!-- JavaScript Snippet: Add this in a <script> tag at the bottom of your <body> or in the <head> -->
+<script>
+    function handleShare() {
+        const shareData = {
+            title: 'Your Moment, Your Song',
+            text: 'Create AI-driven custom songs for special occasions! Get yours now.',
+            url: 'https://cineart-ai.github.io/CustomTuneAI/'  // Replace with your actual site URL
+        };
+
+        if (navigator.share) {
+            // Use Web Share API if available (mobile browsers mostly)
+            navigator.share(shareData)
+                .then(() => showDiscount())
+                .catch((error) => console.error('Sharing failed:', error));
+        } else {
+            // Fallback: Open a popup with share options or direct links
+            alert('Sharing not supported in this browser. Copy the link and share manually: ' + shareData.url);
+            // Alternatively, open specific share windows
+            // For X (Twitter):
+            // window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareData.text) + '&url=' + encodeURIComponent(shareData.url), '_blank');
+            // For Facebook:
+            // window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareData.url), '_blank');
+            // Note: Instagram and TikTok don't support web-based sharing easily; suggest using their apps.
+            showDiscount();  // Still give discount for effort
+        }
+    }
+
+    function showDiscount() {
+        const code = 'SHARE50';  // Your 50% off code
+        document.getElementById('discountCode').innerText = 'Your 50% Off Code: ' + code + ' (Use at checkout!)';
+        document.getElementById('discountCode').style.display = 'block';
+    }
+</script>
