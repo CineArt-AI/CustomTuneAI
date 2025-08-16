@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CustomTuneAI — The Most Personal Gift You'll Ever Give</title>
+
+  <!-- Basic SEO -->
+  <meta name="description" content="A custom song to celebrate birthdays, anniversaries, and love stories. Get a free 15-second preview." />
+  <meta name="theme-color" content="#0b0f1c" />
+
+  <!-- Social (OG/Twitter). Replace the content URL once deployed -->
+  <meta property="og:title" content="The Most Personal Gift You'll Ever Give" />
+  <meta property="og:description" content="A custom song to celebrate birthdays, anniversaries, and love stories. Get a free 15-second preview." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://cineart-ai.github.io/CustomTuneAI/assets/customtuneai-hero.png" />
+  <meta property="og:url" content="https://cineart-ai.github.io/CustomTuneAI/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <style>
+    :root{
+      --bg:#0b0f1c;          /* deep navy */
+      --bg-soft:#11162a;
+      --text:#eef1ff;
+      --muted:#c7ccee;
+      --brand:#ffcb05;       /* warm gold */
+      --brand-2:#ff7a59;     /* accent */
+      --card:#0f1430;
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+      --radius: 16px;
+      --maxw: 1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Apple Color Emoji","Segoe UI Emoji",sans-serif}
+    img{max-width:100%;height:auto;display:block}
+    a{color:inherit;text-decoration:none}
+    .container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+    /* Header / nav */
+    .nav{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:saturate(140%) blur(8px);
+      background:rgba(11,15,28,.6);
+      border-bottom:1px solid rgba(255,255,255,.06)
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{width:42px;height:42px}
+    .brand h1{font-size:18px;margin:0;font-weight:700;letter-spacing:.2px}
+    .nav-actions{display:flex;gap:10px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:12px 18px;border-radius:12px;border:1px solid transparent;
+      font-weight:700;cursor:pointer;transition:transform .05s ease,opacity .2s ease,background .2s ease;
+      text-align:center;white-space:nowrap
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn.primary{background:var(--brand);color:#111}
+    .btn.secondary{background:transparent;border-color:rgba(255,255,255,.15);color:var(--text)}
+    .btn.block{width:100%}
+
+    /* Hero */
+    .hero{
+      padding:48px 0 24px;background:linear-gradient(135deg, #101636 0%, #0b0f1c 50%, #0b0f1c 100%)
+    }
+    .hero-grid{
+      display:grid;gap:28px;align-items:center
+    }
+    @media (min-width:900px){
+      .hero-grid{grid-template-columns:1.1fr .9fr}
+    }
+    .kicker{display:inline-block;color:var(--brand);font-weight:800;letter-spacing:.24em;font-size:12px;text-transform:uppercase;margin-bottom:12px}
+    .h1{font-size:clamp(28px,5vw,44px);line-height:1.15;margin:0 0 10px}
+    .sub{color:var(--muted);font-size:clamp(15px,2.6vw,18px);margin:0 0 22px}
+    .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+    .hero-card{
+      background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);box-shadow:var(--shadow);
+      overflow:hidden
+    }
+    .hero-card img{aspect-ratio:16/9;object-fit:cover}
+
+    /* Social proof */
+    .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+    .badge{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);padding:8px 12px;border-radius:999px;color:var(--muted);font-size:12px}
+
+    /* Sections */
+    .section{padding:64px 0}
+    .section h2{margin:0 0 14px;font-size:clamp(22px,4vw,32px)}
+    .section p.lead{color:var(--muted);margin:0 0 24px}
+
+    /* Steps */
+    .steps{display:grid;gap:16px}
+    @media (min-width:800px){.steps{grid-template-columns:repeat(3,1fr)}}
+    .step{
+      background:var(--card);padding:20px;border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.06)
+    }
+    .step h3{margin:6px 0 6px;font-size:18px}
+    .step p{margin:0;color:var(--muted)}
+
+    /* Pricing */
+    .pricing{display:grid;gap:16px;margin-top:10px}
+    @media (min-width:900px){.pricing{grid-template-columns:repeat(3,1fr)}}
+    .plan{
+      background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);
+      padding:20px;display:flex;flex-direction:column;justify-content:space-between
+    }
+    .price{font-size:28px;font-weight:900;margin:6px 0 14px}
+    .plan ul{padding:0;margin:0 0 18px;list-style:none}
+    .plan ul li{margin:8px 0;color:var(--muted)}
+    .plan .btn{margin-top:auto}
+
+    /* Share Discount */
+    #share-discount{
+      background:linear-gradient(180deg, #11162a 0%, #0b0f1c 100%);
+      border-top:1px solid rgba(255,255,255,.06);
+      border-bottom:1px solid rgba(255,255,255,.06)
+    }
+    #share-discount .wrap{
+      background:var(--card);border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)
+    }
+    #shareButton{background:var(--brand);color:#111;border:none;border-radius:12px;padding:12px 18px;font-weight:800;cursor:pointer}
+    #discountCode{margin-top:16px;text-align:center;font-weight:900;color:#36d17a}
+
+    /* Footer */
+    footer{padding:40px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.06)}
+    .footer-inner{display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+    .footer-brand{display:flex;align-items:center;gap:10px}
+    .footer-brand img{width:28px;height:28px}
+
+    /* Utilities */
+    .center{text-align:center}
+    .mt-s{margin-top:10px}.mt-m{margin-top:18px}.mt-l{margin-top:28px}
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="brand">
+        <img src="assets/customtuneai-logo.png" alt="CustomTuneAI logo" />
+        <h1>CustomTuneAI</h1>
+      </a>
+      <div class="nav-actions">
+        <a href="#pricing" class="btn secondary">Pricing</a>
+        <a href="#get-started" class="btn primary">Get Free Preview</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="kicker">Made just for them</span>
+        <h2 class="h1">The Most Personal Gift You’ll Ever Give</h2>
+        <p class="sub">A custom song to celebrate birthdays, anniversaries, and love stories.</p>
+
+        <div class="hero-cta">
+          <a href="#get-started" class="btn primary">Get a Free 15‑Second Preview</a>
+          <a href="#pricing" class="btn secondary">See Packages</a>
+        </div>
+
+        <div class="badges">
+          <span class="badge">Fast delivery</span>
+          <span class="badge">Thoughtful & memorable</span>
+          <span class="badge">Great for sharing</span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <img src="assets/customtuneai-hero.png" alt="Custom song hero banner" />
+      </div>
+    </div>
+  </header>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="how">
+    <div class="container">
+      <h2 class="center">How it works</h2>
+      <p class="lead center">Simple steps to turn your story into a song.</p>
+
+      <div class="steps">
+        <div class="step">
+          <h3>1) Tell us the story</h3>
+          <p>Share names, the occasion, favorite moments, and the vibe you want.</p>
+        </div>
+        <div class="step">
+          <h3>2) Free preview & revisions</h3>
+          <p>We send a 15‑second snippet. Tell us what to tweak—lyrics, vibe, pacing—and we revise.</p>
+        </div>
+        <div class="step">
+          <h3>3) Pick your package & approve</h3>
+          <p>Choose the perfect option, then approve the final track. We include revisions until it feels right.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section" id="pricing">
+    <div class="container">
+      <h2 class="center">Packages</h2>
+      <p class="lead center">Choose what fits your moment.</p>
+
+      <div class="pricing">
+        <div class="plan">
+          <div>
+            <h3>Basic</h3>
+            <div class="price">$15</div>
+            <ul>
+              <li>Custom instrumental</li>
+              <li>Up to 60 seconds</li>
+              <li>MP3 delivery</li>
+              <li><strong>Revisions included</strong></li>
+            </ul>
+          </div>
+          <a href="#get-started" class="btn primary">Get Free Preview</a>
+        </div>
+
+        <div class="plan" style="outline:2px solid rgba(255,203,5,.3)">
+          <div>
+            <h3>Premium</h3>
+            <div class="price">$35</div>
+            <ul>
+              <li>Custom song with vocals</li>
+              <li>Up to 90 seconds</li>
+              <li>MP3 + lyrics</li>
+              <li><strong>Revisions included</strong></li>
+            </ul>
+          </div>
+          <a href="#get-started" class="btn primary">Most Popular</a>
+        </div>
+
+        <div class="plan">
+          <div>
+            <h3>Ultimate</h3>
+            <div class="price">$50</div>
+            <ul>
+              <li>Song with vocals + lyric video</li>
+              <li>Up to 120 seconds</li>
+              <li>Ready to share on socials</li>
+              <li><strong>Revisions included</strong></li>
+            </ul>
+          </div>
+          <a href="#get-started" class="btn primary">Make It Epic</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVISIONS POLICY (replaces public samples) -->
+  <section class="section" id="revisions">
+    <div class="container">
+      <h2 class="center">Revisions & Privacy</h2>
+      <p class="lead center">We don’t publish customer‑input samples. Your story stays yours.</p>
+
+      <div class="steps">
+        <div class="step">
+          <h3>Revisions included</h3>
+          <p>After your preview and your final song, request adjustments to lyrics, tone, pacing, or mix until it feels right.</p>
+        </div>
+        <div class="step">
+          <h3>Friendly turnaround</h3>
+          <p>Minor edits are usually quick. We’ll tell you clearly if a change requires more time.</p>
+        </div>
+        <div class="step">
+          <h3>Private by default</h3>
+          <p>No public sharing of your inputs or songs without your explicit permission.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHARE & DISCOUNT -->
+  <section id="share-discount" class="section">
+    <div class="container">
+      <div class="wrap">
+        <h2 class="center">Share and Get 50% Off!</h2>
+        <p class="lead center">Tell your friends about us and unlock a 50% discount code for your first custom song.</p>
+        <div class="center">
+          <button id="shareButton" onclick="handleShare()" class="btn primary">Share Now</button>
+          <div id="discountCode" style="display:none;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GET STARTED -->
+  <section class="section" id="get-started">
+    <div class="container">
+      <h2 class="center">Get your free 15‑second preview</h2>
+      <p class="lead center">No commitment—just the start of something unforgettable.</p>
+
+      <div style="max-width:560px;margin-inline:auto">
+        <!-- Swap mailto for your form URL when ready -->
+        <a class="btn block primary" href="mailto:info@yourcustomsong.com?subject=Free%20Preview&body=Tell%20us%20about%20the%20person%2Foccasion%2C%20the%20vibe%20you%20want%2C%20and%20any%20details%20we%20should%20include.">Email Us to Start</a>
+        <p class="center mt-s" style="color:var(--muted)">Prefer a form? We can add one later.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="assets/customtuneai-logo.png" alt="" />
+        <span>© <span id="year"></span> CustomTuneAI</span>
+      </div>
+      <div>
+        <a href="#pricing" class="btn secondary">Pricing</a>
+        <a href="#get-started" class="btn primary">Get Free Preview</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll for same-page links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        if(id.length>1){
+          const el = document.querySelector(id);
+          if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+        }
+      });
+    });
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // SHARE (no AI mention in text)
+    function handleShare() {
+      const shareData = {
+        title: 'The Most Personal Gift You’ll Ever Give',
+        text: 'A custom song to celebrate birthdays, anniversaries, and love stories.',
+        url: 'https://cineart-ai.github.io/CustomTuneAI/'
+      };
+
+      if (navigator.share) {
+        navigator.share(shareData)
+          .then(() => showDiscount())
+          .catch((err) => {
+            console.warn('Sharing failed:', err);
+            alert('Sharing was canceled. You can still copy this link:\n' + shareData.url);
+          });
+      } else {
+        const u = encodeURIComponent(shareData.url);
+        const t = encodeURIComponent(shareData.text);
+        const links = [
+          `https://twitter.com/intent/tweet?text=${t}&url=${u}`,
+          `https://www.facebook.com/sharer/sharer.php?u=${u}`
+        ];
+        window.open(links[0], '_blank');
+        showDiscount();
+      }
+    }
+
+    function showDiscount() {
+      const code = 'SHARE50';
+      const el = document.getElementById('discountCode');
+      el.textContent = 'Your 50% Off Code: ' + code + ' (Use at checkout!)';
+      el.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
