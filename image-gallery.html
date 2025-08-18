@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Assets Image Gallery - CustomSongsAI</title>
+  
+  <style>
+    :root{
+      --bg:#0b0f1c;          /* deep navy */
+      --bg-soft:#11162a;
+      --text:#eef1ff;
+      --muted:#c7ccee;
+      --brand:#ffcb05;       /* warm gold */
+      --brand-2:#ff7a59;     /* accent */
+      --card:#0f1430;
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+      --radius: 16px;
+      --maxw: 1200px;
+    }
+    
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Apple Color Emoji","Segoe UI Emoji",sans-serif}
+    img{max-width:100%;height:auto;display:block}
+    a{color:inherit;text-decoration:none}
+    .container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 20px}
+    
+    /* Header */
+    .header{
+      padding:40px 0;text-align:center;background:linear-gradient(135deg, #101636 0%, #0b0f1c 50%, #0b0f1c 100%)
+    }
+    .header h1{font-size:clamp(28px,5vw,44px);margin:0 0 16px;color:var(--brand)}
+    .header p{color:var(--muted);font-size:18px;margin:0}
+    
+    /* Gallery */
+    .gallery{padding:40px 0}
+    .category{margin-bottom:60px}
+    .category h2{
+      font-size:28px;margin:0 0 24px;color:var(--text);border-bottom:2px solid var(--brand);padding-bottom:8px
+    }
+    .image-grid{
+      display:grid;gap:20px;margin-bottom:30px
+    }
+    @media (min-width:600px){
+      .image-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (min-width:900px){
+      .image-grid{grid-template-columns:repeat(3,1fr)}
+    }
+    @media (min-width:1200px){
+      .image-grid{grid-template-columns:repeat(4,1fr)}
+    }
+    
+    .image-card{
+      background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);
+      overflow:hidden;box-shadow:var(--shadow);transition:transform .2s ease
+    }
+    .image-card:hover{transform:translateY(-4px)}
+    .image-card img{
+      width:100%;height:200px;object-fit:cover;transition:transform .3s ease
+    }
+    .image-card:hover img{transform:scale(1.05)}
+    .image-info{
+      padding:16px;text-align:center
+    }
+    .image-info h3{
+      margin:0 0 8px;font-size:14px;color:var(--text);font-weight:600
+    }
+    .image-info p{
+      margin:0;font-size:12px;color:var(--muted);line-height:1.4
+    }
+    
+    /* File info */
+    .file-info{
+      background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px;
+      padding:12px;margin-top:12px;font-size:11px;color:var(--muted)
+    }
+    
+    /* Back button */
+    .back-btn{
+      position:fixed;top:20px;left:20px;background:var(--brand);color:#111;padding:12px 18px;
+      border-radius:12px;font-weight:700;text-decoration:none;z-index:1000;box-shadow:var(--shadow)
+    }
+    .back-btn:hover{transform:translateY(-2px)}
+  </style>
+</head>
+<body>
+
+  <a href="index3.html" class="back-btn">← Back to Main</a>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <h1>Assets Image Gallery</h1>
+      <p>All images from the CustomSongsAI assets folder</p>
+    </div>
+  </header>
+
+  <!-- GALLERY -->
+  <main class="gallery">
+    <div class="container">
+      
+      <!-- Birthday Photos -->
+      <section class="category">
+        <h2>🎂 Birthday Photos</h2>
+        <div class="image-grid">
+          <div class="image-card">
+            <img src="assets/images/Birthday Photos/Custom AI Song birthday party, blue and pink tones 700508.jpg" alt="Birthday party" />
+            <div class="image-info">
+              <h3>Birthday Party</h3>
+              <p>Blue and pink tones, party atmosphere</p>
+              <div class="file-info">File: Custom AI Song birthday party, blue and pink tones 700508.jpg</div>
+            </div>
+          </div>
+          
+          <div class="image-card">
+            <img src="assets/images/Birthday Photos/Custom AI Song birthday party, blue and pink tones, adults 954013.jpg" alt="Birthday party adults" />
+            <div class="image-info">
+              <h3>Birthday Party Adults</h3>
+              <p>Blue and pink tones, adult celebration</p>
+              <div class="file-info">File: Custom AI Song birthday party, blue and pink tones, adults 954013.jpg</div>
+            </div>
+          </div>
+          
+          <div class="image-card">
+            <img src="assets/images/Birthday Photos/Custom AI Song birthday cake, confetti and balloons, blue and pink tones 700508.jpg" alt="Birthday cake" />
+            <div class="image-info">
+              <h3>Birthday Cake</h3>
+              <p>Confetti and balloons, blue and pink tones</p>
+              <div class="file-info">File: Custom AI Song birthday cake, confetti and balloons, blue and pink tones 700508.jpg</div>
+            </div>
+          </div>
+          
+          <div class="image-card">
+            <img src="assets/images/Birthday Photos/Custom AI Song birthday party, blue and pink tones, adults 740627.jpg" alt="Birthday party adults 2" />
+            <div class="image-info">
+              <h3>Birthday Party Adults 2</h3>
+              <p>Blue and pink tones, adult celebration</p>
+              <div class="file-info">File: Custom AI Song birthday party, blue and pink tones, adults 740627.jpg</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Happy Couple -->
+      <section class="category">
+        <h2>💑 Happy Couple</h2>
+        <div class="image-grid">
+          <div class="image-card">
+            <img src="assets/images/Happy Couple/Custom AI Song happy couple, mid 20s, love, pink and blue tones, good looking people  75291.jpg" alt="Happy couple" />
+            <div class="image-info">
+              <h3>Happy Couple</h3>
+              <p>Mid 20s, love, pink and blue tones</p>
+              <div class="file-info">File: Custom AI Song happy couple, mid 20s, love, pink and blue tones, good looking people  75291.jpg</div>
+            </div>
+          </div>
+          
+          <div class="image-card">
+            <img src="assets/images/Happy Couple/Custom AI Song happy couple, mid 20s, love, pink and blue tones, good looking people  828919.jpg" alt="Happy couple 2" />
+            <div class="image-info">
+              <h3>Happy Couple 2</h3>
+              <p>Mid 20s, love, pink and blue tones</p>
+              <div class="file-info">File: Custom AI Song happy couple, mid 20s, love, pink and blue tones, good looking people  828919.jpg</div>
+            </div>
+          </div>
+          
+          <div class="image-card">
+            <img src="assets/images/Happy Couple/Custom AI Song happy couple, mid 20s, love, pink and blue tones, good looking people, musical scores 961249.jpg" alt="Happy couple musical" />
+            <div class="image-info">
+              <h3>Happy Couple Musical</h3>
+              <p>Mid 20s, love, pink and blue tones, musical scores</p>
+              <div class="file-info">File: Custom AI Song happy couple, mid 20s, love, pink and blue tones, good looking people, musical scores 961249.jpg</div>
+            </div>
+          </div>
+          
+          <div class="image-card">
+            <img src="assets/images/Happy Couple/Custom AI Song Flux_happy couple, mid 20s, love, pink and blue tones, good looking people, musical scores 158808.jpg" alt="Happy couple Flux" />
+            <div class="image-info">
+              <h3>Happy Couple Flux</h3>
+              <p>Mid 20s, love, pink and blue tones, musical scores</p>
+              <div class="file-info">File: Custom AI Song Flux_happy couple, mid 20s, love, pink and blue tones, good looking people, musical scores 158808.jpg</div>
+            </div>
+          </div>
+          
+          <div class="image-card">
+            <img src="assets/images/Happy Couple/Custom AI Song happy couple, mid 20s, love, pink and blue tones, good looking people, musical scores 49828.jpg" alt="Happy couple musical 2" />
+            <div class="image-info">
+              <h3>Happy Couple Musical 2</h3>
+              <p>Mid 20s, love, pink and blue tones, musical scores</p>
+              <div class="file-info">File: Custom AI Song happy couple, mid 20s, love, pink and blue tones, good looking people, musical scores 49828.jpg</div>
+            </div>
+          </div>
+          
+          <div class="image-card">
+            <img src="assets/images/Happy Couple/Custom AI Song happy couple, mid 20s, love, pink and blue tones, good looking people, musical scores 828919.jpg" alt="Happy couple musical 3" />
+            <div class="image-info">
+              <h3>Happy Couple Musical 3</h3>
+              <p>Mid 20s, love, pink and blue tones, musical scores</p>
+              <div class="file-info">File: Custom AI Song happy couple, mid 20s, love, pink and blue tones, good looking people, musical scores 828919.jpg</div>
+            </div>
+          </div>
+          
+          <div class="image-card">
+            <img src="assets/images/Happy Couple/7d83a835-cdbc-4cdb-ac96-1ac9f5c8af09.png" alt="Happy couple PNG" />
+            <div class="image-info">
+              <h3>Happy Couple PNG</h3>
+              <p>PNG format image</p>
+              <div class="file-info">File: 7d83a835-cdbc-4cdb-ac96-1ac9f5c8af09.png</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Placeholders from singers -->
+      <section class="category">
+        <h2>🎤 Placeholders from Singers</h2>
+        <div class="image-grid">
+          <div class="image-card">
+            <img src="assets/images/Placeholders from singers/c98d2bdc-b59a-4b59-afba-e2fbfca1f1fd.png" alt="Singer placeholder 1" />
+            <div class="image-info">
+              <h3>Singer Placeholder 1</h3>
+              <p>PNG format image</p>
+              <div class="file-info">File: c98d2bdc-b59a-4b59-afba-e2fbfca1f1fd.png</div>
+            </div>
+          </div>
+          
+          <div class="image-card">
+            <img src="assets/images/Placeholders from singers/ccfc0242-fd0d-4fd0-a7c8-d67ce03a3457.png" alt="Singer placeholder 2" />
+            <div class="image-info">
+              <h3>Singer Placeholder 2</h3>
+              <p>PNG format image</p>
+              <div class="file-info">File: ccfc0242-fd0d-4fd0-a7c8-d67ce03a3457.png</div>
+            </div>
+          </div>
+          
+          <div class="image-card">
+            <img src="assets/images/Placeholders from singers/Firefly_Flux_A modern music streaming application interface design featuring three artist photogra 433063 (1).jpg" alt="Music streaming interface" />
+            <div class="image-info">
+              <h3>Music Streaming Interface</h3>
+              <p>Modern music streaming application interface design</p>
+              <div class="file-info">File: Firefly_Flux_A modern music streaming application interface design featuring three artist photogra 433063 (1).jpg</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Icons -->
+      <section class="category">
+        <h2>🖼️ Icons</h2>
+        <div class="image-grid">
+          <div class="image-card">
+            <img src="assets/images/Icons/ChatGPT Image Aug 16, 2025, 09_21_13 AM.png" alt="ChatGPT Icon" />
+            <div class="image-info">
+              <h3>ChatGPT Icon</h3>
+              <p>PNG format icon</p>
+              <div class="file-info">File: ChatGPT Image Aug 16, 2025, 09_21_13 AM.png</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Other Assets -->
+      <section class="category">
+        <h2>🎵 Other Assets</h2>
+        <div class="image-grid">
+          <div class="image-card">
+            <img src="assets/images/headphones-1.png" alt="Headphones 1" />
+            <div class="image-info">
+              <h3>Headphones 1</h3>
+              <p>PNG format image</p>
+              <div class="file-info">File: headphones-1.png</div>
+            </div>
+          </div>
+          
+          <div class="image-card">
+            <img src="assets/images/headphones.png" alt="Headphones" />
+            <div class="image-info">
+              <h3>Headphones</h3>
+              <p>PNG format image</p>
+              <div class="file-info">File: headphones.png</div>
+            </div>
+          </div>
+          
+          <div class="image-card">
+            <img src="assets/images/singers.png" alt="Singers" />
+            <div class="image-info">
+              <h3>Singers</h3>
+              <p>PNG format image</p>
+              <div class="file-info">File: singers.png</div>
+            </div>
+          </div>
+          
+          <div class="image-card">
+            <img src="assets/images/sound-wave.jpg" alt="Sound Wave" />
+            <div class="image-info">
+              <h3>Sound Wave</h3>
+              <p>JPG format image</p>
+              <div class="file-info">File: sound-wave.jpg</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+    // Add click to enlarge functionality
+    document.querySelectorAll('.image-card img').forEach(img => {
+      img.addEventListener('click', function() {
+        const modal = document.createElement('div');
+        modal.style.cssText = `
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0,0,0,0.9);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 2000;
+          cursor: pointer;
+        `;
+        
+        const modalImg = document.createElement('img');
+        modalImg.src = this.src;
+        modalImg.style.cssText = `
+          max-width: 90%;
+          max-height: 90%;
+          object-fit: contain;
+          border-radius: 8px;
+        `;
+        
+        modal.appendChild(modalImg);
+        document.body.appendChild(modal);
+        
+        modal.addEventListener('click', () => {
+          document.body.removeChild(modal);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
