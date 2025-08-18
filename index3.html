@@ -90,7 +90,7 @@
 
     /* Steps */
     .steps{display:grid;gap:16px}
-    @media (min-width:800px){.steps{grid-template-columns:repeat(3,1fr)}}
+    @media (min-width:800px){.steps{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}}
     .step{
       background:var(--card);padding:20px;border-radius:var(--radius);
       border:1px solid rgba(255,255,255,.06)
@@ -129,6 +129,54 @@
     .footer-brand{display:flex;align-items:center;gap:10px}
     .footer-brand img{width:28px;height:28px}
 
+    /* Example Songs */
+    .example-songs-grid{
+      display:grid;gap:20px;margin-top:32px
+    }
+    @media (min-width:800px){
+      .example-songs-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (min-width:1200px){
+      .example-songs-grid{grid-template-columns:repeat(3,1fr)}
+    }
+    .song-card{
+      background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);
+      padding:20px;box-shadow:var(--shadow);display:flex;flex-direction:column
+    }
+    .song-icon{
+      font-size:24px;margin-bottom:12px;text-align:center
+    }
+    .song-image{
+      width:100%;height:120px;object-fit:cover;border-radius:8px;margin-bottom:12px
+    }
+    .song-card h3{
+      margin:0 0 8px;font-size:18px;font-weight:700;color:var(--text)
+    }
+    .song-card p{
+      margin:0 0 16px;color:var(--muted);font-size:14px;line-height:1.4
+    }
+    .audio-player{
+      display:flex;align-items:center;gap:8px;margin-top:auto
+    }
+    .play-btn{
+      background:var(--brand);color:#111;border:none;border-radius:6px;width:32px;height:32px;
+      display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:12px
+    }
+    .time{
+      font-size:12px;color:var(--muted);min-width:60px
+    }
+    .progress-bar{
+      flex:1;height:4px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden
+    }
+    .progress{
+      width:0%;height:100%;background:var(--brand);transition:width .3s ease
+    }
+    .volume-btn,.more-btn{
+      background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:14px;
+      width:24px;height:24px;display:flex;align-items:center;justify-content:center
+    }
+    .volume-btn:hover,.more-btn:hover{color:var(--text)}
+
     /* Utilities */
     .center{text-align:center}
     .mt-s{margin-top:10px}.mt-m{margin-top:18px}.mt-l{margin-top:28px}
@@ -140,12 +188,11 @@
   <nav class="nav">
     <div class="container nav-inner">
       <a href="#" class="brand">
-        <img src="assets/customtuneai-logo.png" alt="CustomTuneAI logo" />
         <h1>CustomTuneAI</h1>
       </a>
       <div class="nav-actions">
         <a href="#pricing" class="btn secondary">Pricing</a>
-        <a href="#get-started" class="btn primary">Get Free Preview</a>
+        <a href="#example-songs" class="btn primary">Preview</a>
       </div>
     </div>
   </nav>
@@ -159,7 +206,7 @@
         <p class="sub">A custom song to celebrate birthdays, anniversaries, and love stories.</p>
 
         <div class="hero-cta">
-          <a href="#get-started" class="btn primary">Get a Free 15‑Second Preview</a>
+          <a href="#example-songs" class="btn primary">Preview</a>
           <a href="#pricing" class="btn secondary">See Packages</a>
         </div>
 
@@ -171,7 +218,7 @@
       </div>
 
       <div class="hero-card">
-        <img src="assets/customtuneai-hero.png" alt="Custom song hero banner" />
+        <img src="assets/images/Happy Couple/Custom AI Song happy couple, mid 20s, love, pink and blue tones, good looking people, musical scores 49828.jpg" alt="Custom song hero banner" />
       </div>
     </div>
   </header>
@@ -185,14 +232,10 @@
       <div class="steps">
         <div class="step">
           <h3>1) Tell us the story</h3>
-          <p>Share names, the occasion, favorite moments, and the vibe you want.</p>
+          <p>Share names, the occasion, favorite moments, style and the vibe you want.</p>
         </div>
         <div class="step">
-          <h3>2) Free preview & revisions</h3>
-          <p>We send a 15‑second snippet. Tell us what to tweak—lyrics, vibe, pacing—and we revise.</p>
-        </div>
-        <div class="step">
-          <h3>3) Pick your package & approve</h3>
+          <h3>2) Pick your package & approve</h3>
           <p>Choose the perfect option, then approve the final track. We include revisions until it feels right.</p>
         </div>
       </div>
@@ -251,6 +294,62 @@
     </div>
   </section>
 
+
+
+  <!-- EXAMPLE SONGS -->
+  <section class="section" id="example-songs">
+    <div class="container">
+      <h2 class="center">Example Songs</h2>
+      
+      <div class="example-songs-grid">
+        <div class="song-card">
+          <img src="assets/images/Birthday Photos/Custom AI Song birthday party, blue and pink tones 700508.jpg" alt="Birthday party" class="song-image" />
+          <h3>Birthday Jingle for Mia</h3>
+          <p>A fun pop tune to celebrate Mia's special day!</p>
+          <div class="audio-player">
+            <button class="play-btn">▶</button>
+            <span class="time">0:00 / 0:00</span>
+            <div class="progress-bar">
+              <div class="progress"></div>
+            </div>
+            <button class="volume-btn">🔊</button>
+            <button class="more-btn">⋮</button>
+          </div>
+        </div>
+
+        <div class="song-card">
+          <img src="assets/images/Happy Couple/Custom AI Song happy couple, mid 20s, love, pink and blue tones, good looking people  75291.jpg" alt="Happy couple" class="song-image" />
+          <h3>Anniversary Ballad for Emma</h3>
+          <p>A romantic acoustic song for everlasting love.</p>
+          <div class="audio-player">
+            <button class="play-btn">▶</button>
+            <span class="time">0:00 / 0:00</span>
+            <div class="progress-bar">
+              <div class="progress"></div>
+            </div>
+            <button class="volume-btn">🔊</button>
+            <button class="more-btn">⋮</button>
+          </div>
+        </div>
+
+        <div class="song-card">
+          <img src="assets/images/Happy Couple/Custom AI Song Flux_happy couple, mid 20s, love, pink and blue tones, good looking people, musical scores 158808.jpg" alt="Happy couple" class="song-image" />
+          <h3>Love Message Melody</h3>
+          <p>A heartfelt tune to express your love.</p>
+          <div class="audio-player">
+            <button class="play-btn">▶</button>
+            <span class="time">0:00 / 0:00</span>
+            <div class="progress-bar">
+              <div class="progress"></div>
+            </div>
+            <button class="volume-btn">🔊</button>
+            <button class="more-btn">⋮</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
   <!-- REVISIONS POLICY (replaces public samples) -->
   <section class="section" id="revisions">
     <div class="container">
@@ -273,7 +372,6 @@
       </div>
     </div>
   </section>
-
   <!-- SHARE & DISCOUNT -->
   <section id="share-discount" class="section">
     <div class="container">
@@ -288,20 +386,6 @@
     </div>
   </section>
 
-  <!-- GET STARTED -->
-  <section class="section" id="get-started">
-    <div class="container">
-      <h2 class="center">Get your free 15‑second preview</h2>
-      <p class="lead center">No commitment—just the start of something unforgettable.</p>
-
-      <div style="max-width:560px;margin-inline:auto">
-        <!-- Swap mailto for your form URL when ready -->
-        <a class="btn block primary" href="mailto:info@yourcustomsong.com?subject=Free%20Preview&body=Tell%20us%20about%20the%20person%2Foccasion%2C%20the%20vibe%20you%20want%2C%20and%20any%20details%20we%20should%20include.">Email Us to Start</a>
-        <p class="center mt-s" style="color:var(--muted)">Prefer a form? We can add one later.</p>
-      </div>
-    </div>
-  </section>
-
   <!-- FOOTER -->
   <footer>
     <div class="container footer-inner">
@@ -311,7 +395,7 @@
       </div>
       <div>
         <a href="#pricing" class="btn secondary">Pricing</a>
-        <a href="#get-started" class="btn primary">Get Free Preview</a>
+        <a href="#example-songs" class="btn primary">Preview</a>
       </div>
     </div>
   </footer>
