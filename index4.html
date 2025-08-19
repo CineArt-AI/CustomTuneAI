@@ -169,7 +169,9 @@
     /* Pricing */
     .pricing{ display:grid; gap:16px; margin-top:10px }
     @media (min-width:900px){ .pricing{ grid-template-columns:repeat(3,1fr) } }
-    .plan{ background:#fff; border:1px solid var(--ring); border-radius:var(--radius); padding:20px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:var(--shadow) }
+    .plan{ background:#fff; border:1px solid var(--ring); border-radius:var(--radius); padding:20px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:var(--shadow); transition: all 0.3s ease; cursor: pointer; }
+    .plan:hover{ transform: translateY(-2px); box-shadow: 0 20px 40px rgba(17, 24, 39, 0.12); }
+    .plan.selected{ border-color: var(--brand); box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2); }
     .price{ font-size:28px; font-weight:900; margin:6px 0 14px; color:#111 }
     .plan ul{ padding:0; margin:0 0 18px; list-style:none }
     .plan ul li{ margin:8px 0; color:var(--muted) }
@@ -335,50 +337,51 @@
     <div class="container">
       <h2 class="center">Packages</h2>
       <p class="lead center">Choose what fits your moment.</p>
+      
+
 
       <div class="pricing" role="list">
-        <div class="plan" role="listitem">
-          <div>
-            <h3>Basic</h3>
-            <div class="price">$15</div>
-            <ul>
-              <li>Custom instrumental</li>
-              <li>Up to 60 seconds</li>
-              <li>MP3 delivery</li>
-              <li><strong>Revisions included</strong></li>
-            </ul>
+        <div class="plan" role="listitem" onclick="selectPackage('Basic', 15.00)" data-package="Basic">
+            <div>
+              <h3>Basic</h3>
+              <div class="price">$15</div>
+              <ul>
+                <li>Custom instrumental</li>
+                <li>Up to 60 seconds</li>
+                <li>MP3 delivery</li>
+                <li><strong>Revisions included</strong></li>
+              </ul>
+            </div>
+            <button class="btn primary" onclick="event.stopPropagation()">Start Your Song</button>
           </div>
-          <a href="#get-started" class="btn primary">Start Your Song</a>
-        </div>
-
-        <div class="plan recommended" role="listitem" aria-label="Most popular plan">
-          <div>
-            <h3>Premium</h3>
-            <div class="price">$35</div>
-            <ul>
-              <li>Custom song with vocals</li>
-              <li>Up to 90 seconds</li>
-              <li>MP3 + lyrics</li>
-              <li><strong>Revisions included</strong></li>
-            </ul>
+ 
+          <div class="plan recommended" role="listitem" aria-label="Most popular plan" onclick="selectPackage('Premium', 35.00)" data-package="Premium">
+            <div>
+              <h3>Premium</h3>
+              <div class="price">$35</div>
+              <ul>
+                <li>Custom song with vocals</li>
+                <li>Up to 90 seconds</li>
+                <li>MP3 + lyrics</li>
+                <li><strong>Revisions included</strong></li>
+              </ul>
+            </div>
+            <button class="btn primary" onclick="event.stopPropagation()">Most Popular</button>
           </div>
-          <a href="#get-started" class="btn primary">Most Popular</a>
-        </div>
-
-        <div class="plan" role="listitem">
-          <div>
-            <h3>Ultimate</h3>
-            <div class="price">$50</div>
-            <ul>
-              <li>Song with vocals + lyric video</li>
-              <li>Up to 120 seconds</li>
-              <li>Ready to share on socials</li>
-              <li><strong>Revisions included</strong></li>
-            </ul>
+ 
+          <div class="plan" role="listitem" onclick="selectPackage('Ultimate', 50.00)" data-package="Ultimate">
+            <div>
+              <h3>Ultimate</h3>
+              <div class="price">$50</div>
+              <ul>
+                <li>Song with vocals + lyric video</li>
+                <li>Up to 120 seconds</li>
+                <li>Ready to share on socials</li>
+                <li><strong>Revisions included</strong></li>
+              </ul>
+            </div>
+            <button class="btn primary" onclick="event.stopPropagation()">Make It Epic</button>
           </div>
-          <a href="#get-started" class="btn primary">Make It Epic</a>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -466,40 +469,80 @@
       <h2 class="center">Start Your Song</h2>
       <p class="lead center">Tell us who it’s for, the occasion, and the vibe you want.</p>
 
-      <form id="startForm" style="max-width:640px;margin:0 auto;background:#fff;border:1px solid var(--ring);border-radius:16px;padding:18px;box-shadow:var(--shadow)" onsubmit="return composeEmail(event)" aria-label="Start your song">
-        <label>
-          Your name
-          <input required name="name" placeholder="e.g., Alex" style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px"/>
-        </label>
-        <label>
-          Who is the song for?
-          <input required name="recipient" placeholder="e.g., Mia" style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px"/>
-        </label>
-        <label>
-          Occasion
-          <input required name="occasion" placeholder="Birthday, anniversary, proposal, etc." style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px"/>
-        </label>
-        <label>
-          Vibe / style
-          <input name="vibe" placeholder="Upbeat, romantic, acoustic, etc." style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px"/>
-        </label>
-        <label>
-          Your email
-          <input required type="email" name="email" placeholder="you@example.com" style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px"/>
-        </label>
-        <label>
-          Any special details we should include?
-          <textarea name="details" rows="4" placeholder="Names, memories, inside jokes, specific lines..." style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px"></textarea>
-        </label>
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <button class="btn primary" type="submit">Send Details</button>
-          <a class="btn secondary" href="#examples">Hear Example Songs</a>
-        </div>
-      </form>
+             <form id="startForm" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="max-width:640px;margin:0 auto;background:#fff;border:1px solid var(--ring);border-radius:16px;padding:18px;box-shadow:var(--shadow)" aria-label="Start your song">
+         <input type="hidden" name="cmd" value="_xclick">
+         <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL">
+         <input type="hidden" name="item_name" value="CustomTuneAI Personalized Song">
+         <input type="hidden" name="currency_code" value="USD">
+         
+         <!-- Priced Dropdown for Packages -->
+         <input type="hidden" name="on0" value="Package">
+         <label>
+           Choose Package:
+           <select name="os0" id="os0" required style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px;background:#fff;color:var(--text);font-size:14px;">
+             <option value="Basic">Basic - $15 (Custom instrumental, up to 60 seconds)</option>
+             <option value="Premium">Premium - $35 (Custom song with vocals, up to 90 seconds)</option>
+             <option value="Ultimate">Ultimate - $50 (Song with vocals + lyric video, up to 120 seconds)</option>
+           </select>
+         </label>
+         <div id="selectedPackageInfo" style="margin-top:8px;padding:8px;background:var(--brand);color:#fff;border-radius:8px;text-align:center;font-weight:600;display:none;">
+           Package Selected: <span id="selectedPackageName"></span> - $<span id="selectedPackagePrice"></span>
+         </div>
+         <input type="hidden" name="option_select0" value="Basic">
+         <input type="hidden" name="option_amount0" value="15.00">
+         <input type="hidden" name="option_select1" value="Premium">
+         <input type="hidden" name="option_amount1" value="35.00">
+         <input type="hidden" name="option_select2" value="Ultimate">
+         <input type="hidden" name="option_amount2" value="50.00">
+         
+         <!-- Dropdown for Occasion -->
+         <input type="hidden" name="on1" value="Occasion">
+         <label>
+           Occasion:
+           <select name="os1" id="os1" required style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px;background:#fff;color:var(--text);font-size:14px;">
+             <option value="Birthday">Birthday</option>
+             <option value="Anniversary">Anniversary</option>
+             <option value="Graduation">Graduation</option>
+             <option value="Other">Other</option>
+           </select>
+         </label>
+         
+         <!-- Dropdown for Music Style -->
+         <input type="hidden" name="on2" value="Music Style">
+         <label>
+           Music Style:
+           <select name="os2" id="os2" required style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px;background:#fff;color:var(--text);font-size:14px;">
+             <option value="Pop">Pop</option>
+             <option value="Rock">Rock</option>
+             <option value="Ballad">Ballad</option>
+             <option value="Hip-Hop">Hip-Hop</option>
+           </select>
+         </label>
+         
+         <!-- Text Box 1: Names -->
+         <input type="hidden" name="on3" value="Names">
+         <label>
+           Your Name / Recipient's Name:
+           <input type="text" name="os3" id="os3" maxlength="200" required placeholder="e.g., Alex / Mia" style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px"/>
+         </label>
+         
+         <!-- Text Box 2: Special Message -->
+         <input type="hidden" name="on4" value="Special Message">
+         <label>
+           Special Message or Details:
+           <textarea name="os4" id="os4" maxlength="200" rows="4" placeholder="Any special details, memories, or specific lines you'd like included..." style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px;resize:vertical;font-family:inherit;"></textarea>
+         </label>
+         
+         <!-- Submit Button -->
+         <div style="text-align:center;margin-top:20px;">
+           <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" style="max-width:100%;height:auto;">
+         </div>
+         <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+       </form>
 
-      <p class="center" style="color:#6b7280;margin-top:10px">
-        Prefer email? <a href="mailto:info@yourcustomsong.com?subject=Start%20My%20Custom%20Song">info@yourcustomsong.com</a>
-      </p>
+             <p class="center" style="color:#6b7280;margin-top:10px">
+         Secure payment via PayPal. Need help? <a href="mailto:info@yourcustomsong.com?subject=Custom%20Song%20Help">info@yourcustomsong.com</a>
+       </p>
     </div>
   </section>
 
@@ -564,30 +607,127 @@
 
     // Compose email from form (works on GitHub Pages with mailto)
     function composeEmail(e){
-      e.preventDefault();
-      const f = e.target;
-      const name      = encodeURIComponent(f.name.value.trim());
-      const recipient = encodeURIComponent(f.recipient.value.trim());
-      const occasion  = encodeURIComponent(f.occasion.value.trim());
-      const vibe      = encodeURIComponent(f.vibe.value.trim());
-      const email     = encodeURIComponent(f.email.value.trim());
-      const details   = encodeURIComponent(f.details.value.trim());
+       e.preventDefault();
+       const f = e.target;
+       const name      = encodeURIComponent(f.name.value.trim());
+       const recipient = encodeURIComponent(f.recipient.value.trim());
+       const occasion  = encodeURIComponent(f.occasion.value.trim());
+       const vibe      = encodeURIComponent(f.vibe.value.trim());
+       const email     = encodeURIComponent(f.email.value.trim());
+       const details   = encodeURIComponent(f.details.value.trim());
 
-      const subject = encodeURIComponent('Start My Custom Song');
-      const body =
-`Name: ${name}
-Their name: ${recipient}
-Occasion: ${occasion}
-Vibe: ${vibe}
-Your email: ${email}
+       const subject = encodeURIComponent('Start My Custom Song');
+       const body =
+ `Name: ${name}
+ Their name: ${recipient}
+ Occasion: ${occasion}
+ Vibe: ${vibe}
+ Your email: ${email}
 
-Details:
-${details}`;
+ Details:
+ ${details}`;
 
-      const mailto = `mailto:info@yourcustomsong.com?subject=${subject}&body=${encodeURIComponent(body)}`;
-      window.location.href = mailto;
-      return false;
-    }
+       const mailto = `mailto:info@yourcustomsong.com?subject=${subject}&body=${encodeURIComponent(body)}`;
+       window.location.href = mailto;
+       return false;
+     }
+
+               // Package selection function
+     function selectPackage(packageName, price) {
+       try {
+         console.log('selectPackage called with:', packageName, price);
+         
+         // Find the form
+         const form = document.getElementById('startForm');
+         if (!form) {
+           console.error('Form not found!');
+           return;
+         }
+         
+         // Set the package dropdown
+         const packageSelect = form.querySelector('#os0');
+         if (packageSelect) {
+  
+           packageSelect.value = packageName;
+           
+           // Update the price display in the dropdown text
+           const selectedOption = packageSelect.querySelector(`option[value="${packageName}"]`);
+           if (selectedOption) {
+             // Store original text to restore later
+             if (!selectedOption.dataset.originalText) {
+               selectedOption.dataset.originalText = selectedOption.textContent;
+             }
+             
+             // Highlight the selected package briefly
+             selectedOption.style.backgroundColor = 'var(--brand)';
+             selectedOption.style.color = '#fff';
+             setTimeout(() => {
+               selectedOption.style.backgroundColor = '';
+               selectedOption.style.color = '';
+             }, 2000);
+           } else {
+             console.error('Selected option not found for:', packageName);
+           }
+         } else {
+           console.error('Package select dropdown not found!');
+         }
+         
+         // Update visual selection in pricing section
+         const allPlans = document.querySelectorAll('.plan');
+         allPlans.forEach(plan => {
+           plan.classList.remove('selected');
+           if (plan.dataset.package === packageName) {
+             plan.classList.add('selected');
+           }
+         });
+         
+         // Scroll to the form
+         const formSection = document.getElementById('get-started');
+         if (formSection) {
+           formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+         }
+         
+         // Update the visual indicator in the form
+         const selectedPackageInfo = document.getElementById('selectedPackageInfo');
+         const selectedPackageName = document.getElementById('selectedPackageName');
+         const selectedPackagePrice = document.getElementById('selectedPackagePrice');
+         
+         if (selectedPackageInfo && selectedPackageName && selectedPackagePrice) {
+           selectedPackageName.textContent = packageName;
+           selectedPackagePrice.textContent = price;
+           selectedPackageInfo.style.display = 'block';
+         }
+         
+
+       } catch (error) {
+         console.error('Error in selectPackage:', error);
+       }
+     }
+
+
+
+     // Initialize form with default package selection
+     function initializeForm() {
+       // Set default package to Premium (most popular)
+       selectPackage('Premium', 35.00);
+     }
+
+     // Add event listeners when DOM is loaded
+     document.addEventListener('DOMContentLoaded', function() {
+
+       
+       // Initialize form
+       initializeForm();
+       
+       // Add click handlers for buttons to prevent event bubbling
+       document.querySelectorAll('.plan .btn').forEach(button => {
+         button.addEventListener('click', function(e) {
+           e.stopPropagation();
+         });
+       });
+       
+
+     });
   </script>
 </body>
 </html>
