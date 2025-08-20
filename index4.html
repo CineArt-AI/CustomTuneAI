@@ -186,6 +186,54 @@
     .example p{ margin:0; color:var(--muted) }
     audio{ width:100% }
 
+    /* 🎵 Custom Audio Player */
+    .custom-player {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #f0f9ff; /* very light sky blue background */
+      border: 1px solid #bae6fd; /* soft border */
+      border-radius: 12px;
+      padding: 8px 12px;
+      box-shadow: 0 4px 12px rgba(14, 165, 233, 0.15); /* subtle blue shadow */
+      margin-top: 8px;
+    }
+    .custom-player .play-btn {
+      background: var(--brand-3); /* main light blue accent */
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 18px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+    .custom-player .play-btn:hover {
+      background: #0284c7; /* darker blue hover */
+    }
+    .custom-player .play-btn:active {
+      transform: scale(0.95);
+    }
+
+    .custom-player .seek {
+      flex: 1;
+      accent-color: var(--brand-3); /* makes slider blue */
+      cursor: pointer;
+    }
+
+    .custom-player .time {
+      font-size: 14px;
+      font-weight: 600;
+      color: #0369a1; /* deep blue for contrast */
+      min-width: 42px;
+      text-align: center;
+    }
+
     /* Revisions & Privacy */
     .cards{ display:grid; gap:16px }
     @media (min-width:800px){ .cards{ grid-template-columns:repeat(3,1fr) } }
@@ -412,7 +460,38 @@
            <div class="content">
              <h3>Birthday Jingle for Mia</h3>
              <p>A fun pop tune to celebrate Mia's special day!</p>
-             <audio controls preload="none" src="assets/audio_samples/sample1.mp3"></audio>
+             <audio id="player1" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-K-pop-V1.mp3"></audio>
+             <div class="custom-player">
+               <button class="play-btn">▶</button>
+               <span class="time">0:00</span>
+               <input type="range" class="seek" value="0" min="0" max="100">
+             </div>
+           </br>
+             <h3>here are some other variations of the same lyrics in different styles and versions</h3>
+             <audio id="player2" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-K-pop-V1.mp3"></audio>
+             <div class="custom-player">
+               <button class="play-btn">▶</button>
+               <span class="time">0:00</span>
+               <input type="range" class="seek" value="0" min="0" max="100">
+             </div>
+             <audio id="player3" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-K-pop-V1.mp3"></audio>
+             <div class="custom-player">
+               <button class="play-btn">▶</button>
+               <span class="time">0:00</span>
+               <input type="range" class="seek" value="0" min="0" max="100">
+             </div>
+             <audio id="player4" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-K-pop-V1.mp3"></audio>
+             <div class="custom-player">
+               <button class="play-btn">▶</button>
+               <span class="time">0:00</span>
+               <input type="range" class="seek" value="0" min="0" max="100">
+             </div>
+             <audio id="player5" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-K-pop-V1.mp3"></audio>
+             <div class="custom-player">
+               <button class="play-btn">▶</button>
+               <span class="time">0:00</span>
+               <input type="range" class="seek" value="0" min="0" max="100">
+             </div>
            </div>
          </article>
 
@@ -421,7 +500,13 @@
            <div class="content">
              <h3>Anniversary Ballad for Emma</h3>
              <p>A romantic acoustic song for everlasting love.</p>
-             <audio controls preload="none" src="assets/audio_samples/sample2.mp3"></audio>
+             <audio id="player6" preload="none" src="assets/Samples_Songs/sample2.mp3"></audio>
+             <div class="custom-player">
+               <button class="play-btn">▶</button>
+               <span class="time">0:00</span>
+               <input type="range" class="seek" value="0" min="0" max="100">
+             </div>
+             
            </div>
          </article>
 
@@ -430,7 +515,12 @@
            <div class="content">
              <h3>Love Message Melody</h3>
              <p>Heartfelt and intimate.</p>
-             <audio controls preload="none" src="assets/audio_samples/sample3.mp3"></audio>
+             <audio id="player7" preload="none" src="assets/Samples_Songs/sample3.mp3"></audio>
+             <div class="custom-player">
+               <button class="play-btn">▶</button>
+               <span class="time">0:00</span>
+               <input type="range" class="seek" value="0" min="0" max="100">
+             </div>
            </div>
          </article>
       </div>
@@ -602,6 +692,50 @@
       console.log('Thank you message displayed');
       return false;
     }
+
+    // Custom Audio Player functionality
+    function initCustomPlayer(audioId, wrapper) {
+      const audio = document.getElementById(audioId);
+      const playBtn = wrapper.querySelector('.play-btn');
+      const time = wrapper.querySelector('.time');
+      const seek = wrapper.querySelector('.seek');
+
+      // Play/Pause
+      playBtn.addEventListener('click', () => {
+        if (audio.paused) {
+          audio.play();
+          playBtn.textContent = '⏸';
+        } else {
+          audio.pause();
+          playBtn.textContent = '▶';
+        }
+      });
+
+      // Update time
+      audio.addEventListener('timeupdate', () => {
+        const minutes = Math.floor(audio.currentTime / 60);
+        const seconds = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
+        time.textContent = `${minutes}:${seconds}`;
+        seek.value = (audio.currentTime / audio.duration) * 100 || 0;
+      });
+
+      // Seeking
+      seek.addEventListener('input', () => {
+        audio.currentTime = (seek.value / 100) * audio.duration;
+      });
+
+      // Reset button on end
+      audio.addEventListener('ended', () => {
+        playBtn.textContent = '▶';
+      });
+    }
+
+    // Initialize all custom players when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.custom-player').forEach((wrapper, i) => {
+        initCustomPlayer(`player${i+1}`, wrapper);
+      });
+    });
   </script>
 </body>
 </html>
