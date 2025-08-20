@@ -234,6 +234,41 @@
       text-align: center;
     }
 
+    /* Variations section */
+    .variations-title {
+      margin: 16px 0 8px;
+      font-size: 16px;
+      font-weight: 800;
+    }
+    .variations { display: grid; gap: 10px; }
+    @media (min-width: 720px) { .variations { grid-template-columns: 1fr; } }
+    .var-item {}
+
+    /* Custom Audio Player – Warm theme */
+    .custom-player.warm {
+      background: #fff7ed;              /* peachy/warm */
+      border: 1px solid #fed7aa;         /* soft warm border */
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.10);
+    }
+    .custom-player.warm .play-btn {
+      background: #f59e0b;               /* amber */
+      color: #111;
+      font-weight: 800;
+    }
+    .custom-player.warm .play-btn:hover { filter: brightness(0.95); }
+    .custom-player.warm .play-btn:active { transform: scale(0.96); }
+    .custom-player.warm .label { font-weight: 700; color: #7c2d12; }
+    .custom-player.warm .time {
+      color: #b45309; min-width: 44px; text-align: right;
+    }
+    .custom-player.warm .seek {
+      accent-color: #f59e0b;
+    }
+
+    /* Hide native controls globally for our custom players */
+    .custom-player + audio,
+    audio[controls] { display: none !important; }
+
     /* Revisions & Privacy */
     .cards{ display:grid; gap:16px }
     @media (min-width:800px){ .cards{ grid-template-columns:repeat(3,1fr) } }
@@ -455,74 +490,158 @@
       <p class="lead center">A quick taste of the kind of magic we create.</p>
 
       <div class="examples">
-                 <article class="example">
-           <img src="assets/images/Birthday Photos/Custom AI Song birthday party, blue and pink tones 700508.jpg" alt="Birthday party" />
-           <div class="content">
-             <h3>Birthday Jingle for Mia</h3>
-             <p>A fun pop tune to celebrate Mia's special day!</p>
-             <audio id="player1" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-K-pop-V1.mp3"></audio>
-             <div class="custom-player">
-               <button class="play-btn">▶</button>
-               <span class="time">0:00</span>
-               <input type="range" class="seek" value="0" min="0" max="100">
-             </div>
-           </br>
-             <h3>here are some other variations of the same lyrics in different styles and versions</h3>
-             <audio id="player2" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-K-pop-V1.mp3"></audio>
-             <div class="custom-player">
-               <button class="play-btn">▶</button>
-               <span class="time">0:00</span>
-               <input type="range" class="seek" value="0" min="0" max="100">
-             </div>
-             <audio id="player3" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-K-pop-V1.mp3"></audio>
-             <div class="custom-player">
-               <button class="play-btn">▶</button>
-               <span class="time">0:00</span>
-               <input type="range" class="seek" value="0" min="0" max="100">
-             </div>
-             <audio id="player4" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-K-pop-V1.mp3"></audio>
-             <div class="custom-player">
-               <button class="play-btn">▶</button>
-               <span class="time">0:00</span>
-               <input type="range" class="seek" value="0" min="0" max="100">
-             </div>
-             <audio id="player5" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-K-pop-V1.mp3"></audio>
-             <div class="custom-player">
-               <button class="play-btn">▶</button>
-               <span class="time">0:00</span>
-               <input type="range" class="seek" value="0" min="0" max="100">
-             </div>
-           </div>
-         </article>
+        <article class="example">
+          <img src="assets/images/Birthday Photos/Custom AI Song birthday party, blue and pink tones 700508.jpg" alt="Birthday party">
+          <div class="content">
+            <h3>Birthday Jingle for Mia</h3>
+            <p>A fun pop tune to celebrate Mia's special day!</p>
 
-         <article class="example">
-           <img src="assets/images/Happy Couple/Custom AI Song happy couple, mid 20s, love, pink and blue tones, good looking people  75291.jpg" alt="Happy couple" />
-           <div class="content">
-             <h3>Anniversary Ballad for Emma</h3>
-             <p>A romantic acoustic song for everlasting love.</p>
-             <audio id="player6" preload="none" src="assets/Samples_Songs/sample2.mp3"></audio>
-             <div class="custom-player">
-               <button class="play-btn">▶</button>
-               <span class="time">0:00</span>
-               <input type="range" class="seek" value="0" min="0" max="100">
-             </div>
-             
-           </div>
-         </article>
+            <!-- Main player (custom UI) -->
+            <audio id="song-main-1" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-K-pop-V1.mp3"></audio>
+            <div class="custom-player warm" data-audio="song-main-1">
+              <button class="play-btn" aria-label="Play/Pause">▶</button>
+              <span class="time">0:00</span>
+              <input type="range" class="seek" value="0" min="0" max="100" step="0.1" aria-label="Seek">
+            </div>
 
-         <article class="example">
-           <img src="assets/images/Happy Couple/Custom AI Song Flux_happy couple, mid 20s, love, pink and blue tones, good looking people, musical scores 158808.jpg" alt="Happy couple with musical scores" />
-           <div class="content">
-             <h3>Love Message Melody</h3>
-             <p>Heartfelt and intimate.</p>
-             <audio id="player7" preload="none" src="assets/Samples_Songs/sample3.mp3"></audio>
-             <div class="custom-player">
-               <button class="play-btn">▶</button>
-               <span class="time">0:00</span>
-               <input type="range" class="seek" value="0" min="0" max="100">
-             </div>
-           </div>
-         </article>
+            <h4 class="variations-title">Same Lyrics, Different Styles</h4>
+
+            <!-- Variations -->
+            <div class="variations">
+              <div class="var-item">
+                <audio id="song-rock-1" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-Rock-V1.mp3"></audio>
+                <div class="custom-player warm" data-audio="song-rock-1">
+                  <button class="play-btn">▶</button>
+                  <span class="label">🎸 Rock Version</span>
+                  <span class="time">0:00</span>
+                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1">
+                </div>
+              </div>
+
+              <div class="var-item">
+                <audio id="song-rnb-1" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-RnB-V1.mp3"></audio>
+                <div class="custom-player warm" data-audio="song-rnb-1">
+                  <button class="play-btn">▶</button>
+                  <span class="label">🎤 R&amp;B Version</span>
+                  <span class="time">0:00</span>
+                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1">
+                </div>
+              </div>
+
+              <div class="var-item">
+                <audio id="song-kpop-1" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-K-pop-V2.mp3"></audio>
+                <div class="custom-player warm" data-audio="song-kpop-1">
+                  <button class="play-btn">▶</button>
+                  <span class="label">🎶 K-Pop Version</span>
+                  <span class="time">0:00</span>
+                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1">
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="example">
+          <img src="assets/images/Happy Couple/Custom AI Song happy couple, mid 20s, love, pink and blue tones, good looking people  75291.jpg" alt="Happy couple" />
+          <div class="content">
+            <h3>Anniversary Ballad for Emma</h3>
+            <p>A romantic acoustic song for everlasting love.</p>
+            
+            <!-- Main player -->
+            <audio id="song-main-2" preload="none" src="assets/Samples_Songs/Sample-George-HappyAnniversary-Country-V1.mp3"></audio>
+            <div class="custom-player warm" data-audio="song-main-2">
+              <button class="play-btn" aria-label="Play/Pause">▶</button>
+              <span class="time">0:00</span>
+              <input type="range" class="seek" value="0" min="0" max="100" step="0.1" aria-label="Seek">
+            </div>
+
+            <h4 class="variations-title">Same Lyrics, Different Styles</h4>
+
+            <!-- Variations -->
+            <div class="variations">
+              <div class="var-item">
+                <audio id="song-piano-2" preload="none" src="assets/Samples_Songs/Sample-George-HappyAnniversary-Piano slow-V1.mp3"></audio>
+                <div class="custom-player warm" data-audio="song-piano-2">
+                  <button class="play-btn">▶</button>
+                  <span class="label">🎹 Piano Version</span>
+                  <span class="time">0:00</span>
+                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1">
+                </div>
+              </div>
+
+              <div class="var-item">
+                <audio id="song-rock-2" preload="none" src="assets/Samples_Songs/Sample-George-HappyAnniversary-Rock-V1.mp3"></audio>
+                <div class="custom-player warm" data-audio="song-rock-2">
+                  <button class="play-btn">▶</button>
+                  <span class="label">🎸 Rock Version</span>
+                  <span class="time">0:00</span>
+                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1">
+                </div>
+              </div>
+
+              <div class="var-item">
+                <audio id="song-funny-2" preload="none" src="assets/Samples_Songs/Sample-George-HeppyAnniversary-FunnyRap-V1.mp3"></audio>
+                <div class="custom-player warm" data-audio="song-funny-2">
+                  <button class="play-btn">▶</button>
+                  <span class="label">🎭 Funny Rap Version</span>
+                  <span class="time">0:00</span>
+                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1">
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="example">
+          <img src="assets/images/Happy Couple/Custom AI Song Flux_happy couple, mid 20s, love, pink and blue tones, good looking people, musical scores 158808.jpg" alt="Happy couple with musical scores" />
+          <div class="content">
+            <h3>Love Message Melody</h3>
+            <p>Heartfelt and intimate.</p>
+            
+            <!-- Main player -->
+            <audio id="song-main-3" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-Metal-V1.mp3"></audio>
+            <div class="custom-player warm" data-audio="song-main-3">
+              <button class="play-btn" aria-label="Play/Pause">▶</button>
+              <span class="time">0:00</span>
+              <input type="range" class="seek" value="0" min="0" max="100" step="0.1" aria-label="Seek">
+            </div>
+
+            <h4 class="variations-title">Same Lyrics, Different Styles</h4>
+
+            <!-- Variations -->
+            <div class="variations">
+              <div class="var-item">
+                <audio id="song-metal-3" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-Metal-V2.mp3"></audio>
+                <div class="custom-player warm" data-audio="song-metal-3">
+                  <button class="play-btn">▶</button>
+                  <span class="label">🤘 Metal Version</span>
+                  <span class="time">0:00</span>
+                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1">
+                </div>
+              </div>
+
+              <div class="var-item">
+                <audio id="song-kpop-3" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-K-pop-V1.mp3"></audio>
+                <div class="custom-player warm" data-audio="song-kpop-3">
+                  <button class="play-btn">▶</button>
+                  <span class="label">🎶 K-Pop Version</span>
+                  <span class="time">0:00</span>
+                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1">
+                </div>
+              </div>
+
+              <div class="var-item">
+                <audio id="song-rnb-3" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-RnB-V2.mp3"></audio>
+                <div class="custom-player warm" data-audio="song-rnb-3">
+                  <button class="play-btn">▶</button>
+                  <span class="label">🎤 R&amp;B Version</span>
+                  <span class="time">0:00</span>
+                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1">
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
 
       <p class="center" style="margin-top:20px;color:#6b7280">
@@ -694,48 +813,54 @@
     }
 
     // Custom Audio Player functionality
-    function initCustomPlayer(audioId, wrapper) {
-      const audio = document.getElementById(audioId);
-      const playBtn = wrapper.querySelector('.play-btn');
-      const time = wrapper.querySelector('.time');
-      const seek = wrapper.querySelector('.seek');
+    (function(){
+      function initPlayer(wrapper){
+        const audioId = wrapper.getAttribute('data-audio');
+        const audio = document.getElementById(audioId);
+        const btn = wrapper.querySelector('.play-btn');
+        const timeEl = wrapper.querySelector('.time');
+        const seek = wrapper.querySelector('.seek');
 
-      // Play/Pause
-      playBtn.addEventListener('click', () => {
-        if (audio.paused) {
-          audio.play();
-          playBtn.textContent = '⏸';
-        } else {
-          audio.pause();
-          playBtn.textContent = '▶';
-        }
-      });
+        // Sync one-at-a-time playback (pause others)
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.custom-player').forEach(w => {
+            if (w !== wrapper) {
+              const aId = w.getAttribute('data-audio');
+              const a = document.getElementById(aId);
+              if (!a.paused) {
+                a.pause();
+                const b = w.querySelector('.play-btn');
+                if (b) b.textContent = '▶';
+              }
+            }
+          });
+          if (audio.paused) { audio.play(); btn.textContent = '⏸'; }
+          else { audio.pause(); btn.textContent = '▶'; }
+        });
 
-      // Update time
-      audio.addEventListener('timeupdate', () => {
-        const minutes = Math.floor(audio.currentTime / 60);
-        const seconds = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
-        time.textContent = `${minutes}:${seconds}`;
-        seek.value = (audio.currentTime / audio.duration) * 100 || 0;
-      });
+        // Time + progress
+        const fmt = (t) => {
+          if (!isFinite(t)) return '0:00';
+          const m = Math.floor(t / 60);
+          const s = Math.floor(t % 60).toString().padStart(2, '0');
+          return `${m}:${s}`;
+        };
+        audio.addEventListener('timeupdate', () => {
+          timeEl.textContent = fmt(audio.currentTime);
+          if (audio.duration) seek.value = (audio.currentTime / audio.duration) * 100;
+        });
+        audio.addEventListener('ended', () => { btn.textContent = '▶'; seek.value = 0; timeEl.textContent = '0:00'; });
 
-      // Seeking
-      seek.addEventListener('input', () => {
-        audio.currentTime = (seek.value / 100) * audio.duration;
-      });
+        // Seek
+        seek.addEventListener('input', () => {
+          if (audio.duration) audio.currentTime = (seek.value / 100) * audio.duration;
+        });
+      }
 
-      // Reset button on end
-      audio.addEventListener('ended', () => {
-        playBtn.textContent = '▶';
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.custom-player').forEach(initPlayer);
       });
-    }
-
-    // Initialize all custom players when DOM is loaded
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.custom-player').forEach((wrapper, i) => {
-        initCustomPlayer(`player${i+1}`, wrapper);
-      });
-    });
+    })();
   </script>
 </body>
 </html>
