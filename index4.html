@@ -236,7 +236,7 @@
 
     /* Variations section */
     .variations-title {
-      margin: 16px 0 8px;
+      margin: 24px 0 12px;
       font-size: 16px;
       font-weight: 800;
     }
@@ -268,6 +268,74 @@
     /* Hide native controls globally for our custom players */
     .custom-player + audio,
     audio[controls] { display: none !important; }
+    
+    /* Ensure our custom player audio elements are visible for functionality */
+    audio[id^="song-"] { display: block !important; }
+
+    /* Circular play button fix */
+    .custom-player .play-btn {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      min-height: 40px;
+      border-radius: 50% !important;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    /* Variation block */
+    .variation-block {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #fff8f2; /* warm background */
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    /* Genre label */
+    .variation-block .label {
+      font-weight: 700;
+      font-size: 14px;
+      color: #7c2d12; /* warm brown tone */
+    }
+
+    /* Player row */
+    .custom-player.warm {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .custom-player.warm .play-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #f59e0b;
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .custom-player.warm .seek {
+      flex: 1;
+      accent-color: #f59e0b;
+    }
+
+    .custom-player.warm .time {
+      font-size: 13px;
+      font-weight: 600;
+      color: #b45309;
+      white-space: nowrap;
+    }
 
     /* Revisions & Privacy */
     .cards{ display:grid; gap:16px }
@@ -508,33 +576,33 @@
 
             <!-- Variations -->
             <div class="variations">
-              <div class="var-item">
+              <div class="variation-block">
+                <span class="label">🎸 Rock Version</span>
                 <audio id="song-rock-1" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-Rock-V1.mp3"></audio>
                 <div class="custom-player warm" data-audio="song-rock-1">
-                  <button class="play-btn">▶</button>
-                  <span class="label">🎸 Rock Version</span>
+                  <button class="play-btn" aria-label="Play/Pause">▶</button>
+                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1" aria-label="Seek">
                   <span class="time">0:00</span>
-                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1">
                 </div>
               </div>
 
-              <div class="var-item">
+              <div class="variation-block">
+                <span class="label">🎤 R&amp;B Version</span>
                 <audio id="song-rnb-1" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-RnB-V1.mp3"></audio>
                 <div class="custom-player warm" data-audio="song-rnb-1">
-                  <button class="play-btn">▶</button>
-                  <span class="label">🎤 R&amp;B Version</span>
+                  <button class="play-btn" aria-label="Play/Pause">▶</button>
+                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1" aria-label="Seek">
                   <span class="time">0:00</span>
-                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1">
                 </div>
               </div>
 
-              <div class="var-item">
+              <div class="variation-block">
+                <span class="label">🎶 K-Pop Version</span>
                 <audio id="song-kpop-1" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-K-pop-V2.mp3"></audio>
                 <div class="custom-player warm" data-audio="song-kpop-1">
-                  <button class="play-btn">▶</button>
-                  <span class="label">🎶 K-Pop Version</span>
+                  <button class="play-btn" aria-label="Play/Pause">▶</button>
+                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1" aria-label="Seek">
                   <span class="time">0:00</span>
-                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1">
                 </div>
               </div>
             </div>
@@ -559,33 +627,33 @@
 
             <!-- Variations -->
             <div class="variations">
-              <div class="var-item">
+              <div class="variation-block">
+                <span class="label">🎹 Piano Version</span>
                 <audio id="song-piano-2" preload="none" src="assets/Samples_Songs/Sample-George-HappyAnniversary-Piano slow-V1.mp3"></audio>
                 <div class="custom-player warm" data-audio="song-piano-2">
-                  <button class="play-btn">▶</button>
-                  <span class="label">🎹 Piano Version</span>
+                  <button class="play-btn" aria-label="Play/Pause">▶</button>
+                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1" aria-label="Seek">
                   <span class="time">0:00</span>
-                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1">
                 </div>
               </div>
 
-              <div class="var-item">
+              <div class="variation-block">
+                <span class="label">🎸 Rock Version</span>
                 <audio id="song-rock-2" preload="none" src="assets/Samples_Songs/Sample-George-HappyAnniversary-Rock-V1.mp3"></audio>
                 <div class="custom-player warm" data-audio="song-rock-2">
-                  <button class="play-btn">▶</button>
-                  <span class="label">🎸 Rock Version</span>
+                  <button class="play-btn" aria-label="Play/Pause">▶</button>
+                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1" aria-label="Seek">
                   <span class="time">0:00</span>
-                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1">
                 </div>
               </div>
 
-              <div class="var-item">
+              <div class="variation-block">
+                <span class="label">🎭 Funny Rap Version</span>
                 <audio id="song-funny-2" preload="none" src="assets/Samples_Songs/Sample-George-HeppyAnniversary-FunnyRap-V1.mp3"></audio>
                 <div class="custom-player warm" data-audio="song-funny-2">
-                  <button class="play-btn">▶</button>
-                  <span class="label">🎭 Funny Rap Version</span>
+                  <button class="play-btn" aria-label="Play/Pause">▶</button>
+                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1" aria-label="Seek">
                   <span class="time">0:00</span>
-                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1">
                 </div>
               </div>
             </div>
@@ -610,33 +678,33 @@
 
             <!-- Variations -->
             <div class="variations">
-              <div class="var-item">
+              <div class="variation-block">
+                <span class="label">🤘 Metal Version</span>
                 <audio id="song-metal-3" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-Metal-V2.mp3"></audio>
                 <div class="custom-player warm" data-audio="song-metal-3">
-                  <button class="play-btn">▶</button>
-                  <span class="label">🤘 Metal Version</span>
+                  <button class="play-btn" aria-label="Play/Pause">▶</button>
+                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1" aria-label="Seek">
                   <span class="time">0:00</span>
-                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1">
                 </div>
               </div>
 
-              <div class="var-item">
+              <div class="variation-block">
+                <span class="label">🎶 K-Pop Version</span>
                 <audio id="song-kpop-3" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-K-pop-V1.mp3"></audio>
                 <div class="custom-player warm" data-audio="song-kpop-3">
-                  <button class="play-btn">▶</button>
-                  <span class="label">🎶 K-Pop Version</span>
+                  <button class="play-btn" aria-label="Play/Pause">▶</button>
+                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1" aria-label="Seek">
                   <span class="time">0:00</span>
-                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1">
                 </div>
               </div>
 
-              <div class="var-item">
+              <div class="variation-block">
+                <span class="label">🎤 R&amp;B Version</span>
                 <audio id="song-rnb-3" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-RnB-V2.mp3"></audio>
                 <div class="custom-player warm" data-audio="song-rnb-3">
-                  <button class="play-btn">▶</button>
-                  <span class="label">🎤 R&amp;B Version</span>
+                  <button class="play-btn" aria-label="Play/Pause">▶</button>
+                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1" aria-label="Seek">
                   <span class="time">0:00</span>
-                  <input type="range" class="seek" value="0" min="0" max="100" step="0.1">
                 </div>
               </div>
             </div>
@@ -820,6 +888,8 @@
         const btn = wrapper.querySelector('.play-btn');
         const timeEl = wrapper.querySelector('.time');
         const seek = wrapper.querySelector('.seek');
+        
+        console.log('Initializing player:', { audioId, audio, btn, timeEl, seek });
 
         // Sync one-at-a-time playback (pause others)
         btn.addEventListener('click', () => {
@@ -858,7 +928,12 @@
       }
 
       document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.custom-player').forEach(initPlayer);
+        const players = document.querySelectorAll('.custom-player');
+        console.log('Found custom players:', players.length);
+        players.forEach((player, index) => {
+          console.log(`Initializing player ${index + 1}:`, player);
+          initPlayer(player);
+        });
       });
     })();
   </script>
