@@ -620,10 +620,10 @@
     // ===== Contact Form 7 REST submission (cross-origin) =====
     // TODO: Replace FORM_ID_HERE with the numeric ID of your CF7 form on cineartai.com
     const CF7 = {
-      id: '19589', // e.g., 1234
-      endpoint: 'https://www.cineartai.com/wp-json/contact-form-7/v1/contact-forms/19589/feedback',
-      unitTag: 'wpcf7-f19589-o1' // CF7 >= 5.8.7 requires a valid unit tag for REST
-    };
+  id: 19587,
+  endpoint: 'https://www.cineartai.com/wp-json/contact-form-7/v1/contact-forms/19587/feedback',
+  unitTag: 'wpcf7-f19587-p19588-o1'   // use exactly as in the WP source
+};
 
     const form = document.getElementById('contactForm');
     const msg  = document.getElementById('contactMsg');
@@ -639,8 +639,8 @@
 
       // Required meta fields for CF7 REST
       fd.append('_wpcf7', String(CF7.id));
-      fd.append('_wpcf7_unit_tag', CF7.unitTag);
-      fd.append('_wpcf7_container_post', '0');
+fd.append('_wpcf7_unit_tag', CF7.unitTag);
+fd.append('_wpcf7_container_post', '19588');   // use your real container post ID
 
       try {
         const res = await fetch(CF7.endpoint, { method: 'POST', body: fd });
