@@ -212,6 +212,11 @@
     audio[controls]{ display:none !important; }
     audio[id^="song-"]{ display:block !important; }
 
+    /* Revisions & Privacy */
+    .cards{ display:grid; gap:16px }
+    @media (min-width:800px){ .cards{ grid-template-columns:repeat(3,1fr) } }
+    .card{ background:#fff; padding:20px; border-radius:var(--radius); border:1px solid var(--ring); box-shadow:var(--shadow) }
+
     /* Footer, Share, etc. */
     #share-discount{ background:#fff8f2; border-top:1px solid var(--ring); border-bottom:1px solid var(--ring) }
     #share-discount .wrap{ background:#fff; border:1px solid var(--ring); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow) }
