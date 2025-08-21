@@ -19,6 +19,8 @@
   <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630' viewBox='0 0 1200 630'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1'%3E%3Cstop stop-color='%23ffb703'/%3E%3Cstop offset='1' stop-color='%23fb7185'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='%23ffffff' width='1200' height='630'/%3E%3Ccircle cx='150' cy='120' r='12' fill='%23a78bfa'/%3E%3Ccircle cx='1080' cy='520' r='10' fill='%23fb7185'/%3E%3Crect x='70' y='480' width='20' height='20' fill='%23f59e0b'/%3E%3Crect x='980' y='80' width='18' height='18' fill='%230ea5e9'/%3E%3Ctext x='80' y='340' font-family='Segoe UI,Arial,sans-serif' font-size='72' font-weight='700' fill='url(%23g)'%3ECustom Song Gifts%3C/text%3E%3Ctext x='80' y='390' font-family='Segoe UI,Arial,sans-serif' font-size='28' fill='%23333'%3EThe Most Personal Gift You'll Ever Give%3C/text%3E%3C/svg%3E" />
   <meta name="twitter:card" content="summary_large_image" />
 
+  <script src="https://www.google.com/recaptcha/api.js?render=6LdC5awrAAAAAC7yDGMTYYSHJBemUcT1L9uX6q8j" async defer></script>
+
   <!-- Styles (same palette + confetti hero you liked) -->
   <style>
     :root{
@@ -646,24 +648,45 @@
       <h2 class="center">Contact Us</h2>
       <p class="lead center">Have a question or want to start your song? Send us a message.</p>
 
-      <form id="contactForm" onsubmit="return onSubmitForm(event)" style="max-width:640px;margin:0 auto;background:#fff;border:1px solid var(--ring);border-radius:16px;padding:18px;box-shadow:var(--shadow)" aria-label="Contact form">
-        <!-- Honeypot -->
-        <input type="text" name="website" autocomplete="off" tabindex="-1" style="display:none" aria-hidden="true">
-      
-        <label>
-          Your email
-          <input required type="email" name="email" placeholder="you@example.com" style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px"/>
-        </label>
-        <label>
-          Your message
-          <textarea required name="message" rows="5" placeholder="Tell us what you need help with or what kind of song you want…" style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px;resize:vertical;font-family:inherit;"></textarea>
-        </label>
-        <div id="contactMsg" style="margin:6px 0 12px; color:#64748b; font-size:14px;"></div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <button class="btn primary" type="submit">Send Message</button>
-          <a class="btn secondary" href="#examples">Hear Example Songs</a>
-        </div>
-      </form>
+      <form id="contactForm"
+      action=""
+      method="POST"
+      target="contact_iframe"
+      style="max-width:640px;margin:0 auto;background:#fff;border:1px solid var(--ring);border-radius:16px;padding:18px;box-shadow:var(--shadow)"
+      aria-label="Contact form"
+      onsubmit="return onSubmitFormIframe(event)">
+
+  <!-- Honeypot -->
+  <input type="text" name="website" autocomplete="off" tabindex="-1" style="display:none" aria-hidden="true">
+
+  <label>
+    Your email
+    <input required type="email" name="email" placeholder="you@example.com"
+           style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px"/>
+  </label>
+  <label>
+    Your message
+    <textarea required name="message" rows="5"
+              placeholder="Tell us what you need help with or what kind of song you want…"
+              style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px;resize:vertical;font-family:inherit;"></textarea>
+  </label>
+
+  <!-- Hidden fields sent to Apps Script -->
+  <input type="hidden" name="recaptcha" id="recaptchaField">
+  <input type="hidden" name="package" value="">
+  <input type="hidden" name="userAgent" id="uaField">
+
+  <div id="contactMsg" style="margin:6px 0 12px; color:#64748b; font-size:14px;"></div>
+
+  <div style="display:flex;gap:10px;flex-wrap:wrap">
+    <button class="btn primary" type="submit">Send Message</button>
+    <a class="btn secondary" href="#examples">Hear Example Songs</a>
+  </div>
+</form>
+
+<!-- Hidden iframe target to avoid CORS -->
+<iframe name="contact_iframe" id="contact_iframe" style="display:none;"></iframe>
+
 
       <p class="center" style="color:#6b7280;margin-top:10px">
         Prefer email? <a href="mailto:customsongs@cineartai.com?subject=Custom%20Song%20Enquiry">customsongs@cineartai.com</a>
@@ -727,70 +750,6 @@
   <script src="https://www.google.com/recaptcha/api.js?render=6LdC5awrAAAAAC7yDGMTYYSHJBemUcT1L9uX6q8j" async defer></script>
 
   <script>
-    // PUT YOUR /exec URL HERE (must end with /exec, not /dev)
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwiaKD6aYS1raVaxONZ9isKSXQqSllbRq_Kd1QQ4QujoR4jh-kGID6i4PeyCzfWNmgPEA/exec';
-  
-    async function onSubmitForm(e) {
-      e.preventDefault();
-      const form = document.getElementById('contactForm');
-      const msg  = document.getElementById('contactMsg');
-  
-      const email   = form.email.value.trim();
-      const message = form.message.value.trim();
-      const website = form.website.value.trim(); // honeypot
-  
-      if (!email || !message) {
-        msg.style.color = '#b91c1c';
-        msg.textContent = 'Please fill in both email and message.';
-        return false;
-      }
-  
-      msg.style.color = '#64748b';
-      msg.textContent = 'Sending…';
-  
-      // Get reCAPTCHA token (or DEBUG_SKIP if recaptcha isn’t ready)
-      let token = 'DEBUG_SKIP';
-      if (window.grecaptcha && grecaptcha.execute) {
-        try {
-          token = await grecaptcha.execute('6LdC5awrAAAAAC7yDGMTYYSHJBemUcT1L9uX6q8j', { action: 'contact' });
-        } catch(_) { /* fall back to DEBUG_SKIP for testing */ }
-      }
-  
-      // Form-encoded body (no CORS preflight)
-      const body = new URLSearchParams({
-        email, message, package: '', website,
-        userAgent: navigator.userAgent,
-        recaptcha: token
-      });
-  
-      try {
-        const res  = await fetch(SCRIPT_URL, { method: 'POST', body });
-        const text = await res.text();
-        let data   = {};
-        try { data = JSON.parse(text); } catch { data = {}; }
-  
-        if (data.ok && data.redirect) {
-          window.location.href = data.redirect;
-          return false;
-        }
-        if (data.ok) {
-          msg.style.color = '#059669';
-          msg.textContent = 'Thanks! We’ve received your message.';
-          form.reset();
-        } else {
-          throw new Error(data.error || ('HTTP ' + res.status));
-        }
-      } catch (err) {
-        console.error(err);
-        msg.style.color = '#b91c1c';
-        msg.textContent = 'Sorry, something went wrong. Please email customsongs@cineartai.com';
-      }
-      return false;
-    }
-  </script>
-  
-
-  <script>
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click', e=>{
@@ -835,79 +794,6 @@
     }
 
     // Contact: reCAPTCHA v3 + Apps Script
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw0o20y9zEBh95kDTb1RvyaWpMTh3kXd0KHCmCSW33ZR6cRVAozSJ0Rst4f-vcTx1VfFg/exec'; // <-- add your Web App URL
-
-    async function onSubmitForm(e) {
-      e.preventDefault();
-      const form = document.getElementById('contactForm');
-      const msg  = document.getElementById('contactMsg');
-
-      const name    = form.name.value.trim();
-      const email   = form.email.value.trim();
-      const message = form.message.value.trim();
-
-      if (!name || !email || !message) {
-        msg.style.color = '#b91c1c';
-        msg.textContent = 'Please fill in name, email and message.';
-        return false;
-      }
-
-      msg.style.color = '#6b7280';
-      msg.textContent = 'Sending…';
-
-      // Ensure reCAPTCHA is loaded before executing
-      function run() {
-        return grecaptcha.execute('6LdC5awrAAAAAC7yDGMTYYSHJBemUcT1L9uX6q8j', { action: 'contact' });
-      }
-
-      try {
-        // Wait until grecaptcha is available
-        const token = await (window.grecaptcha ? run() : new Promise(resolve=>{
-          const iv = setInterval(()=>{
-            if (window.grecaptcha) { clearInterval(iv); resolve(run()); }
-          }, 50);
-        }));
-
-        const payload = {
-          name,
-          email,
-          message,
-          package: '',
-          website: form.website.value, // honeypot
-          userAgent: navigator.userAgent,
-          recaptcha: token
-        };
-
-        console.log('Sending payload:', payload);
-        const res  = await fetch(SCRIPT_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-          mode: 'cors'
-        });
-        console.log('Response status:', res.status);
-        const data = await res.json();
-        console.log('Response data:', data);
-
-        if (data.ok && data.redirect) {
-          window.location.href = data.redirect;
-          return false;
-        }
-        if (data.ok) {
-          msg.style.color = '#059669';
-          msg.textContent = 'Thanks! We’ve received your message.';
-          form.reset();
-        } else {
-          throw new Error(data.error || 'Request failed');
-        }
-      } catch (err) {
-        console.error(err);
-        msg.style.color = '#b91c1c';
-        msg.textContent = 'Sorry, something went wrong. Please email customsongs@cineartai.com';
-      }
-      return false;
-    }
-
     // Custom Audio Player functionality
     (function(){
       function initPlayer(wrapper){
@@ -958,6 +844,80 @@
         players.forEach((player) => initPlayer(player));
       });
     })();
+
+    // Only one SCRIPT_URL declaration in the whole page!
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwiaKD6aYS1raVaxONZ9isKSXQqSllbRq_Kd1QQ4QujoR4jh-kGID6i4PeyCzfWNmgPEA/exec'; // matches the form action
+
+    // Iframe-based submit: no fetch, no CORS.
+    async function onSubmitFormIframe(e) {
+      e.preventDefault();
+      const form = document.getElementById('contactForm');
+      const msg  = document.getElementById('contactMsg');
+      const ua   = document.getElementById('uaField');
+      const recF = document.getElementById('recaptchaField');
+
+      // Basic validation
+      if (!form.email.value.trim() || !form.message.value.trim()) {
+        msg.style.color = '#b91c1c';
+        msg.textContent = 'Please fill in both email and message.';
+        return false;
+      }
+
+      ua.value = navigator.userAgent;
+      msg.style.color = '#64748b';
+      msg.textContent = 'Sending…';
+
+      // Get reCAPTCHA v3 token, then submit natively to the iframe
+      try {
+        const token = await new Promise((resolve) => {
+          if (window.grecaptcha && grecaptcha.execute) {
+            grecaptcha.execute('6LdC5awrAAAAAC7yDGMTYYSHJBemUcT1L9uX6q8j', { action: 'contact' })
+              .then(resolve)
+              .catch(() => resolve('DEBUG_SKIP')); // optional fallback while testing
+          } else {
+            // wait briefly for the script to load
+            const iv = setInterval(() => {
+              if (window.grecaptcha && grecaptcha.execute) {
+                clearInterval(iv);
+                grecaptcha.execute('6LdC5awrAAAAAC7yDGMTYYSHJBemUcT1L9uX6q8j', { action: 'contact' })
+                  .then(resolve)
+                  .catch(() => resolve('DEBUG_SKIP'));
+              }
+            }, 60);
+            // hard timeout fallback
+            setTimeout(() => resolve('DEBUG_SKIP'), 1500);
+          }
+        });
+
+        recF.value = token;
+        form.action = SCRIPT_URL; // ensure in sync
+        form.target = 'contact_iframe';
+        form.submit();
+
+        // When the iframe loads, we consider it "done"
+        const iframe = document.getElementById('contact_iframe');
+        const done = () => {
+          msg.style.color = '#059669';
+          msg.textContent = 'Thanks! We've received your message.';
+          form.reset();
+          // Optional: redirect after a short delay
+          setTimeout(() => {
+            window.location.href = 'https://cineart-ai.github.io/CustomTuneAI/thank-you.html';
+          }, 600);
+        };
+
+        // Attach a one-time onload
+        const onload = () => { iframe.removeEventListener('load', onload); done(); };
+        iframe.addEventListener('load', onload);
+
+        return false;
+      } catch (err) {
+        console.error(err);
+        msg.style.color = '#b91c1c';
+        msg.textContent = 'Sorry, something went wrong. Please email customsongs@cineartai.com';
+        return false;
+      }
+    }
   </script>
 </body>
 </html>
