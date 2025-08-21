@@ -646,34 +646,23 @@
       <h2 class="center">Contact Us</h2>
       <p class="lead center">Have a question or want to start your song? Send us a message.</p>
 
-      <form id="contactForm" onsubmit="return onSubmitForm(event)"
-            style="max-width:640px;margin:0 auto;background:#fff;border:1px solid var(--ring);border-radius:16px;padding:18px;box-shadow:var(--shadow)"
-            aria-label="Contact form">
-
-        <!-- Honeypot (anti-spam) -->
-        <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off" />
-
-        <label>
-          Your name
-          <input required type="text" name="name" placeholder="Your full name"
-                 style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px"/>
-        </label>
+      <form id="contactForm" onsubmit="return onSubmitForm(event)" style="max-width:640px;margin:0 auto;background:#fff;border:1px solid var(--ring);border-radius:16px;padding:18px;box-shadow:var(--shadow)" aria-label="Contact form">
+        <!-- Honeypot -->
+        <input type="text" name="website" autocomplete="off" tabindex="-1" style="display:none" aria-hidden="true">
+      
         <label>
           Your email
-          <input required type="email" name="email" placeholder="you@example.com"
-                 style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px"/>
+          <input required type="email" name="email" placeholder="you@example.com" style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px"/>
         </label>
         <label>
           Your message
-          <textarea required name="message" rows="5" placeholder="Tell us what you need help with or what kind of song you want…"
-                    style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px;resize:vertical;font-family:inherit;"></textarea>
+          <textarea required name="message" rows="5" placeholder="Tell us what you need help with or what kind of song you want…" style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px;resize:vertical;font-family:inherit;"></textarea>
         </label>
+        <div id="contactMsg" style="margin:6px 0 12px; color:#64748b; font-size:14px;"></div>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <button class="btn primary" type="submit">Send Message</button>
           <a class="btn secondary" href="#examples">Hear Example Songs</a>
         </div>
-
-        <p id="contactMsg" class="center" style="margin-top:12px;color:#6b7280"></p>
       </form>
 
       <p class="center" style="color:#6b7280;margin-top:10px">
@@ -736,6 +725,70 @@
   <!-- JS (deferred) -->
   <!-- reCAPTCHA v3 loader (async defer) -->
   <script src="https://www.google.com/recaptcha/api.js?render=6LdC5awrAAAAAC7yDGMTYYSHJBemUcT1L9uX6q8j" async defer></script>
+
+  <script>
+    // PUT YOUR /exec URL HERE (must end with /exec, not /dev)
+    const SCRIPT_URL = 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
+  
+    async function onSubmitForm(e) {
+      e.preventDefault();
+      const form = document.getElementById('contactForm');
+      const msg  = document.getElementById('contactMsg');
+  
+      const email   = form.email.value.trim();
+      const message = form.message.value.trim();
+      const website = form.website.value.trim(); // honeypot
+  
+      if (!email || !message) {
+        msg.style.color = '#b91c1c';
+        msg.textContent = 'Please fill in both email and message.';
+        return false;
+      }
+  
+      msg.style.color = '#64748b';
+      msg.textContent = 'Sending…';
+  
+      // Get reCAPTCHA token (or DEBUG_SKIP if recaptcha isn’t ready)
+      let token = 'DEBUG_SKIP';
+      if (window.grecaptcha && grecaptcha.execute) {
+        try {
+          token = await grecaptcha.execute('6LdC5awrAAAAAC7yDGMTYYSHJBemUcT1L9uX6q8j', { action: 'contact' });
+        } catch(_) { /* fall back to DEBUG_SKIP for testing */ }
+      }
+  
+      // Form-encoded body (no CORS preflight)
+      const body = new URLSearchParams({
+        email, message, package: '', website,
+        userAgent: navigator.userAgent,
+        recaptcha: token
+      });
+  
+      try {
+        const res  = await fetch(SCRIPT_URL, { method: 'POST', body });
+        const text = await res.text();
+        let data   = {};
+        try { data = JSON.parse(text); } catch { data = {}; }
+  
+        if (data.ok && data.redirect) {
+          window.location.href = data.redirect;
+          return false;
+        }
+        if (data.ok) {
+          msg.style.color = '#059669';
+          msg.textContent = 'Thanks! We’ve received your message.';
+          form.reset();
+        } else {
+          throw new Error(data.error || ('HTTP ' + res.status));
+        }
+      } catch (err) {
+        console.error(err);
+        msg.style.color = '#b91c1c';
+        msg.textContent = 'Sorry, something went wrong. Please email customsongs@cineartai.com';
+      }
+      return false;
+    }
+  </script>
+  
 
   <script>
     // Smooth scroll
