@@ -8,6 +8,8 @@
   <meta name="description" content="Turn your story into a custom song to celebrate birthdays, anniversaries, and love stories. Revisions included. Hear example songs and start your song today." />
   <link rel="canonical" href="https://cineart-ai.github.io/CustomTuneAI/index3.html" />
   <meta name="theme-color" content="#ffffff" />
+  <!-- Favicon to avoid 404 -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23f59e0b'/%3E%3Ctext x='32' y='40' font-size='32' text-anchor='middle' fill='%23fff'%3E♪%3C/text%3E%3C/svg%3E" />
 
   <!-- Open Graph / Twitter -->
   <meta property="og:title" content="The Most Personal Gift You'll Ever Give" />
@@ -199,7 +201,7 @@
       margin-top: 8px;
     }
     .custom-player .play-btn {
-      background: var(--brand-3); /* main light blue accent */
+      background: var(--brand-3);
       border: none;
       border-radius: 50%;
       width: 40px;
@@ -213,129 +215,55 @@
       justify-content: center;
       transition: background 0.2s ease, transform 0.1s ease;
     }
-    .custom-player .play-btn:hover {
-      background: #0284c7; /* darker blue hover */
-    }
-    .custom-player .play-btn:active {
-      transform: scale(0.95);
-    }
-
-    .custom-player .seek {
-      flex: 1;
-      accent-color: var(--brand-3); /* makes slider blue */
-      cursor: pointer;
-    }
-
-    .custom-player .time {
-      font-size: 14px;
-      font-weight: 600;
-      color: #0369a1; /* deep blue for contrast */
-      min-width: 42px;
-      text-align: center;
-    }
+    .custom-player .play-btn:hover { background: #0284c7; }
+    .custom-player .play-btn:active { transform: scale(0.95); }
+    .custom-player .seek { flex: 1; accent-color: var(--brand-3); cursor: pointer; }
+    .custom-player .time { font-size: 14px; font-weight: 600; color: #0369a1; min-width: 42px; text-align: center; }
 
     /* Variations section */
-    .variations-title {
-      margin: 24px 0 12px;
-      font-size: 16px;
-      font-weight: 800;
-    }
+    .variations-title { margin: 24px 0 12px; font-size: 16px; font-weight: 800; }
     .variations { display: grid; gap: 10px; }
     @media (min-width: 720px) { .variations { grid-template-columns: 1fr; } }
     .var-item {}
 
     /* Custom Audio Player – Warm theme */
     .custom-player.warm {
-      background: #fff7ed;              /* peachy/warm */
-      border: 1px solid #fed7aa;         /* soft warm border */
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
       box-shadow: 0 4px 12px rgba(245, 158, 11, 0.10);
     }
     .custom-player.warm .play-btn {
-      background: #f59e0b;               /* amber */
-      color: #111;
-      font-weight: 800;
+      background: #f59e0b;
+      color: #111; font-weight: 800;
     }
     .custom-player.warm .play-btn:hover { filter: brightness(0.95); }
     .custom-player.warm .play-btn:active { transform: scale(0.96); }
     .custom-player.warm .label { font-weight: 700; color: #7c2d12; }
-    .custom-player.warm .time {
-      color: #b45309; min-width: 44px; text-align: right;
-    }
-    .custom-player.warm .seek {
-      accent-color: #f59e0b;
-    }
+    .custom-player.warm .time { color: #b45309; min-width: 44px; text-align: right; }
+    .custom-player.warm .seek { accent-color: #f59e0b; }
 
     /* Hide native controls globally for our custom players */
     .custom-player + audio,
     audio[controls] { display: none !important; }
-    
-    /* Ensure our custom player audio elements are visible for functionality */
     audio[id^="song-"] { display: block !important; }
 
     /* Circular play button fix */
     .custom-player .play-btn {
-      width: 40px;
-      height: 40px;
-      min-width: 40px;
-      min-height: 40px;
-      border-radius: 50% !important;
-      padding: 0;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 1;
+      width: 40px; height: 40px; min-width: 40px; min-height: 40px;
+      border-radius: 50% !important; padding: 0; display: inline-flex;
+      align-items: center; justify-content: center; line-height: 1;
     }
 
     /* Variation block */
     .variation-block {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      background: #fff8f2; /* warm background */
+      display: flex; flex-direction: column; gap: 6px;
+      padding: 10px 12px; border-radius: 12px; background: #fff8f2;
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
-
-    /* Genre label */
-    .variation-block .label {
-      font-weight: 700;
-      font-size: 14px;
-      color: #7c2d12; /* warm brown tone */
-    }
-
-    /* Player row */
-    .custom-player.warm {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .custom-player.warm .play-btn {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: #f59e0b;
-      color: #fff;
-      font-size: 16px;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .custom-player.warm .seek {
-      flex: 1;
-      accent-color: #f59e0b;
-    }
-
-    .custom-player.warm .time {
-      font-size: 13px;
-      font-weight: 600;
-      color: #b45309;
-      white-space: nowrap;
-    }
+    .variation-block .label { font-weight: 700; font-size: 14px; color: #7c2d12; }
+    .custom-player.warm { display: flex; align-items: center; gap: 10px; }
+    .custom-player.warm .seek { flex: 1; accent-color: #f59e0b; }
+    .custom-player.warm .time { font-size: 13px; font-weight: 600; color: #b45309; white-space: nowrap; }
 
     /* Revisions & Privacy */
     .cards{ display:grid; gap:16px }
@@ -346,7 +274,7 @@
     #share-discount{ background: #fff8f2; border-top:1px solid var(--ring); border-bottom:1px solid var(--ring) }
     #share-discount .wrap{ background:#fff; border:1px solid var(--ring); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow) }
     #shareButton{ background:var(--brand); color:#111; border:none; border-radius:12px; padding:12px 18px; font-weight:800; cursor:pointer }
-    #discountCode{ margin-top:16px; text-align:center; font-weight:900; color:#059669 } /* emerald-600 */
+    #discountCode{ margin-top:16px; text-align:center; font-weight:900; color:#059669 }
 
     /* Footer */
     footer{ padding:40px 0; color:var(--muted); border-top:1px solid var(--ring); background:#fff }
@@ -402,7 +330,7 @@
   <div class="m-sticky" role="region" aria-label="Quick actions">
     <strong>🎁 Custom Song</strong>
     <a class="btn primary" href="#examples">Hear Examples</a>
-            <a class="btn secondary" href="#pricing">Start Your Song</a>
+    <a class="btn secondary" href="#pricing">Start Your Song</a>
   </div>
 
   <!-- Nav -->
@@ -436,7 +364,6 @@
 
           <div class="badges" aria-label="Highlights">
             <span class="badge">Fast turnaround, revisions included, total privacy—just magical, personal music, made for them.</span>
-
           </div>
         </div>
 
@@ -455,17 +382,17 @@
   <!-- How it works -->
   <section class="section alt" id="how">
     <div class="container">
-            <h2 class="center" style="margin-bottom: 0px;">Getting your custom song is as easy as 1-2-3</h2>
+      <h2 class="center" style="margin-bottom: 0px;">Getting your custom song is as easy as 1-2-3</h2>
       <h2 class="center" style="margin-top: 0;">and unforgettable from start to finish</h2>
-     
+
       <div class="how-it-works-grid" style="margin-top: 75px;">
         <div class="how-image">
           <img src="https://cineart-ai.github.io/CustomTuneAI/assets/images/singers.png" alt="Singers collage" />
         </div>
         <div class="how-steps">
-                      <h2 class="center" style="margin-bottom: 4px;">How it works</h2>
-            <p class="lead center">Simple steps to turn your story into a song.</p>
-    
+          <h2 class="center" style="margin-bottom: 4px;">How it works</h2>
+          <p class="lead center">Simple steps to turn your story into a song.</p>
+
           <div class="step" role="listitem">
             <h3>1) Tell us the story</h3>
             <p>Share names, the occasion, favorite moments, and the vibe you want.</p>
@@ -488,71 +415,70 @@
     <div class="container">
       <h2 class="center">Some moments are simply unforgettable. Turn your feelings into a song with one of our custom song experiences.</h2>
       <p class="lead center">Choose what fits your moment.</p>
-      
-
 
       <div class="pricing" role="list">
         <div class="plan" role="listitem" data-package="Basic">
-            <div>
-              <h3>Basic</h3>
-              <div class="price">$25</div>
-              <ul>
-                <li>Custom instrumental</li>
-                <li>Up to 60 seconds</li>
-                <li>MP3 delivery</li>
-                <li><strong>Revisions included</strong></li>
-              </ul>
-            </div>
-            <!-- Replace the single button with this PayPal form -->
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="margin-top:auto;text-align:center">
-              <input type="hidden" name="cmd" value="_s-xclick" />
-              <input type="hidden" name="hosted_button_id" value="3SFJMYDX57Q3U" />
-              <input type="hidden" name="custom" value="package=Basic" />
-              <button type="submit" class="btn primary">Start Your Song</button>
-            </form>
+          <div>
+            <h3>Basic</h3>
+            <div class="price">$25</div>
+            <ul>
+              <li>Custom instrumental</li>
+              <li>Up to 60 seconds</li>
+              <li>MP3 delivery</li>
+              <li><strong>Revisions included</strong></li>
+            </ul>
           </div>
- 
-          <div class="plan recommended" role="listitem" aria-label="Most popular plan" data-package="Premium">
-            <div>
-              <h3>Premium</h3>
-              <div class="price">$49.99</div>
-              <ul>
-                <li>Custom song with vocals</li>
-                <li>Up to 90 seconds</li>
-                <li>MP3 + lyrics</li>
-                <li><strong>Revisions included</strong></li>
-              </ul>
-            </div>
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="margin-top:auto;text-align:center">
-              <input type="hidden" name="cmd" value="_s-xclick" />
-              <input type="hidden" name="hosted_button_id" value="EYYSFAKZHABMY" />
-              <input type="hidden" name="custom" value="package=Premium" />
-              <button type="submit" class="btn primary">Most Popular</button>
-            </form>
+          <!-- PayPal -->
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="margin-top:auto;text-align:center">
+            <input type="hidden" name="cmd" value="_s-xclick" />
+            <input type="hidden" name="hosted_button_id" value="3SFJMYDX57Q3U" />
+            <input type="hidden" name="custom" value="package=Basic" />
+            <button type="submit" class="btn primary">Start Your Song</button>
+          </form>
+        </div>
+
+        <div class="plan recommended" role="listitem" aria-label="Most popular plan" data-package="Premium">
+          <div>
+            <h3>Premium</h3>
+            <div class="price">$49.99</div>
+            <ul>
+              <li>Custom song with vocals</li>
+              <li>Up to 90 seconds</li>
+              <li>MP3 + lyrics</li>
+              <li><strong>Revisions included</strong></li>
+            </ul>
           </div>
- 
-          <div class="plan" role="listitem" data-package="Ultimate">
-            <div>
-              <h3>Ultimate</h3>
-              <div class="price">$99.99</div>
-              <ul>
-                <li>Song with vocals + lyric video</li>
-                <li>Up to 120 seconds</li>
-                <li>Ready to share on socials</li>
-                <li><strong>Revisions included</strong></li>
-              </ul>
-            </div>
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="margin-top:auto;text-align:center">
-              <input type="hidden" name="cmd" value="_s-xclick" />
-              <input type="hidden" name="hosted_button_id" value="E3XDEL9GG4SXY" />
-              <input type="hidden" name="custom" value="package=Ultimate" />
-              <button type="submit" class="btn primary">Make It Epic</button>
-            </form>
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="margin-top:auto;text-align:center">
+            <input type="hidden" name="cmd" value="_s-xclick" />
+            <input type="hidden" name="hosted_button_id" value="EYYSFAKZHABMY" />
+            <input type="hidden" name="custom" value="package=Premium" />
+            <button type="submit" class="btn primary">Most Popular</button>
+          </form>
+        </div>
+
+        <div class="plan" role="listitem" data-package="Ultimate">
+          <div>
+            <h3>Ultimate</h3>
+            <div class="price">$99.99</div>
+            <ul>
+              <li>Song with vocals + lyric video</li>
+              <li>Up to 120 seconds</li>
+              <li>Ready to share on socials</li>
+              <li><strong>Revisions included</strong></li>
+            </ul>
           </div>
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="margin-top:auto;text-align:center">
+            <input type="hidden" name="cmd" value="_s-xclick" />
+            <input type="hidden" name="hosted_button_id" value="E3XDEL9GG4SXY" />
+            <input type="hidden" name="custom" value="package=Ultimate" />
+            <button type="submit" class="btn primary">Make It Epic</button>
+          </form>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Example Songs (with your placeholder audio paths) -->
+  <!-- Example Songs -->
   <section class="section alt" id="examples">
     <div class="container">
       <h2 class="center">What We Create</h2>
@@ -565,7 +491,6 @@
             <h3>Birthday Jingle for Mia</h3>
             <p>A fun pop tune to celebrate Mia's special day!</p>
 
-            <!-- Main player (custom UI) -->
             <audio id="song-main-1" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-K-pop-V1.mp3"></audio>
             <div class="custom-player warm" data-audio="song-main-1">
               <button class="play-btn" aria-label="Play/Pause">▶</button>
@@ -575,7 +500,6 @@
 
             <h4 class="variations-title">Same Lyrics, Different Styles</h4>
 
-            <!-- Variations -->
             <div class="variations">
               <div class="variation-block">
                 <span class="label">🎸 Rock Version</span>
@@ -615,8 +539,7 @@
           <div class="content">
             <h3>Anniversary Ballad for Emma</h3>
             <p>A romantic acoustic song for everlasting love.</p>
-            
-            <!-- Main player -->
+
             <audio id="song-main-2" preload="none" src="assets/Samples_Songs/Sample-George-HappyAnniversary-Country-V1.mp3"></audio>
             <div class="custom-player warm" data-audio="song-main-2">
               <button class="play-btn" aria-label="Play/Pause">▶</button>
@@ -626,7 +549,6 @@
 
             <h4 class="variations-title">Same Lyrics, Different Styles</h4>
 
-            <!-- Variations -->
             <div class="variations">
               <div class="variation-block">
                 <span class="label">🎹 Piano Version</span>
@@ -666,8 +588,7 @@
           <div class="content">
             <h3>Love Message Melody</h3>
             <p>Heartfelt and intimate.</p>
-            
-            <!-- Main player -->
+
             <audio id="song-main-3" preload="none" src="assets/Samples_Songs/Sample-Jane-Birthday-Metal-V1.mp3"></audio>
             <div class="custom-player warm" data-audio="song-main-3">
               <button class="play-btn" aria-label="Play/Pause">▶</button>
@@ -677,7 +598,6 @@
 
             <h4 class="variations-title">Same Lyrics, Different Styles</h4>
 
-            <!-- Variations -->
             <div class="variations">
               <div class="variation-block">
                 <span class="label">🤘 Metal Version</span>
@@ -721,43 +641,41 @@
   </section>
 
   <!-- Contact Us (Google Sheets + Apps Script + reCAPTCHA v3) -->
-<section class="section" id="get-started">
-  <div class="container">
-    <h2 class="center">Contact Us</h2>
-    <p class="lead center">Have a question or want to start your song? Send us a message.</p>
+  <section class="section" id="get-started">
+    <div class="container">
+      <h2 class="center">Contact Us</h2>
+      <p class="lead center">Have a question or want to start your song? Send us a message.</p>
 
-    <form id="contactForm" onsubmit="return onSubmitForm(event)"
-          style="max-width:640px;margin:0 auto;background:#fff;border:1px solid var(--ring);border-radius:16px;padding:18px;box-shadow:var(--shadow)"
-          aria-label="Contact form">
+      <form id="contactForm" onsubmit="return onSubmitForm(event)"
+            style="max-width:640px;margin:0 auto;background:#fff;border:1px solid var(--ring);border-radius:16px;padding:18px;box-shadow:var(--shadow)"
+            aria-label="Contact form">
 
-      <!-- Honeypot (anti-spam) -->
-      <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off" />
+        <!-- Honeypot (anti-spam) -->
+        <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off" />
 
-      <label>
-        Your email
-        <input required type="email" name="email" placeholder="you@example.com"
-               style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px"/>
-      </label>
-      <label>
-        Your message
-        <textarea required name="message" rows="5" placeholder="Tell us what you need help with or what kind of song you want…"
-                  style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px;resize:vertical;font-family:inherit;"></textarea>
-      </label>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <button class="btn primary" type="submit">Send Message</button>
-        <a class="btn secondary" href="#examples">Hear Example Songs</a>
-      </div>
+        <label>
+          Your email
+          <input required type="email" name="email" placeholder="you@example.com"
+                 style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px"/>
+        </label>
+        <label>
+          Your message
+          <textarea required name="message" rows="5" placeholder="Tell us what you need help with or what kind of song you want…"
+                    style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px;resize:vertical;font-family:inherit;"></textarea>
+        </label>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn primary" type="submit">Send Message</button>
+          <a class="btn secondary" href="#examples">Hear Example Songs</a>
+        </div>
 
-      <!-- Inline status message -->
-      <p id="contactMsg" class="center" style="margin-top:12px;color:#6b7280"></p>
-    </form>
+        <p id="contactMsg" class="center" style="margin-top:12px;color:#6b7280"></p>
+      </form>
 
-    <p class="center" style="color:#6b7280;margin-top:10px">
-      Prefer email? <a href="mailto:customsongs@cineartai.com?subject=Custom%20Song%20Enquiry">customsongs@cineartai.com</a>
-    </p>
-  </div>
-</section>
-
+      <p class="center" style="color:#6b7280;margin-top:10px">
+        Prefer email? <a href="mailto:customsongs@cineartai.com?subject=Custom%20Song%20Enquiry">customsongs@cineartai.com</a>
+      </p>
+    </div>
+  </section>
 
   <!-- Revisions & Privacy -->
   <section class="section" id="revisions">
@@ -782,7 +700,7 @@
     </div>
   </section>
 
-    <!-- Share & Discount -->
+  <!-- Share & Discount -->
   <section id="share-discount" class="section" aria-labelledby="share-title">
     <div class="container">
       <div class="wrap">
@@ -811,6 +729,9 @@
   </footer>
 
   <!-- JS (deferred) -->
+  <!-- reCAPTCHA v3 loader (async defer) -->
+  <script src="https://www.google.com/recaptcha/api.js?render=6LdC5awrAAAAAC7yDGMTYYSHJBemUcT1L9uX6q8j" async defer></script>
+
   <script>
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
@@ -829,7 +750,7 @@
     // Share (no AI wording)
     function handleShare() {
       const shareData = {
-        title: 'The Most Personal Gift You&apos;ll Ever Give',
+        title: 'The Most Personal Gift You\'ll Ever Give',
         text: 'A custom song to celebrate birthdays, anniversaries, and love stories.',
         url: 'https://cineart-ai.github.io/CustomTuneAI/'
       };
@@ -855,22 +776,72 @@
       el.style.display = 'block';
     }
 
-   
-      
-      // Show thank you message
-      const formContainer = form.parentElement;
-      console.log('Form container:', formContainer);
-      
-      formContainer.innerHTML = `
-        <div style="text-align:center; padding:40px 20px;">
-          <h3 style="color:var(--brand); margin-bottom:16px;">Thank You! 🎉</h3>
-          <p style="color:var(--muted); margin-bottom:20px; font-size:16px;">We&apos;ll be in touch soon. Please check your email for a confirmation.</p>
-          <a href="#examples" class="btn secondary">Hear Example Songs</a>
-          <a href="#pricing" class="btn primary" style="margin-left:10px;">View Packages</a>
-        </div>
-      `;
-      
-      console.log('Thank you message displayed');
+    // Contact: reCAPTCHA v3 + Apps Script
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw0o20y9zEBh95kDTb1RvyaWpMTh3kXd0KHCmCSW33ZR6cRVAozSJ0Rst4f-vcTx1VfFg/exec'; // <-- add your Web App URL
+
+    async function onSubmitForm(e) {
+      e.preventDefault();
+      const form = document.getElementById('contactForm');
+      const msg  = document.getElementById('contactMsg');
+
+      const email   = form.email.value.trim();
+      const message = form.message.value.trim();
+
+      if (!email || !message) {
+        msg.style.color = '#b91c1c';
+        msg.textContent = 'Please fill in both email and message.';
+        return false;
+      }
+
+      msg.style.color = '#6b7280';
+      msg.textContent = 'Sending…';
+
+      // Ensure reCAPTCHA is loaded before executing
+      function run() {
+        return grecaptcha.execute('6LdC5awrAAAAAC7yDGMTYYSHJBemUcT1L9uX6q8j', { action: 'contact' });
+      }
+
+      try {
+        // Wait until grecaptcha is available
+        const token = await (window.grecaptcha ? run() : new Promise(resolve=>{
+          const iv = setInterval(()=>{
+            if (window.grecaptcha) { clearInterval(iv); resolve(run()); }
+          }, 50);
+        }));
+
+        const payload = {
+          email,
+          message,
+          package: '',
+          website: form.website.value, // honeypot
+          userAgent: navigator.userAgent,
+          recaptcha: token
+        };
+
+        const res  = await fetch(SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          mode: 'cors'
+        });
+        const data = await res.json();
+
+        if (data.ok && data.redirect) {
+          window.location.href = data.redirect;
+          return false;
+        }
+        if (data.ok) {
+          msg.style.color = '#059669';
+          msg.textContent = 'Thanks! We’ve received your message.';
+          form.reset();
+        } else {
+          throw new Error(data.error || 'Request failed');
+        }
+      } catch (err) {
+        console.error(err);
+        msg.style.color = '#b91c1c';
+        msg.textContent = 'Sorry, something went wrong. Please email customsongs@cineartai.com';
+      }
       return false;
     }
 
@@ -882,10 +853,8 @@
         const btn = wrapper.querySelector('.play-btn');
         const timeEl = wrapper.querySelector('.time');
         const seek = wrapper.querySelector('.seek');
-        
-        console.log('Initializing player:', { audioId, audio, btn, timeEl, seek });
 
-        // Sync one-at-a-time playback (pause others)
+        // Pause others when playing this
         btn.addEventListener('click', () => {
           document.querySelectorAll('.custom-player').forEach(w => {
             if (w !== wrapper) {
@@ -923,82 +892,9 @@
 
       document.addEventListener('DOMContentLoaded', () => {
         const players = document.querySelectorAll('.custom-player');
-        console.log('Found custom players:', players.length);
-        players.forEach((player, index) => {
-          console.log(`Initializing player ${index + 1}:`, player);
-          initPlayer(player);
-        });
+        players.forEach((player) => initPlayer(player));
       });
     })();
   </script>
-  <!-- reCAPTCHA v3 loader (your site key) -->
-<script src="https://www.google.com/recaptcha/api.js?render=6LdC5awrAAAAAC7yDGMTYYSHJBemUcT1L9uX6q8j"></script>
-
-<script>
-  // TODO: paste your deployed Apps Script Web App URL below
-  const SCRIPT_URL = 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
-
-  async function onSubmitForm(e) {
-    e.preventDefault();
-    const form = document.getElementById('contactForm');
-    const msg  = document.getElementById('contactMsg');
-
-    // basic check
-    const email   = form.email.value.trim();
-    const message = form.message.value.trim();
-    if (!email || !message) {
-      msg.style.color = '#b91c1c';
-      msg.textContent = 'Please fill in both email and message.';
-      return false;
-    }
-
-    msg.style.color = '#6b7280';
-    msg.textContent = 'Sending…';
-
-    try {
-      // Get reCAPTCHA token
-      const token = await grecaptcha.execute('6LdC5awrAAAAAC7yDGMTYYSHJBemUcT1L9uX6q8j', { action: 'contact' });
-
-      // Build payload
-      const payload = {
-        email,
-        message,
-        package: '',                 // keep empty unless you add a selector later
-        website: form.website.value, // honeypot (should be empty)
-        userAgent: navigator.userAgent,
-        recaptcha: token
-      };
-
-      // Send to Apps Script
-      const res  = await fetch(SCRIPT_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-        mode: 'cors'
-      });
-      const data = await res.json();
-
-      if (data.ok && data.redirect) {
-        window.location.href = data.redirect;
-        return false;
-      }
-      if (data.ok) {
-        msg.style.color = '#059669';
-        msg.textContent = 'Thanks! We’ve received your message.';
-        form.reset();
-      } else {
-        throw new Error(data.error || 'Request failed');
-      }
-    } catch (err) {
-      console.error(err);
-      msg.style.color = '#b91c1c';
-      msg.textContent = 'Sorry, something went wrong. Please email customsongs@cineartai.com';
-    }
-    return false;
-  }
-
-  // reCAPTCHA v3 needs ready() before first execute on some browsers
-  grecaptcha.ready(function(){ /* no-op: ensures API is primed */ });
-</script>
 </body>
 </html>
