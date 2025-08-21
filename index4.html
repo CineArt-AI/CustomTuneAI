@@ -576,90 +576,89 @@
       </p>
     </div>
   </section>
+<!-- Contact Form -->
+<section id="contact" class="section">
+  <div class="container">
+    <h2 class="center">Contact Us</h2>
+    <p class="lead center">Have a question or want to start your song? Send us a message.</p>
 
-  <!-- Contact Form -->
-  <section id="contact" class="section">
-    <div class="container">
-      <h2 class="center">Contact Us</h2>
-      <p class="lead center">Have a question or want to start your song? Send us a message.</p>
+    <form id="contactForm"
+          method="POST"
+          style="max-width:640px;margin:0 auto;background:#fff;border:1px solid #ddd;border-radius:16px;padding:18px;box-shadow:0 2px 4px rgba(0,0,0,0.1)"
+          aria-label="Contact form">
+      <label>
+        Your name
+        <input required type="text" name="your-name" autocomplete="name"
+               placeholder="Jane Smith"
+               style="width:100%;padding:12px;border:1px solid #ccc;border-radius:10px;margin-top:6px;margin-bottom:12px"/>
+      </label>
+      <label>
+        Your email
+        <input required type="email" name="your-email" autocomplete="email"
+               placeholder="you@example.com"
+               style="width:100%;padding:12px;border:1px solid #ccc;border-radius:10px;margin-top:6px;margin-bottom:12px"/>
+      </label>
+      <label>
+        Your message (optional)
+        <textarea name="your-message" rows="5"
+                  placeholder="Tell us about the song you want…"
+                  style="width:100%;padding:12px;border:1px solid #ccc;border-radius:10px;margin-top:6px;margin-bottom:12px;resize:vertical;font-family:inherit;"></textarea>
+      </label>
 
-      <form id="contactForm"
-            method="POST"
-            style="max-width:640px;margin:0 auto;background:#fff;border:1px solid #ddd;border-radius:16px;padding:18px;box-shadow:0 2px 4px rgba(0,0,0,0.1)"
-            aria-label="Contact form">
-        <label>
-          Your name
-          <input required type="text" name="your-name" autocomplete="name"
-                 placeholder="Jane Smith"
-                 style="width:100%;padding:12px;border:1px solid #ccc;border-radius:10px;margin-top:6px;margin-bottom:12px"/>
-        </label>
-        <label>
-          Your email
-          <input required type="email" name="your-email" autocomplete="email"
-                 placeholder="you@example.com"
-                 style="width:100%;padding:12px;border:1px solid #ccc;border-radius:10px;margin-top:6px;margin-bottom:12px"/>
-        </label>
-        <label>
-          Your message (optional)
-          <textarea name="your-message" rows="5"
-                    placeholder="Tell us about the song you want…"
-                    style="width:100%;padding:12px;border:1px solid #ccc;border-radius:10px;margin-top:6px;margin-bottom:12px;resize:vertical;font-family:inherit;"></textarea>
-        </label>
+      <div id="contactMsg" style="margin:6px 0 12px; color:#64748b; font-size:14px;"></div>
 
-        <div id="contactMsg" style="margin:6px 0 12px; color:#64748b; font-size:14px;"></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button id="cf7-submit" class="btn primary" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</section>
 
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <button id="cf7-submit" class="btn primary" type="submit">Submit</button>
-        </div>
-      </form>
-    </div>
-  </section>
+<!-- CF7 REST API script -->
+<script>
+  // ===== Contact Form 7 REST submission (cross-origin) =====
+  const CF7 = {
+    id: 19587,
+    endpoint: 'https://www.cineartai.com/wp-json/contact-form-7/v1/contact-forms/19587/feedback',
+    unitTag: 'wpcf7-f19587-p19588-o1' // must match exactly what WP outputs
+  };
 
-  <!-- CF7 REST API script -->
-  <script>
-    // ===== Contact Form 7 REST submission (cross-origin) =====
-    // TODO: Replace FORM_ID_HERE with the numeric ID of your CF7 form on cineartai.com
-    const CF7 = {
-  id: 19587,
-  endpoint: 'https://www.cineartai.com/wp-json/contact-form-7/v1/contact-forms/19587/feedback',
-  unitTag: 'wpcf7-f19587-p19588-o1'   // use exactly as in the WP source
-};
+  const form = document.getElementById('contactForm');
+  const msg  = document.getElementById('contactMsg');
+  const submitBtn = document.getElementById('cf7-submit');
 
-    const form = document.getElementById('contactForm');
-    const msg  = document.getElementById('contactMsg');
-    const submitBtn = document.getElementById('cf7-submit');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msg.style.color = '#64748b';
+    msg.textContent = 'Sending…';
+    submitBtn.disabled = true;
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      msg.style.color = '#64748b';
-      msg.textContent = 'Sending…';
-      submitBtn.disabled = true;
+    const fd = new FormData(form);
 
-      const fd = new FormData(form);
+    // Required meta fields for CF7 REST
+    fd.append('_wpcf7', String(CF7.id));
+    fd.append('_wpcf7_unit_tag', CF7.unitTag);
+    fd.append('_wpcf7_container_post', '19588'); // container post ID
 
-      // Required meta fields for CF7 REST
-      fd.append('_wpcf7', String(CF7.id));
-fd.append('_wpcf7_unit_tag', CF7.unitTag);
-fd.append('_wpcf7_container_post', '19588');   // use your real container post ID
+    try {
+      const res = await fetch(CF7.endpoint, { method: 'POST', body: fd });
+      const data = await res.json();
 
-      try {
-        const res = await fetch(CF7.endpoint, { method: 'POST', body: fd });
-        const data = await res.json();
+      msg.textContent = data.message || 'Unexpected response.';
+      msg.style.color = (data.status === 'mail_sent') ? '#059669' : '#b91c1c';
 
-        msg.textContent = data.message || 'Unexpected response.';
-        msg.style.color = (data.status === 'mail_sent') ? '#059669' : '#b91c1c';
-
-        if (data.status === 'mail_sent') {
-          form.reset();
-        }
-      } catch (err) {
-        msg.textContent = 'Network error. Please try again.';
-        msg.style.color = '#b91c1c';
-      } finally {
-        submitBtn.disabled = false;
+      if (data.status === 'mail_sent') {
+        form.reset();
       }
-    });
-  </script>
+    } catch (err) {
+      msg.textContent = 'Network error. Please try again.';
+      msg.style.color = '#b91c1c';
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+</script>
+
 
   <!-- Revisions & Privacy -->
   <section class="section" id="revisions">
