@@ -19,6 +19,7 @@
   <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630' viewBox='0 0 1200 630'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1'%3E%3Cstop stop-color='%23ffb703'/%3E%3Cstop offset='1' stop-color='%23fb7185'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='%23ffffff' width='1200' height='630'/%3E%3Ccircle cx='150' cy='120' r='12' fill='%23a78bfa'/%3E%3Ccircle cx='1080' cy='520' r='10' fill='%23fb7185'/%3E%3Crect x='70' y='480' width='20' height='20' fill='%23f59e0b'/%3E%3Crect x='980' y='80' width='18' height='18' fill='%230ea5e9'/%3E%3Ctext x='80' y='340' font-family='Segoe UI,Arial,sans-serif' font-size='72' font-weight='700' fill='url(%23g)'%3ECustom Song Gifts%3C/text%3E%3Ctext x='80' y='390' font-family='Segoe UI,Arial,sans-serif' font-size='28' fill='%23333'%3EThe Most Personal Gift You'll Ever Give%3C/text%3E%3C/svg%3E" />
   <meta name="twitter:card" content="summary_large_image" />
 
+  <!-- reCAPTCHA v3 (site key) -->
   <script src="https://www.google.com/recaptcha/api.js?render=6LdC5awrAAAAAC7yDGMTYYSHJBemUcT1L9uX6q8j" async defer></script>
 
   <!-- Styles (same palette + confetti hero you liked) -->
@@ -110,7 +111,7 @@
     }
     .btn:active{transform:translateY(1px)}
     .btn.primary{background:var(--brand); color:#111}
-    .btn.secondary{background:#fff; border-color:var(--ring); color:var(--text)}
+    .btn.secondary{background:#fff; border-color:var(--ring); color:#text}
     .btn.block{width:100%}
 
     /* Hero */
@@ -135,7 +136,7 @@
 
     /* Badges */
     .badges{ display:flex; gap:10px; flex-wrap:wrap; margin-top:8px }
-    .badge{ background:#fff; border:1px solid var(--ring); padding:8px 12px; border-radius:999px; color:var(--muted); font-size:12px }
+    .badge{ background:#fff; border:1px solid var(--ring); padding:8px 12px; border-radius:999px; color:#muted; font-size:12px }
 
     /* Sections */
     .section{ padding:64px 0; background:#fff }
@@ -151,24 +152,12 @@
     .step p{ margin:0; color:var(--muted) }
 
     /* How it works grid */
-    .how-it-works-grid{
-      display:grid; gap:40px; align-items:center
-    }
-    @media (min-width:900px){
-      .how-it-works-grid{ grid-template-columns:1fr 1fr }
-    }
-    .how-image{
-      text-align:center
-    }
-    .how-image img{
-      max-width:80%; height:auto; border-radius:var(--radius); box-shadow:var(--shadow)
-    }
-    .how-steps{
-      display:grid; gap:16px
-    }
-    @media (max-width:899px){
-      .how-image{ display:none }
-    }
+    .how-it-works-grid{ display:grid; gap:40px; align-items:center }
+    @media (min-width:900px){ .how-it-works-grid{ grid-template-columns:1fr 1fr } }
+    .how-image{ text-align:center }
+    .how-image img{ max-width:80%; height:auto; border-radius:var(--radius); box-shadow:var(--shadow) }
+    .how-steps{ display:grid; gap:16px }
+    @media (max-width:899px){ .how-image{ display:none } }
 
     /* Pricing */
     .pricing{ display:grid; gap:16px; margin-top:10px }
@@ -190,109 +179,56 @@
     .example p{ margin:0; color:var(--muted) }
     audio{ width:100% }
 
-    /* 🎵 Custom Audio Player */
+    /* 🎵 Custom Audio Player (kept from your version) */
     .custom-player {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: #f0f9ff; /* very light sky blue background */
-      border: 1px solid #bae6fd; /* soft border */
-      border-radius: 12px;
-      padding: 8px 12px;
-      box-shadow: 0 4px 12px rgba(14, 165, 233, 0.15); /* subtle blue shadow */
-      margin-top: 8px;
+      display: flex; align-items: center; gap: 12px;
+      background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 12px;
+      padding: 8px 12px; box-shadow: 0 4px 12px rgba(14, 165, 233, 0.15); margin-top: 8px;
     }
-    .custom-player .play-btn {
-      background: var(--brand-3);
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 18px;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s ease, transform 0.1s ease;
+    .custom-player .play-btn{
+      background: var(--brand-3); border: none; border-radius: 50%;
+      width: 40px; height: 40px; cursor: pointer; font-weight: bold; font-size: 18px; color: #fff;
+      display:flex; align-items:center; justify-content:center; transition: background .2s, transform .1s;
     }
-    .custom-player .play-btn:hover { background: #0284c7; }
-    .custom-player .play-btn:active { transform: scale(0.95); }
-    .custom-player .seek { flex: 1; accent-color: var(--brand-3); cursor: pointer; }
-    .custom-player .time { font-size: 14px; font-weight: 600; color: #0369a1; min-width: 42px; text-align: center; }
+    .custom-player .play-btn:hover{ background:#0284c7 }
+    .custom-player .play-btn:active{ transform: scale(.95) }
+    .custom-player .seek{ flex:1; accent-color: var(--brand-3); cursor: pointer; }
+    .custom-player .time{ font-size:14px; font-weight:600; color:#0369a1; min-width:42px; text-align:center; }
 
-    /* Variations section */
-    .variations-title { margin: 24px 0 12px; font-size: 16px; font-weight: 800; }
-    .variations { display: grid; gap: 10px; }
-    @media (min-width: 720px) { .variations { grid-template-columns: 1fr; } }
-    .var-item {}
+    /* Variations */
+    .variations-title { margin:24px 0 12px; font-size:16px; font-weight:800; }
+    .variations { display:grid; gap:10px; }
+    @media (min-width:720px){ .variations{ grid-template-columns:1fr; } }
 
-    /* Custom Audio Player – Warm theme */
-    .custom-player.warm {
-      background: #fff7ed;
-      border: 1px solid #fed7aa;
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.10);
-    }
-    .custom-player.warm .play-btn {
-      background: #f59e0b;
-      color: #111; font-weight: 800;
-    }
-    .custom-player.warm .play-btn:hover { filter: brightness(0.95); }
-    .custom-player.warm .play-btn:active { transform: scale(0.96); }
-    .custom-player.warm .label { font-weight: 700; color: #7c2d12; }
-    .custom-player.warm .time { color: #b45309; min-width: 44px; text-align: right; }
-    .custom-player.warm .seek { accent-color: #f59e0b; }
+    /* Warm theme for players/blocks */
+    .custom-player.warm { background:#fff7ed; border:1px solid #fed7aa; box-shadow:0 4px 12px rgba(245,158,11,.10); }
+    .custom-player.warm .play-btn{ background:#f59e0b; color:#111; font-weight:800; }
+    .custom-player.warm .time{ color:#b45309; }
+    .custom-player.warm .seek{ accent-color:#f59e0b; }
+    .variation-block{ display:flex; flex-direction:column; gap:6px; padding:10px 12px; border-radius:12px; background:#fff8f2; box-shadow:0 2px 6px rgba(0,0,0,.05); }
+    .variation-block .label{ font-weight:700; font-size:14px; color:#7c2d12; }
 
-    /* Hide native controls globally for our custom players */
+    /* Hide native controls for our custom players only */
     .custom-player + audio,
-    audio[controls] { display: none !important; }
-    audio[id^="song-"] { display: block !important; }
+    audio[controls]{ display:none !important; }
+    audio[id^="song-"]{ display:block !important; }
 
-    /* Circular play button fix */
-    .custom-player .play-btn {
-      width: 40px; height: 40px; min-width: 40px; min-height: 40px;
-      border-radius: 50% !important; padding: 0; display: inline-flex;
-      align-items: center; justify-content: center; line-height: 1;
-    }
-
-    /* Variation block */
-    .variation-block {
-      display: flex; flex-direction: column; gap: 6px;
-      padding: 10px 12px; border-radius: 12px; background: #fff8f2;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-    .variation-block .label { font-weight: 700; font-size: 14px; color: #7c2d12; }
-    .custom-player.warm { display: flex; align-items: center; gap: 10px; }
-    .custom-player.warm .seek { flex: 1; accent-color: #f59e0b; }
-    .custom-player.warm .time { font-size: 13px; font-weight: 600; color: #b45309; white-space: nowrap; }
-
-    /* Revisions & Privacy */
-    .cards{ display:grid; gap:16px }
-    @media (min-width:800px){ .cards{ grid-template-columns:repeat(3,1fr) } }
-    .card{ background:#fff; padding:20px; border-radius:var(--radius); border:1px solid var(--ring); box-shadow:var(--shadow) }
-
-    /* Share Discount */
-    #share-discount{ background: #fff8f2; border-top:1px solid var(--ring); border-bottom:1px solid var(--ring) }
+    /* Footer, Share, etc. */
+    #share-discount{ background:#fff8f2; border-top:1px solid var(--ring); border-bottom:1px solid var(--ring) }
     #share-discount .wrap{ background:#fff; border:1px solid var(--ring); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow) }
     #shareButton{ background:var(--brand); color:#111; border:none; border-radius:12px; padding:12px 18px; font-weight:800; cursor:pointer }
     #discountCode{ margin-top:16px; text-align:center; font-weight:900; color:#059669 }
 
-    /* Footer */
     footer{ padding:40px 0; color:var(--muted); border-top:1px solid var(--ring); background:#fff }
     .footer-inner{ display:flex; gap:16px; flex-wrap:wrap; align-items:center; justify-content:space-between }
     .footer-brand{ display:flex; align-items:center; gap:10px }
     .footer-brand .brand-logo{ width:28px; height:28px }
 
-    /* Mobile sticky CTA */
-    .m-sticky{
-      position:fixed; inset:auto 0 0 0; z-index:45; background:#fff; border-top:1px solid var(--ring);
-      display:flex; gap:10px; padding:10px 16px; align-items:center; justify-content:space-between;
-    }
+    .m-sticky{ position:fixed; inset:auto 0 0 0; z-index:45; background:#fff; border-top:1px solid var(--ring);
+      display:flex; gap:10px; padding:10px 16px; align-items:center; justify-content:space-between; }
     .m-sticky .btn{ flex:1 }
     @media (min-width:780px){ .m-sticky{ display:none } }
 
-    /* Utility */
     .center{text-align:center}
     .mt-s{margin-top:10px}.mt-m{margin-top:18px}.mt-l{margin-top:28px}
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -649,44 +585,43 @@
       <p class="lead center">Have a question or want to start your song? Send us a message.</p>
 
       <form id="contactForm"
-      action=""
-      method="POST"
-      target="contact_iframe"
-      style="max-width:640px;margin:0 auto;background:#fff;border:1px solid var(--ring);border-radius:16px;padding:18px;box-shadow:var(--shadow)"
-      aria-label="Contact form"
-      onsubmit="return onSubmitFormIframe(event)">
+            action=""
+            method="POST"
+            target="contact_iframe"
+            style="max-width:640px;margin:0 auto;background:#fff;border:1px solid var(--ring);border-radius:16px;padding:18px;box-shadow:var(--shadow)"
+            aria-label="Contact form"
+            onsubmit="return onSubmitFormIframe(event)">
 
-  <!-- Honeypot -->
-  <input type="text" name="website" autocomplete="off" tabindex="-1" style="display:none" aria-hidden="true">
+        <!-- Honeypot -->
+        <input type="text" name="website" autocomplete="off" tabindex="-1" style="display:none" aria-hidden="true">
 
-  <label>
-    Your email
-    <input required type="email" name="email" placeholder="you@example.com"
-           style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px"/>
-  </label>
-  <label>
-    Your message
-    <textarea required name="message" rows="5"
-              placeholder="Tell us what you need help with or what kind of song you want…"
-              style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px;resize:vertical;font-family:inherit;"></textarea>
-  </label>
+        <label>
+          Your email
+          <input required type="email" name="email" placeholder="you@example.com"
+                 style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px"/>
+        </label>
+        <label>
+          Your message
+          <textarea required name="message" rows="5"
+                    placeholder="Tell us what you need help with or what kind of song you want…"
+                    style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px;resize:vertical;font-family:inherit;"></textarea>
+        </label>
 
-  <!-- Hidden fields sent to Apps Script -->
-  <input type="hidden" name="recaptcha" id="recaptchaField">
-  <input type="hidden" name="package" value="">
-  <input type="hidden" name="userAgent" id="uaField">
+        <!-- Hidden fields sent to Apps Script -->
+        <input type="hidden" name="recaptcha" id="recaptchaField">
+        <input type="hidden" name="package" value="">
+        <input type="hidden" name="userAgent" id="uaField">
 
-  <div id="contactMsg" style="margin:6px 0 12px; color:#64748b; font-size:14px;"></div>
+        <div id="contactMsg" style="margin:6px 0 12px; color:#64748b; font-size:14px;"></div>
 
-  <div style="display:flex;gap:10px;flex-wrap:wrap">
-    <button class="btn primary" type="submit">Send Message</button>
-    <a class="btn secondary" href="#examples">Hear Example Songs</a>
-  </div>
-</form>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn primary" type="submit">Send Message</button>
+          <a class="btn secondary" href="#examples">Hear Example Songs</a>
+        </div>
+      </form>
 
-<!-- Hidden iframe target to avoid CORS -->
-<iframe name="contact_iframe" id="contact_iframe" style="display:none;"></iframe>
-
+      <!-- Hidden iframe target to avoid CORS -->
+      <iframe name="contact_iframe" id="contact_iframe" style="display:none;"></iframe>
 
       <p class="center" style="color:#6b7280;margin-top:10px">
         Prefer email? <a href="mailto:customsongs@cineartai.com?subject=Custom%20Song%20Enquiry">customsongs@cineartai.com</a>
@@ -745,10 +680,7 @@
     </div>
   </footer>
 
-  <!-- JS (deferred) -->
-  <!-- reCAPTCHA v3 loader (async defer) -->
-  <script src="https://www.google.com/recaptcha/api.js?render=6LdC5awrAAAAAC7yDGMTYYSHJBemUcT1L9uX6q8j" async defer></script>
-
+  <!-- JS -->
   <script>
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
@@ -793,8 +725,7 @@
       el.style.display = 'block';
     }
 
-    // Contact: reCAPTCHA v3 + Apps Script
-    // Custom Audio Player functionality
+    /* ---------- Custom Audio Player ---------- */
     (function(){
       function initPlayer(wrapper){
         const audioId = wrapper.getAttribute('data-audio');
@@ -809,7 +740,7 @@
             if (w !== wrapper) {
               const aId = w.getAttribute('data-audio');
               const a = document.getElementById(aId);
-              if (!a.paused) {
+              if (a && !a.paused) {
                 a.pause();
                 const b = w.querySelector('.play-btn');
                 if (b) b.textContent = '▶';
@@ -828,27 +759,33 @@
           return `${m}:${s}`;
         };
         audio.addEventListener('timeupdate', () => {
-          timeEl.textContent = fmt(audio.currentTime);
-          if (audio.duration) seek.value = (audio.currentTime / audio.duration) * 100;
+          if (timeEl) timeEl.textContent = fmt(audio.currentTime);
+          if (audio.duration && seek) seek.value = (audio.currentTime / audio.duration) * 100;
         });
-        audio.addEventListener('ended', () => { btn.textContent = '▶'; seek.value = 0; timeEl.textContent = '0:00'; });
+        audio.addEventListener('ended', () => {
+          if (btn) btn.textContent = '▶';
+          if (seek) seek.value = 0;
+          if (timeEl) timeEl.textContent = '0:00';
+        });
 
         // Seek
-        seek.addEventListener('input', () => {
-          if (audio.duration) audio.currentTime = (seek.value / 100) * audio.duration;
-        });
+        if (seek) {
+          seek.addEventListener('input', () => {
+            if (audio.duration) audio.currentTime = (seek.value / 100) * audio.duration;
+          });
+        }
       }
 
       document.addEventListener('DOMContentLoaded', () => {
-        const players = document.querySelectorAll('.custom-player');
-        players.forEach((player) => initPlayer(player));
+        document.querySelectorAll('.custom-player').forEach(initPlayer);
       });
     })();
 
-    // Only one SCRIPT_URL declaration in the whole page!
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwiaKD6aYS1raVaxONZ9isKSXQqSllbRq_Kd1QQ4QujoR4jh-kGID6i4PeyCzfWNmgPEA/exec'; // matches the form action
+    /* ---------- Contact form (reCAPTCHA v3 + iframe submit) ---------- */
 
-    // Iframe-based submit: no fetch, no CORS.
+    // Your Apps Script web app URL (Deploy > Web app)
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwiaKD6aYS1raVaxONZ9isKSXQqSllbRq_Kd1QQ4QujoR4jh-kGID6i4PeyCzfWNmgPEA/exec';
+
     async function onSubmitFormIframe(e) {
       e.preventDefault();
       const form = document.getElementById('contactForm');
@@ -867,56 +804,44 @@
       msg.style.color = '#64748b';
       msg.textContent = 'Sending…';
 
-      // Get reCAPTCHA v3 token, then submit natively to the iframe
-      try {
-        const token = await new Promise((resolve) => {
-          if (window.grecaptcha && grecaptcha.execute) {
-            grecaptcha.execute('6LdC5awrAAAAAC7yDGMTYYSHJBemUcT1L9uX6q8j', { action: 'contact' })
-              .then(resolve)
-              .catch(() => resolve('DEBUG_SKIP')); // optional fallback while testing
-          } else {
-            // wait briefly for the script to load
-            const iv = setInterval(() => {
-              if (window.grecaptcha && grecaptcha.execute) {
-                clearInterval(iv);
-                grecaptcha.execute('6LdC5awrAAAAAC7yDGMTYYSHJBemUcT1L9uX6q8j', { action: 'contact' })
-                  .then(resolve)
-                  .catch(() => resolve('DEBUG_SKIP'));
-              }
-            }, 60);
-            // hard timeout fallback
-            setTimeout(() => resolve('DEBUG_SKIP'), 1500);
-          }
-        });
+      // Get reCAPTCHA v3 token (with fallback while testing)
+      const token = await new Promise((resolve) => {
+        const exec = () => grecaptcha.execute('6LdC5awrAAAAAC7yDGMTYYSHJBemUcT1L9uX6q8j', { action: 'contact' })
+          .then(resolve)
+          .catch(() => resolve('DEBUG_SKIP'));
+        if (window.grecaptcha && grecaptcha.execute) exec();
+        else {
+          const iv = setInterval(() => {
+            if (window.grecaptcha && grecaptcha.execute) {
+              clearInterval(iv);
+              exec();
+            }
+          }, 60);
+          setTimeout(() => { clearInterval(iv); resolve('DEBUG_SKIP'); }, 1500);
+        }
+      });
 
-        recF.value = token;
-        form.action = SCRIPT_URL; // ensure in sync
-        form.target = 'contact_iframe';
-        form.submit();
+      recF.value = token;
 
-        // When the iframe loads, we consider it "done"
-        const iframe = document.getElementById('contact_iframe');
-        const done = () => {
-          msg.style.color = '#059669';
-          msg.textContent = 'Thanks! We've received your message.';
-          form.reset();
-          // Optional: redirect after a short delay
-          setTimeout(() => {
-            window.location.href = 'https://cineart-ai.github.io/CustomTuneAI/thank-you.html';
-          }, 600);
-        };
+      // Native submit to hidden iframe avoids CORS
+      form.action = SCRIPT_URL;
+      form.target = 'contact_iframe';
+      form.submit();
 
-        // Attach a one-time onload
-        const onload = () => { iframe.removeEventListener('load', onload); done(); };
-        iframe.addEventListener('load', onload);
+      // Consider submission "done" when iframe loads
+      const iframe = document.getElementById('contact_iframe');
+      const onload = () => {
+        iframe.removeEventListener('load', onload);
+        msg.style.color = '#059669';
+        msg.textContent = 'Thanks! We\'ve received your message.';
+        form.reset();
+        setTimeout(() => {
+          window.location.href = 'https://cineart-ai.github.io/CustomTuneAI/thank-you.html';
+        }, 600);
+      };
+      iframe.addEventListener('load', onload);
 
-        return false;
-      } catch (err) {
-        console.error(err);
-        msg.style.color = '#b91c1c';
-        msg.textContent = 'Sorry, something went wrong. Please email customsongs@cineartai.com';
-        return false;
-      }
+      return false;
     }
   </script>
 </body>
