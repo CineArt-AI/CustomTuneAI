@@ -208,9 +208,8 @@
     .variation-block .label{ font-weight:700; font-size:14px; color:#7c2d12; }
 
     /* Hide native controls for our custom players only */
-    .custom-player + audio,
     audio[controls]{ display:none !important; }
-    audio[id^="song-"]{ display:block !important; }
+    audio[id^="song-"]{ display:none !important; }
 
     /* Revisions & Privacy */
     .cards{ display:grid; gap:16px }
@@ -661,6 +660,107 @@
     } finally {
       submitBtn.disabled = false;
     }
+  });
+</script>
+
+<!-- Custom Audio Player JavaScript -->
+<script>
+  // Custom Audio Player functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const players = document.querySelectorAll('.custom-player');
+    console.log('Found', players.length, 'custom players');
+    
+    players.forEach((player, index) => {
+      const playBtn = player.querySelector('.play-btn');
+      const seekBar = player.querySelector('.seek');
+      const timeDisplay = player.querySelector('.time');
+      const audioId = player.getAttribute('data-audio');
+      const audio = document.getElementById(audioId);
+      
+      console.log(`Player ${index + 1}:`, { audioId, audio: !!audio, playBtn: !!playBtn, seekBar: !!seekBar, timeDisplay: !!timeDisplay });
+      
+      if (!audio) {
+        console.error(`Audio element not found for ID: ${audioId}`);
+        return;
+      }
+      
+      if (!playBtn || !seekBar || !timeDisplay) {
+        console.error(`Missing elements for player ${index + 1}:`, { playBtn: !!playBtn, seekBar: !!seekBar, timeDisplay: !!timeDisplay });
+        return;
+      }
+      
+      // Play/Pause functionality
+      playBtn.addEventListener('click', function() {
+        console.log(`Play button clicked for ${audioId}`);
+        
+        if (audio.paused) {
+          // Stop all other audio players first
+          document.querySelectorAll('audio').forEach(a => {
+            if (a !== audio) {
+              a.pause();
+              a.currentTime = 0;
+              // Reset other play buttons
+              const otherPlayer = a.parentElement.querySelector('.custom-player') || a.nextElementSibling;
+              if (otherPlayer) {
+                const otherPlayBtn = otherPlayer.querySelector('.play-btn');
+                if (otherPlayBtn) otherPlayBtn.textContent = '▶';
+              }
+            }
+          });
+          
+          audio.play().then(() => {
+            playBtn.textContent = '⏸';
+            console.log(`Started playing: ${audioId}`);
+          }).catch(error => {
+            console.error(`Error playing ${audioId}:`, error);
+          });
+        } else {
+          audio.pause();
+          playBtn.textContent = '▶';
+          console.log(`Paused: ${audioId}`);
+        }
+      });
+      
+      // Update seek bar and time display
+      audio.addEventListener('loadedmetadata', function() {
+        seekBar.max = audio.duration;
+        console.log(`Loaded metadata for ${audioId}:`, audio.duration);
+      });
+      
+      audio.addEventListener('timeupdate', function() {
+        if (!audio.duration) return;
+        
+        seekBar.value = audio.currentTime;
+        timeDisplay.textContent = formatTime(audio.currentTime);
+      });
+      
+      // Seek functionality
+      seekBar.addEventListener('input', function() {
+        audio.currentTime = seekBar.value;
+      });
+      
+      // Audio ended
+      audio.addEventListener('ended', function() {
+        playBtn.textContent = '▶';
+        seekBar.value = 0;
+        timeDisplay.textContent = '0:00';
+        console.log(`Audio ended: ${audioId}`);
+      });
+      
+      // Error handling
+      audio.addEventListener('error', function(e) {
+        console.error(`Audio error for ${audioId}:`, e);
+        playBtn.textContent = '❌';
+        playBtn.disabled = true;
+      });
+      
+      // Format time helper function
+      function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs.toString().padStart(2, '0')}`;
+      }
+    });
   });
 </script>
 
