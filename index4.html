@@ -19,8 +19,7 @@
   <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630' viewBox='0 0 1200 630'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1'%3E%3Cstop stop-color='%23ffb703'/%3E%3Cstop offset='1' stop-color='%23fb7185'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='%23ffffff' width='1200' height='630'/%3E%3Ccircle cx='150' cy='120' r='12' fill='%23a78bfa'/%3E%3Ccircle cx='1080' cy='520' r='10' fill='%23fb7185'/%3E%3Crect x='70' y='480' width='20' height='20' fill='%23f59e0b'/%3E%3Crect x='980' y='80' width='18' height='18' fill='%230ea5e9'/%3E%3Ctext x='80' y='340' font-family='Segoe UI,Arial,sans-serif' font-size='72' font-weight='700' fill='url(%23g)'%3ECustom Song Gifts%3C/text%3E%3Ctext x='80' y='390' font-family='Segoe UI,Arial,sans-serif' font-size='28' fill='%23333'%3EThe Most Personal Gift You'll Ever Give%3C/text%3E%3C/svg%3E" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- reCAPTCHA v3 (site key) -->
-  <script src="https://www.google.com/recaptcha/api.js?render=6LdC5awrAAAAAC7yDGMTYYSHJBemUcT1L9uX6q8j" async defer></script>
+
 
   <!-- Styles (same palette + confetti hero you liked) -->
   <style>
@@ -578,56 +577,89 @@
     </div>
   </section>
 
-  <!-- Contact Us (Google Sheets + Apps Script + reCAPTCHA v3) -->
-  <section class="section" id="get-started">
+  <!-- Contact Form -->
+  <section id="contact" class="section">
     <div class="container">
       <h2 class="center">Contact Us</h2>
       <p class="lead center">Have a question or want to start your song? Send us a message.</p>
 
       <form id="contactForm"
-            action=""
             method="POST"
-            target="contact_iframe"
-            style="max-width:640px;margin:0 auto;background:#fff;border:1px solid var(--ring);border-radius:16px;padding:18px;box-shadow:var(--shadow)"
-            aria-label="Contact form"
-            onsubmit="return onSubmitFormIframe(event)">
-
-        <!-- Honeypot -->
-        <input type="text" name="website" autocomplete="off" tabindex="-1" style="display:none" aria-hidden="true">
-
+            style="max-width:640px;margin:0 auto;background:#fff;border:1px solid #ddd;border-radius:16px;padding:18px;box-shadow:0 2px 4px rgba(0,0,0,0.1)"
+            aria-label="Contact form">
+        <label>
+          Your name
+          <input required type="text" name="your-name" autocomplete="name"
+                 placeholder="Jane Smith"
+                 style="width:100%;padding:12px;border:1px solid #ccc;border-radius:10px;margin-top:6px;margin-bottom:12px"/>
+        </label>
         <label>
           Your email
-          <input required type="email" name="email" placeholder="you@example.com"
-                 style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px"/>
+          <input required type="email" name="your-email" autocomplete="email"
+                 placeholder="you@example.com"
+                 style="width:100%;padding:12px;border:1px solid #ccc;border-radius:10px;margin-top:6px;margin-bottom:12px"/>
         </label>
         <label>
-          Your message
-          <textarea required name="message" rows="5"
-                    placeholder="Tell us what you need help with or what kind of song you want…"
-                    style="width:100%;padding:12px;border:1px solid var(--ring);border-radius:10px;margin-top:6px;margin-bottom:12px;resize:vertical;font-family:inherit;"></textarea>
+          Your message (optional)
+          <textarea name="your-message" rows="5"
+                    placeholder="Tell us about the song you want…"
+                    style="width:100%;padding:12px;border:1px solid #ccc;border-radius:10px;margin-top:6px;margin-bottom:12px;resize:vertical;font-family:inherit;"></textarea>
         </label>
-
-        <!-- Hidden fields sent to Apps Script -->
-        <input type="hidden" name="recaptcha" id="recaptchaField">
-        <input type="hidden" name="package" value="">
-        <input type="hidden" name="userAgent" id="uaField">
 
         <div id="contactMsg" style="margin:6px 0 12px; color:#64748b; font-size:14px;"></div>
 
         <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <button class="btn primary" type="submit">Send Message</button>
-          <a class="btn secondary" href="#examples">Hear Example Songs</a>
+          <button id="cf7-submit" class="btn primary" type="submit">Submit</button>
         </div>
       </form>
-
-      <!-- Hidden iframe target to avoid CORS -->
-      <iframe name="contact_iframe" id="contact_iframe" style="display:none;"></iframe>
-
-      <p class="center" style="color:#6b7280;margin-top:10px">
-        Prefer email? <a href="mailto:customsongs@cineartai.com?subject=Custom%20Song%20Enquiry">customsongs@cineartai.com</a>
-      </p>
     </div>
   </section>
+
+  <!-- CF7 REST API script -->
+  <script>
+    // ===== Contact Form 7 REST submission (cross-origin) =====
+    // TODO: Replace FORM_ID_HERE with the numeric ID of your CF7 form on cineartai.com
+    const CF7 = {
+      id: 'ee86ab9', // e.g., 1234
+      endpoint: 'https://www.cineartai.com/wp-json/contact-form-7/v1/contact-forms/FORM_ID_HERE/feedback',
+      unitTag: 'wpcf7-fFORM_ID_HERE-o1' // CF7 >= 5.8.7 requires a valid unit tag for REST
+    };
+
+    const form = document.getElementById('contactForm');
+    const msg  = document.getElementById('contactMsg');
+    const submitBtn = document.getElementById('cf7-submit');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msg.style.color = '#64748b';
+      msg.textContent = 'Sending…';
+      submitBtn.disabled = true;
+
+      const fd = new FormData(form);
+
+      // Required meta fields for CF7 REST
+      fd.append('_wpcf7', String(CF7.id));
+      fd.append('_wpcf7_unit_tag', CF7.unitTag);
+      fd.append('_wpcf7_container_post', '0');
+
+      try {
+        const res = await fetch(CF7.endpoint, { method: 'POST', body: fd });
+        const data = await res.json();
+
+        msg.textContent = data.message || 'Unexpected response.';
+        msg.style.color = (data.status === 'mail_sent') ? '#059669' : '#b91c1c';
+
+        if (data.status === 'mail_sent') {
+          form.reset();
+        }
+      } catch (err) {
+        msg.textContent = 'Network error. Please try again.';
+        msg.style.color = '#b91c1c';
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
 
   <!-- Revisions & Privacy -->
   <section class="section" id="revisions">
@@ -658,10 +690,9 @@
       <div class="wrap">
         <h2 id="share-title" class="center">Share and Get 50% Off!</h2>
         <p class="lead center">Tell your friends about us and unlock a 50% discount code for your first custom song.</p>
-        <div class="center">
-          <button id="shareButton" onclick="handleShare()" class="btn primary" aria-label="Share this website to get a discount">Share Now</button>
-          <div id="discountCode" style="display:none;"></div>
-        </div>
+                 <div class="center">
+           <p>Share this website with friends to unlock special discounts!</p>
+         </div>
       </div>
     </div>
   </section>
@@ -671,7 +702,7 @@
     <div class="container footer-inner">
       <div class="footer-brand">
         <span class="brand-logo" aria-hidden="true"></span>
-        <span>© <span id="year"></span> CustomTuneAI</span>
+        <span>© 2024 CustomTuneAI</span>
       </div>
       <div>
         <a href="#examples" class="btn secondary">Examples</a>
@@ -680,169 +711,5 @@
     </div>
   </footer>
 
-  <!-- JS -->
-  <script>
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
-        const id = a.getAttribute('href');
-        if(id.length>1){
-          const el = document.querySelector(id);
-          if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
-        }
-      });
-    });
-
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Share (no AI wording)
-    function handleShare() {
-      const shareData = {
-        title: 'The Most Personal Gift You\'ll Ever Give',
-        text: 'A custom song to celebrate birthdays, anniversaries, and love stories.',
-        url: 'https://cineart-ai.github.io/CustomTuneAI/'
-      };
-
-      if (navigator.share) {
-        navigator.share(shareData)
-          .then(() => showDiscount())
-          .catch((err) => {
-            console.warn('Sharing failed:', err);
-            alert('Sharing was canceled. You can still copy this link:\n' + shareData.url);
-          });
-      } else {
-        const u = encodeURIComponent(shareData.url);
-        const t = encodeURIComponent(shareData.text);
-        window.open(`https://twitter.com/intent/tweet?text=${t}&url=${u}`, '_blank');
-        showDiscount();
-      }
-    }
-    function showDiscount() {
-      const code = 'SHARE50';
-      const el = document.getElementById('discountCode');
-      el.textContent = 'Your 50% Off Code: ' + code + ' (Use at checkout!)';
-      el.style.display = 'block';
-    }
-
-    /* ---------- Custom Audio Player ---------- */
-    (function(){
-      function initPlayer(wrapper){
-        const audioId = wrapper.getAttribute('data-audio');
-        const audio = document.getElementById(audioId);
-        const btn = wrapper.querySelector('.play-btn');
-        const timeEl = wrapper.querySelector('.time');
-        const seek = wrapper.querySelector('.seek');
-
-        // Pause others when playing this
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.custom-player').forEach(w => {
-            if (w !== wrapper) {
-              const aId = w.getAttribute('data-audio');
-              const a = document.getElementById(aId);
-              if (a && !a.paused) {
-                a.pause();
-                const b = w.querySelector('.play-btn');
-                if (b) b.textContent = '▶';
-              }
-            }
-          });
-          if (audio.paused) { audio.play(); btn.textContent = '⏸'; }
-          else { audio.pause(); btn.textContent = '▶'; }
-        });
-
-        // Time + progress
-        const fmt = (t) => {
-          if (!isFinite(t)) return '0:00';
-          const m = Math.floor(t / 60);
-          const s = Math.floor(t % 60).toString().padStart(2, '0');
-          return `${m}:${s}`;
-        };
-        audio.addEventListener('timeupdate', () => {
-          if (timeEl) timeEl.textContent = fmt(audio.currentTime);
-          if (audio.duration && seek) seek.value = (audio.currentTime / audio.duration) * 100;
-        });
-        audio.addEventListener('ended', () => {
-          if (btn) btn.textContent = '▶';
-          if (seek) seek.value = 0;
-          if (timeEl) timeEl.textContent = '0:00';
-        });
-
-        // Seek
-        if (seek) {
-          seek.addEventListener('input', () => {
-            if (audio.duration) audio.currentTime = (seek.value / 100) * audio.duration;
-          });
-        }
-      }
-
-      document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.custom-player').forEach(initPlayer);
-      });
-    })();
-
-    /* ---------- Contact form (reCAPTCHA v3 + iframe submit) ---------- */
-
-    // Your Apps Script web app URL (Deploy > Web app)
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwiaKD6aYS1raVaxONZ9isKSXQqSllbRq_Kd1QQ4QujoR4jh-kGID6i4PeyCzfWNmgPEA/exec';
-
-    async function onSubmitFormIframe(e) {
-      e.preventDefault();
-      const form = document.getElementById('contactForm');
-      const msg  = document.getElementById('contactMsg');
-      const ua   = document.getElementById('uaField');
-      const recF = document.getElementById('recaptchaField');
-
-      // Basic validation
-      if (!form.email.value.trim() || !form.message.value.trim()) {
-        msg.style.color = '#b91c1c';
-        msg.textContent = 'Please fill in both email and message.';
-        return false;
-      }
-
-      ua.value = navigator.userAgent;
-      msg.style.color = '#64748b';
-      msg.textContent = 'Sending…';
-
-      // Get reCAPTCHA v3 token (with fallback while testing)
-      const token = await new Promise((resolve) => {
-        const exec = () => grecaptcha.execute('6LdC5awrAAAAAC7yDGMTYYSHJBemUcT1L9uX6q8j', { action: 'contact' })
-          .then(resolve)
-          .catch(() => resolve('DEBUG_SKIP'));
-        if (window.grecaptcha && grecaptcha.execute) exec();
-        else {
-          const iv = setInterval(() => {
-            if (window.grecaptcha && grecaptcha.execute) {
-              clearInterval(iv);
-              exec();
-            }
-          }, 60);
-          setTimeout(() => { clearInterval(iv); resolve('DEBUG_SKIP'); }, 1500);
-        }
-      });
-
-      recF.value = token;
-
-      // Native submit to hidden iframe avoids CORS
-      form.action = SCRIPT_URL;
-      form.target = 'contact_iframe';
-      form.submit();
-
-      // Consider submission "done" when iframe loads
-      const iframe = document.getElementById('contact_iframe');
-      const onload = () => {
-        iframe.removeEventListener('load', onload);
-        msg.style.color = '#059669';
-        msg.textContent = 'Thanks! We\'ve received your message.';
-        form.reset();
-        setTimeout(() => {
-          window.location.href = 'https://cineart-ai.github.io/CustomTuneAI/thank-you.html';
-        }, 600);
-      };
-      iframe.addEventListener('load', onload);
-
-      return false;
-    }
-  </script>
 </body>
 </html>
