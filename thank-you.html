@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Essentials -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thank You | CustomTuneAI</title>
+  <meta name="description" content="Thank you for your custom song request. Our team will be in touch shortly." />
+  <link rel="canonical" href="https://cineart-ai.github.io/CustomTuneAI/thank-you.html" />
+  <meta name="theme-color" content="#ffffff" />
+  <!-- Favicon to avoid 404 -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23f59e0b'/%3E%3Ctext x='32' y='40' font-size='32' text-anchor='middle' fill='%23fff'%3E♪%3C/text%3E%3C/svg%3E" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Thank You - CustomTuneAI" />
+  <meta property="og:description" content="Thank you for your custom song request. Our team will be in touch shortly." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cineart-ai.github.io/CustomTuneAI/thank-you.html" />
+  <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630' viewBox='0 0 1200 630'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1'%3E%3Cstop stop-color='%23ffb703'/%3E%3Cstop offset='1' stop-color='%23fb7185'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='%23ffffff' width='1200' height='630'/%3E%3Ccircle cx='150' cy='120' r='12' fill='%23a78bfa'/%3E%3Ccircle cx='1080' cy='520' r='10' fill='%23fb7185'/%3E%3Crect x='70' y='480' width='20' height='20' fill='%23f59e0b'/%3E%3Crect x='980' y='80' width='18' height='18' fill='%230ea5e9'/%3E%3Ctext x='80' y='340' font-family='Segoe UI,Arial,sans-serif' font-size='72' font-weight='700' fill='url(%23g)'%3ECustom Song Gifts%3C/text%3E%3Ctext x='80' y='390' font-family='Segoe UI,Arial,sans-serif' font-size='28' fill='%23333'%3EThe Most Personal Gift You'll Ever Give%3C/text%3E%3C/svg%3E" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Styles (same palette + confetti hero you liked) -->
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#1f2937;      /* slate-800 */
+      --muted:#64748b;     /* slate-500 */
+      --brand:#f59e0b;     /* amber-500 */
+      --brand-2:#fb7185;   /* rose-400 */
+      --brand-3:#0ea5e9;   /* sky-500 */
+      --accent:#a78bfa;    /* violet-400 */
+      --ring: rgba(15, 23, 42, .06);
+      --card:#ffffff;
+      --shadow: 0 12px 30px rgba(17, 24, 39, .08);
+      --radius: 16px;
+      --maxw: 1120px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+      color:var(--text);
+      background: var(--bg);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    img{max-width:100%;height:auto;display:block}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+    /* Confetti header background */
+    .hero-wrap{
+      position:relative;
+      background:
+        radial-gradient(1200px 400px at 50% -200px, rgba(251,113,133,.25), transparent 60%),
+        radial-gradient(1000px 360px at 10% 0%, rgba(14,165,233,.18), transparent 60%),
+        radial-gradient(800px 300px at 90% 0%, rgba(245,158,11,.25), transparent 60%),
+        linear-gradient(180deg, #fff 0%, #fff 50%, #fff 100%);
+      overflow:hidden;
+    }
+    .confetti{position:absolute; inset:0; pointer-events:none; opacity:.6}
+    .confetti::before, .confetti::after{
+      content:"";
+      position:absolute; inset:0;
+      background-image:
+        radial-gradient(circle at 10% 20%, var(--brand) 2px, transparent 3px),
+        radial-gradient(circle at 30% 10%, var(--brand-2) 3px, transparent 4px),
+        radial-gradient(circle at 50% 25%, var(--brand-3) 2px, transparent 3px),
+        radial-gradient(circle at 80% 15%, var(--accent) 3px, transparent 4px),
+        radial-gradient(circle at 20% 80%, var(--brand-3) 2px, transparent 3px),
+        radial-gradient(circle at 60% 75%, var(--brand) 2px, transparent 3px),
+        radial-gradient(circle at 85% 70%, var(--brand-2) 2px, transparent 3px);
+      background-repeat:repeat;
+      background-size: 180px 180px;
+      animation: confetti 18s linear infinite;
+    }
+    .confetti::after{animation-duration: 26s; opacity:.5; filter:hue-rotate(20deg)}
+    @keyframes confetti { from{transform: translateY(-5%)} to{transform: translateY(5%)} }
+    @media (prefers-reduced-motion:reduce){ .confetti::before,.confetti::after{animation:none} }
+
+    /* Nav */
+    .nav{
+      position:sticky; top:0; z-index:40;
+      backdrop-filter: saturate(140%) blur(8px);
+      background: rgba(255,255,255,.7);
+      border-bottom:1px solid var(--ring);
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand-logo{
+      width:40px;height:40px;border-radius:10px;
+      background: conic-gradient(from 0deg, var(--brand), var(--brand-2), var(--brand-3), var(--brand));
+      position:relative; box-shadow:0 4px 12px rgba(0,0,0,.08);
+    }
+    .brand-logo::after{
+      content:"♪"; position:absolute; inset:auto 0 0 0; top:50%;
+      transform:translateY(-50%); text-align:center; font-weight:900; color:#fff;
+      text-shadow:0 1px 2px rgba(0,0,0,.2)
+    }
+    .brand h1{font-size:18px;margin:0;letter-spacing:.2px}
+    .nav-actions{display:flex;gap:10px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 18px; border-radius:12px; border:1px solid transparent;
+      font-weight:700; cursor:pointer; transition:transform .05s ease, opacity .2s ease, background .2s ease;
+      text-align:center; white-space:nowrap
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn.primary{background:var(--brand); color:#111}
+    .btn.secondary{background:#fff; border-color:var(--ring); color:var(--text)}
+    .btn.block{width:100%}
+
+    /* Hero */
+    .hero{ position:relative; padding:64px 0 36px }
+    .hero-grid{ display:grid; gap:28px; align-items:center }
+    @media (min-width:920px){ .hero-grid{ grid-template-columns:1.1fr .9fr } }
+    .kicker{ display:inline-block; color:#111; background:#fff; border:1px solid var(--ring); border-radius:999px; padding:6px 10px; font-weight:800; letter-spacing:.12em; font-size:12px; text-transform:uppercase; margin-bottom:12px }
+    .h1{ font-size:clamp(28px,5vw,44px); line-height:1.15; margin:0 0 10px }
+    .sub{ color:var(--muted); font-size:clamp(15px,2.6vw,18px); margin:0 0 22px }
+    .hero-card{ background:var(--card); border:1px solid var(--ring); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden }
+    .hero-art{
+      aspect-ratio: 16 / 10; width:100%; display:block; background:
+        linear-gradient(135deg, rgba(255,183,3,.18), rgba(251,113,133,.18)),
+        linear-gradient(45deg, rgba(14,165,233,.15), rgba(167,139,250,.15));
+      position:relative;
+    }
+    .hero-art::after{
+      content:"Make it memorable. Make it musical."; position:absolute; inset:auto 24px 24px 24px;
+      color:#111; font-weight:800; letter-spacing:.02em; background:#fff; border:1px solid var(--ring);
+      border-radius:12px; padding:14px 16px; box-shadow:var(--shadow);
+    }
+
+    /* Badges */
+    .badges{ display:flex; gap:10px; flex-wrap:wrap; margin-top:8px }
+    .badge{ background:#fff; border:1px solid var(--ring); padding:8px 12px; border-radius:999px; color:var(--muted); font-size:12px }
+
+    /* Sections */
+    .section{ padding:64px 0; background:#fff }
+    .section.alt{ background:linear-gradient(180deg, #fff 0%, #fff 60%, #fff8f2 100%) }
+    .section h2{ margin:0 0 14px; font-size:clamp(22px,4vw,32px) }
+    .section p.lead{ color:var(--muted); margin:0 0 24px }
+
+    /* Thank You Specific Styles */
+    .thank-you-card {
+      background: #fff;
+      border: 1px solid var(--ring);
+      border-radius: var(--radius);
+      padding: 48px 32px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .thank-you-icon {
+      width: 80px;
+      height: 80px;
+      background: conic-gradient(from 0deg, var(--brand), var(--brand-2), var(--brand-3), var(--brand));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 36px;
+      color: #fff;
+      font-weight: bold;
+      box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);
+    }
+    .thank-you-title {
+      font-size: clamp(28px, 5vw, 36px);
+      font-weight: 800;
+      margin: 0 0 16px;
+      color: var(--text);
+    }
+    .thank-you-message {
+      font-size: 18px;
+      color: var(--muted);
+      margin: 0 0 32px;
+      line-height: 1.6;
+    }
+    .email-notice {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 24px 0;
+      color: #0369a1;
+    }
+    .email-notice strong {
+      color: #0c4a6e;
+    }
+
+    /* Footer, Share, etc. */
+    footer{ padding:40px 0; color:var(--muted); border-top:1px solid var(--ring); background:#fff }
+    .footer-inner{ display:flex; gap:16px; flex-wrap:wrap; align-items:center; justify-content:space-between }
+    .footer-brand{ display:flex; align-items:center; gap:10px }
+    .footer-brand .brand-logo{ width:28px; height:28px }
+
+    .center{text-align:center}
+    .mt-s{margin-top:10px}.mt-m{margin-top:18px}.mt-l{margin-top:28px}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav" aria-label="Main">
+    <div class="container nav-inner">
+      <a href="index4.html" class="brand" aria-label="CustomTuneAI home">
+        <span class="brand-logo" aria-hidden="true"></span>
+        <h1 style="margin:0;font-size:18px;">CustomTuneAI</h1>
+      </a>
+      <div class="nav-actions">
+        <a href="index4.html#examples" class="btn secondary">Examples</a>
+        <a href="index4.html#pricing" class="btn primary">Start Your Song</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header id="top" class="hero-wrap">
+    <div class="confetti" aria-hidden="true"></div>
+    <div class="container hero">
+      <div class="hero-grid">
+        <div>
+          <span class="kicker">Thank You!</span>
+          <h2 class="h1">Your custom song journey begins now</h2>
+          <p class="sub">We're excited to turn your story into music</p>
+        </div>
+
+        <div class="hero-card" aria-hidden="true">
+          <div style="position:relative;">
+            <img src="assets/images/Happy Couple/Custom AI Song happy couple, mid 20s, love, pink and blue tones, good looking people, musical scores 49828.jpg" alt="Happy couple with musical scores" style="width:100%;height:auto;border-radius:16px;" />
+            <div style="position:absolute;inset:auto 24px 24px 24px;color:#111;font-weight:800;letter-spacing:.02em;background:#fff;border:1px solid var(--ring);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);">
+              Make it memorable. Make it musical.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Thank You Section -->
+  <section class="section" id="thank-you">
+    <div class="container">
+      <div class="thank-you-card">
+        <div class="thank-you-icon">🎵</div>
+        <h1 class="thank-you-title">Thank You!</h1>
+        <p class="thank-you-message">
+          We've received your custom song request and our team will be in touch shortly.
+        </p>
+        
+        <div class="email-notice">
+          <strong>📧 Check your inbox!</strong><br>
+          You should receive an email from us within the next few hours with next steps and confirmation details.
+        </div>
+
+        <p class="thank-you-message">
+          While you wait, why not explore some of our example songs to get inspired?
+        </p>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:32px">
+          <a href="index4.html#examples" class="btn primary">Hear Example Songs</a>
+          <a href="index4.html#pricing" class="btn secondary">View Packages</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Happens Next -->
+  <section class="section alt" id="next-steps">
+    <div class="container">
+      <h2 class="center">What Happens Next?</h2>
+      <p class="lead center">Your journey to a custom song is just beginning</p>
+
+      <div class="cards" role="list" style="max-width:800px;margin:0 auto">
+        <div class="card" role="listitem" style="text-align:center">
+          <h3>📧 Email Confirmation</h3>
+          <p>You'll receive a detailed email within 2-4 hours confirming your request and next steps.</p>
+        </div>
+        <div class="card" role="listitem" style="text-align:center">
+          <h3>🎯 Song Brief</h3>
+          <p>Our team will review your details and may ask follow-up questions to perfect your song.</p>
+        </div>
+        <div class="card" role="listitem" style="text-align:center">
+          <h3>🎵 Creation Begins</h3>
+          <p>Once everything is clear, we'll start crafting your unique custom song experience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="brand-logo" aria-hidden="true"></span>
+        <span>© 2024 CustomTuneAI</span>
+      </div>
+      <div>
+        <a href="index4.html#examples" class="btn secondary">Examples</a>
+        <a href="index4.html#pricing" class="btn primary">Start Your Song</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
