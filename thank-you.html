@@ -199,9 +199,88 @@
     .center{text-align:center}
     .mt-s{margin-top:10px}.mt-m{margin-top:18px}.mt-l{margin-top:28px}
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    /* Mobile sticky navigation */
+    .m-sticky{ position:fixed; inset:auto 0 0 0; z-index:45; background:#fff; border-top:1px solid var(--ring);
+      display:flex; gap:10px; padding:10px 16px; align-items:center; justify-content:space-between; }
+    .m-sticky .btn{ flex:1 }
+    @media (min-width:780px){ .m-sticky{ display:none } }
+
+    /* Mobile-specific improvements */
+    @media (max-width: 768px) {
+      .thank-you-card {
+        padding: 32px 20px;
+        margin: 0 16px;
+      }
+      .thank-you-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 28px;
+      }
+      .thank-you-title {
+        font-size: 28px;
+      }
+      .thank-you-message {
+        font-size: 16px;
+      }
+      .email-notice {
+        padding: 16px;
+        margin: 20px 0;
+      }
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .hero-card {
+        display: none;
+      }
+      .cards {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .card {
+        padding: 16px;
+      }
+      .btn {
+        padding: 14px 20px;
+        font-size: 16px;
+        min-height: 48px;
+      }
+    }
+
+    /* Touch-friendly improvements */
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 16px;
+      }
+      .nav-inner {
+        padding: 8px 16px;
+      }
+      .hero {
+        padding: 48px 0 24px;
+      }
+      .section {
+        padding: 48px 0;
+      }
+      .thank-you-card {
+        padding: 24px 16px;
+      }
+      .btn {
+        padding: 16px 24px;
+        min-height: 52px;
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Mobile sticky CTA -->
+  <div class="m-sticky" role="region" aria-label="Quick actions">
+    <strong>🎁 Custom Song</strong>
+    <a class="btn primary" href="index4.html#examples">Hear Examples</a>
+    <a class="btn secondary" href="index4.html#pricing">Start Your Song</a>
+  </div>
 
   <!-- Nav -->
   <nav class="nav" aria-label="Main">
@@ -217,7 +296,28 @@
     </div>
   </nav>
 
+  <!-- Hero -->
+  <header id="top" class="hero-wrap">
+    <div class="confetti" aria-hidden="true"></div>
+    <div class="container hero">
+      <div class="hero-grid">
+        <div>
+          <span class="kicker">Thank You!</span>
+          <h2 class="h1">Your custom song journey begins now</h2>
+          <p class="sub">We're excited to turn your story into music</p>
+        </div>
 
+        <div class="hero-card" aria-hidden="true">
+          <div style="position:relative;">
+            <img src="assets/images/Happy Couple/Custom AI Song happy couple, mid 20s, love, pink and blue tones, good looking people, musical scores 49828.jpg" alt="Happy couple with musical scores" style="width:100%;height:auto;border-radius:16px;" />
+            <div style="position:absolute;inset:auto 24px 24px 24px;color:#111;font-weight:800;letter-spacing:.02em;background:#fff;border:1px solid var(--ring);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);">
+              Make it memorable. Make it musical.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
   <!-- Thank You Section -->
   <section class="section" id="thank-you">
