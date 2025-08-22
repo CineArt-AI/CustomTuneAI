@@ -730,11 +730,11 @@
            </div>
          </div>
 
-        <!-- Form Actions -->
-        <div class="form-actions">
-          <button type="submit" class="btn primary">Submit Song Request</button>
-          <a href="index4.html#pricing" class="btn secondary">Back to Packages</a>
-        </div>
+                 <!-- Form Actions -->
+         <div class="form-actions">
+           <button type="button" class="btn secondary" onclick="testFormData()">Test Form Data</button>
+           <button type="submit" class="btn primary">Submit Song Request</button>
+         </div>
 
         <div id="songRequestMsg" style="margin:20px 0 0; text-align:center; color:#64748b; font-size:14px;"></div>
       </form>
@@ -904,6 +904,19 @@
        endpoint: 'https://www.cineartai.com/wp-json/contact-form-7/v1/contact-forms/19587/feedback',
        unitTag: 'wpcf7-f19587-p19588-o1' // must match exactly what WP outputs
      };
+     
+     // Test function to verify form data
+     function testFormData() {
+       const formData = new FormData(form);
+       console.log('=== FORM DATA TEST ===');
+       console.log('Form fields:');
+       for (let [key, value] of formData.entries()) {
+         console.log(`${key}:`, value);
+       }
+       console.log('Selected files:', selectedFiles);
+       console.log('Total files:', selectedFiles.length);
+       console.log('=====================');
+     }
 
     const form = document.getElementById('songRequestForm');
     const msg  = document.getElementById('songRequestMsg');
@@ -911,40 +924,85 @@
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      
+      // Basic form validation
+      const requiredFields = form.querySelectorAll('[required]');
+      let isValid = true;
+      
+      requiredFields.forEach(field => {
+        if (!field.value.trim()) {
+          field.style.borderColor = '#dc2626';
+          isValid = false;
+        } else {
+          field.style.borderColor = '#d1d5db';
+        }
+      });
+      
+      if (!isValid) {
+        msg.style.color = '#dc2626';
+        msg.textContent = 'Please fill in all required fields.';
+        return;
+      }
+      
       msg.style.color = '#64748b';
       msg.textContent = 'Sending your song request…';
       submitBtn.disabled = true;
 
-             const fd = new FormData(form);
+      const fd = new FormData(form);
 
-       // Add selected image files
-       selectedFiles.forEach((file, index) => {
-         fd.append(`video-images-${index}`, file);
-       });
-       fd.append('total-images', selectedFiles.length.toString());
+      // Add selected image files
+      selectedFiles.forEach((file, index) => {
+        fd.append(`video-images-${index}`, file);
+      });
+      fd.append('total-images', selectedFiles.length.toString());
 
-       // Required meta fields for CF7 REST
-       fd.append('_wpcf7', String(CF7.id));
-       fd.append('_wpcf7_unit_tag', CF7.unitTag);
-       fd.append('_wpcf7_container_post', '19588'); // container post ID
+      // Required meta fields for CF7 REST
+      fd.append('_wpcf7', String(CF7.id));
+      fd.append('_wpcf7_unit_tag', CF7.unitTag);
+      fd.append('_wpcf7_container_post', '19588'); // container post ID
+      
+      // Debug: Log form data being sent
+      console.log('Form data being submitted:');
+      for (let [key, value] of fd.entries()) {
+        if (value instanceof File) {
+          console.log(`${key}:`, value.name, value.size, value.type);
+        } else {
+          console.log(`${key}:`, value);
+        }
+      }
 
       try {
         const res = await fetch(CF7.endpoint, { method: 'POST', body: fd });
+        
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        
         const data = await res.json();
+        console.log('Form submission response:', data);
 
         msg.textContent = data.message || 'Unexpected response.';
         msg.style.color = (data.status === 'mail_sent') ? '#059669' : '#b91c1c';
 
         if (data.status === 'mail_sent') {
+          // Clear selected files and update display
+          selectedFiles = [];
+          updateFileDisplay();
           form.reset();
+          msg.textContent = 'Song request submitted successfully! Redirecting...';
           // Redirect to thank you page after successful submission
           setTimeout(() => {
             window.location.href = 'thank-you.html';
           }, 2000);
+        } else {
+          // Show specific error message
+          msg.textContent = data.message || 'Submission failed. Please try again.';
+          msg.style.color = '#dc2626';
         }
       } catch (err) {
+        console.error('Form submission error:', err);
         msg.textContent = 'Network error. Please try again.';
-        msg.style.color = '#b91c1c';
+        msg.style.color = '#dc2626';
       } finally {
         submitBtn.disabled = false;
       }
