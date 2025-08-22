@@ -234,9 +234,112 @@
       margin-top: 32px;
       flex-wrap: wrap;
     }
-    .form-actions .btn {
-      min-width: 160px;
-    }
+         .form-actions .btn {
+       min-width: 160px;
+     }
+
+     /* File Upload Styles */
+     .file-upload-area {
+       border: 2px dashed #d1d5db;
+       border-radius: 12px;
+       padding: 40px 20px;
+       text-align: center;
+       background: #f9fafb;
+       transition: all 0.2s ease;
+       cursor: pointer;
+       margin-bottom: 16px;
+     }
+     .file-upload-area:hover {
+       border-color: var(--brand);
+       background: #fef3c7;
+     }
+     .file-upload-area.dragover {
+       border-color: var(--brand);
+       background: #fef3c7;
+       transform: scale(1.02);
+     }
+     .file-upload-content {
+       pointer-events: none;
+     }
+     .file-upload-icon {
+       font-size: 48px;
+       display: block;
+       margin-bottom: 16px;
+     }
+     .file-upload-text {
+       font-size: 18px;
+       font-weight: 600;
+       margin: 0 0 8px;
+       color: var(--text);
+     }
+     .file-upload-subtext {
+       font-size: 14px;
+       color: var(--muted);
+       margin: 0 0 20px;
+     }
+     .file-upload-area .btn {
+       pointer-events: auto;
+     }
+     .selected-files {
+       background: #f0f9ff;
+       border: 1px solid #bae6fd;
+       border-radius: 12px;
+       padding: 20px;
+       margin-top: 16px;
+     }
+     .selected-files h4 {
+       margin: 0 0 16px;
+       color: #0369a1;
+       font-size: 16px;
+     }
+     .file-item {
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+       padding: 12px;
+       background: #fff;
+       border: 1px solid #e0e7ff;
+       border-radius: 8px;
+       margin-bottom: 8px;
+     }
+     .file-item:last-child {
+       margin-bottom: 0;
+     }
+     .file-info {
+       display: flex;
+       align-items: center;
+       gap: 12px;
+     }
+     .file-icon {
+       font-size: 24px;
+     }
+     .file-details {
+       display: flex;
+       flex-direction: column;
+     }
+     .file-name {
+       font-weight: 600;
+       color: var(--text);
+       font-size: 14px;
+     }
+     .file-size {
+       font-size: 12px;
+       color: var(--muted);
+     }
+     .remove-file {
+       background: #fee2e2;
+       border: 1px solid #fecaca;
+       color: #dc2626;
+       border-radius: 6px;
+       padding: 6px 12px;
+       font-size: 12px;
+       cursor: pointer;
+       transition: all 0.2s ease;
+     }
+     .remove-file:hover {
+       background: #fecaca;
+       border-color: #f87171;
+     }
 
     /* Footer, Share, etc. */
     footer{ padding:40px 0; color:var(--muted); border-top:1px solid var(--ring); background:#fff }
@@ -283,17 +386,45 @@
         flex-direction: column;
         align-items: stretch;
       }
-      .form-actions .btn {
-        min-width: auto;
-      }
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-      .hero-card {
-        display: none;
-      }
-    }
+             .form-actions .btn {
+         min-width: auto;
+       }
+       .hero-grid {
+         grid-template-columns: 1fr;
+         gap: 20px;
+       }
+       .hero-card {
+         display: none;
+       }
+       .file-upload-area {
+         padding: 24px 16px;
+       }
+       .file-upload-icon {
+         font-size: 36px;
+         margin-bottom: 12px;
+       }
+       .file-upload-text {
+         font-size: 16px;
+         margin-bottom: 6px;
+       }
+       .file-upload-subtext {
+         font-size: 13px;
+         margin-bottom: 16px;
+       }
+       .file-item {
+         padding: 10px;
+         flex-direction: column;
+         gap: 12px;
+         align-items: stretch;
+       }
+       .file-info {
+         justify-content: center;
+       }
+       .remove-file {
+         width: 100%;
+         padding: 8px;
+       }
+     }
 
     /* Touch-friendly improvements */
     @media (max-width: 480px) {
@@ -577,15 +708,27 @@
           </div>
         </div>
 
-        <!-- Images for Video (Ultimate Package) -->
-        <div class="form-section">
-          <h3>🖼️ Images for Video (Ultimate Package)</h3>
-          <div class="form-group full-width">
-            <label for="video-images">If you selected the Ultimate package, please provide images for the lyric video</label>
-            <textarea id="video-images" name="video-images" rows="3" placeholder="Describe what images you'd like included, or let us know if you'll provide them later..."></textarea>
-            <div class="help-text">This is optional and only applies to the Ultimate package with lyric video.</div>
-          </div>
-        </div>
+                 <!-- Images for Video (Ultimate Package) -->
+         <div class="form-section">
+           <h3>🖼️ Images for Video (Ultimate Package)</h3>
+           <div class="form-group full-width">
+             <label for="video-images">If you selected the Ultimate package, please upload images for the lyric video</label>
+             <input type="file" id="video-images" name="video-images" accept="image/*" multiple style="display: none;" />
+             <div class="file-upload-area" id="fileUploadArea">
+               <div class="file-upload-content">
+                 <span class="file-upload-icon">📁</span>
+                 <p class="file-upload-text">Click to select images or drag & drop here</p>
+                 <p class="file-upload-subtext">Only JPG, PNG, GIF, WebP files accepted</p>
+                 <button type="button" class="btn secondary" onclick="document.getElementById('video-images').click()">Choose Images</button>
+               </div>
+             </div>
+             <div id="selectedFiles" class="selected-files" style="display: none;">
+               <h4>Selected Images:</h4>
+               <div id="fileList"></div>
+             </div>
+             <div class="help-text">This is optional and only applies to the Ultimate package with lyric video. Maximum 10 images, 5MB each.</div>
+           </div>
+         </div>
 
         <!-- Form Actions -->
         <div class="form-actions">
@@ -612,14 +755,155 @@
     </div>
   </footer>
 
-  <!-- CF7 REST API script (same as index page) -->
-  <script>
-    // ===== Contact Form 7 REST submission (cross-origin) =====
-    const CF7 = {
-      id: 19587,
-      endpoint: 'https://www.cineartai.com/wp-json/contact-form-7/v1/contact-forms/19587/feedback',
-      unitTag: 'wpcf7-f19587-p19588-o1' // must match exactly what WP outputs
-    };
+     <!-- File Upload and Form Scripts -->
+   <script>
+     // File upload functionality
+     let selectedFiles = [];
+     const maxFiles = 10;
+     const maxFileSize = 5 * 1024 * 1024; // 5MB
+     const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+
+     // File upload elements
+     const fileInput = document.getElementById('video-images');
+     const fileUploadArea = document.getElementById('fileUploadArea');
+     const selectedFilesDiv = document.getElementById('selectedFiles');
+     const fileListDiv = document.getElementById('fileList');
+
+     // File input change handler
+     fileInput.addEventListener('change', handleFileSelection);
+
+     // Drag and drop functionality
+     fileUploadArea.addEventListener('dragover', handleDragOver);
+     fileUploadArea.addEventListener('dragleave', handleDragLeave);
+     fileUploadArea.addEventListener('drop', handleDrop);
+
+     // Click to open file picker
+     fileUploadArea.addEventListener('click', () => fileInput.click());
+
+     function handleFileSelection(event) {
+       const files = Array.from(event.target.files);
+       addFiles(files);
+     }
+
+     function handleDragOver(event) {
+       event.preventDefault();
+       fileUploadArea.classList.add('dragover');
+     }
+
+     function handleDragLeave(event) {
+       event.preventDefault();
+       fileUploadArea.classList.remove('dragover');
+     }
+
+     function handleDrop(event) {
+       event.preventDefault();
+       fileUploadArea.classList.remove('dragover');
+       const files = Array.from(event.dataTransfer.files);
+       addFiles(files);
+     }
+
+     function addFiles(files) {
+       files.forEach(file => {
+         if (validateFile(file)) {
+           if (selectedFiles.length < maxFiles) {
+             selectedFiles.push(file);
+           } else {
+             alert(`Maximum ${maxFiles} files allowed.`);
+             return;
+           }
+         }
+       });
+       updateFileDisplay();
+     }
+
+     function validateFile(file) {
+       // Check file type
+       if (!allowedTypes.includes(file.type)) {
+         alert(`Invalid file type: ${file.name}. Only JPG, PNG, GIF, and WebP images are allowed.`);
+         return false;
+       }
+
+       // Check file size
+       if (file.size > maxFileSize) {
+         alert(`File too large: ${file.name}. Maximum size is 5MB.`);
+         return false;
+       }
+
+       // Check if file already exists
+       if (selectedFiles.some(f => f.name === file.name && f.size === file.size)) {
+         alert(`File already selected: ${file.name}`);
+         return false;
+       }
+
+       return true;
+     }
+
+     function removeFile(index) {
+       selectedFiles.splice(index, 1);
+       updateFileDisplay();
+     }
+
+     function updateFileDisplay() {
+       if (selectedFiles.length === 0) {
+         selectedFilesDiv.style.display = 'none';
+         return;
+       }
+
+       selectedFilesDiv.style.display = 'block';
+       fileListDiv.innerHTML = '';
+
+       selectedFiles.forEach((file, index) => {
+         const fileItem = document.createElement('div');
+         fileItem.className = 'file-item';
+         
+         const fileIcon = getFileIcon(file.type);
+         const fileSize = formatFileSize(file.size);
+         
+         fileItem.innerHTML = `
+           <div class="file-info">
+             <span class="file-icon">${fileIcon}</span>
+             <div class="file-details">
+               <div class="file-name">${file.name}</div>
+               <div class="file-size">${fileSize}</div>
+             </div>
+           </div>
+           <button type="button" class="remove-file" onclick="removeFile(${index})">Remove</button>
+         `;
+         
+         fileListDiv.appendChild(fileItem);
+       });
+     }
+
+     function getFileIcon(mimeType) {
+       switch(mimeType) {
+         case 'image/jpeg':
+         case 'image/jpg':
+           return '🖼️';
+         case 'image/png':
+           return '🖼️';
+         case 'image/gif':
+           return '🎬';
+         case 'image/webp':
+           return '🖼️';
+         default:
+           return '📄';
+       }
+     }
+
+     function formatFileSize(bytes) {
+       if (bytes === 0) return '0 Bytes';
+       const k = 1024;
+       const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+       const i = Math.floor(Math.log(bytes) / Math.log(k));
+       return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+     }
+
+     // CF7 REST API script (same as index page)
+     const CF7 = {
+       id: 19587,
+       endpoint: 'https://www.cineartai.com/wp-json/contact-form-7/v1/contact-forms/19587/feedback',
+       unitTag: 'wpcf7-f19587-p19588-o1' // must match exactly what WP outputs
+     };
 
     const form = document.getElementById('songRequestForm');
     const msg  = document.getElementById('songRequestMsg');
@@ -631,12 +915,18 @@
       msg.textContent = 'Sending your song request…';
       submitBtn.disabled = true;
 
-      const fd = new FormData(form);
+             const fd = new FormData(form);
 
-      // Required meta fields for CF7 REST
-      fd.append('_wpcf7', String(CF7.id));
-      fd.append('_wpcf7_unit_tag', CF7.unitTag);
-      fd.append('_wpcf7_container_post', '19588'); // container post ID
+       // Add selected image files
+       selectedFiles.forEach((file, index) => {
+         fd.append(`video-images-${index}`, file);
+       });
+       fd.append('total-images', selectedFiles.length.toString());
+
+       // Required meta fields for CF7 REST
+       fd.append('_wpcf7', String(CF7.id));
+       fd.append('_wpcf7_unit_tag', CF7.unitTag);
+       fd.append('_wpcf7_container_post', '19588'); // container post ID
 
       try {
         const res = await fetch(CF7.endpoint, { method: 'POST', body: fd });
