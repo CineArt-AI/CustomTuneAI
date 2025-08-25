@@ -1126,7 +1126,6 @@
 
                  <!-- Form Actions -->
          <div class="form-actions">
-           <button type="button" class="btn secondary" onclick="testFormData()">Test Form Data</button>
            <button type="submit" class="btn primary">Submit Song Request</button>
          </div>
 
@@ -1299,18 +1298,7 @@
        unitTag: 'wpcf7-f19611-p19588-o1' // must match exactly what WP outputs
      };
      
-     // Test function to verify form data
-     function testFormData() {
-       const formData = new FormData(form);
-       console.log('=== FORM DATA TEST ===');
-       console.log('Form fields:');
-       for (let [key, value] of formData.entries()) {
-         console.log(`${key}:`, value);
-       }
-       console.log('Selected files:', selectedFiles);
-       console.log('Total files:', selectedFiles.length);
-       console.log('=====================');
-     }
+
 
     const form = document.getElementById('songRequestForm');
     const msg  = document.getElementById('songRequestMsg');
