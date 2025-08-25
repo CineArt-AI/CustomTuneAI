@@ -1,0 +1,30 @@
+User-agent: *
+Allow: /
+
+# Allow all search engines to crawl the site
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Sitemap location (you can add this when you have a sitemap)
+# Sitemap: https://yourdomain.com/sitemap.xml
+
+# Disallow crawling of any admin or private areas (if you add them later)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Allow crawling of assets
+Allow: /assets/
+Allow: /assets/images/
+Allow: /assets/Samples_Songs/
+
+# Allow crawling of all HTML pages
+Allow: /*.html
+
+# Crawl delay (optional - helps prevent overwhelming your server)
+Crawl-delay: 1
