@@ -559,6 +559,8 @@
     fd.append('_wpcf7', String(CF7.id));
     fd.append('_wpcf7_unit_tag', CF7.unitTag);
     fd.append('_wpcf7_container_post', '19588'); // container post ID
+    fd.append('_wpcf7_version', '5.7.7'); // CF7 version
+    fd.append('_wpcf7_locale', 'en_US'); // locale
 
     try {
       const res = await fetch(CF7.endpoint, { method: 'POST', body: fd });

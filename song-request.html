@@ -954,12 +954,12 @@
           <h3>🎯 Song Recipient</h3>
           <div class="form-row">
             <div class="form-group">
-              <label for="their-name" class="required">What's their name? (as it should appear in the custom song)</label>
-              <input type="text" id="their-name" name="their-name" required placeholder="John Smith" />
+              <label for="recipient-name" class="required">What's their name? (as it should appear in the custom song)</label>
+              <input type="text" id="recipient-name" name="recipient-name" required placeholder="John Smith" />
             </div>
             <div class="form-group">
-              <label for="who-is-it-for" class="required">Who is it for?</label>
-              <select id="who-is-it-for" name="who-is-it-for" required>
+              <label for="recipient-type" class="required">Who is it for?</label>
+              <select id="recipient-type" name="recipient-type" required>
                 <option value="">—Please choose an option—</option>
                 <option value="Wife">Wife</option>
                 <option value="Husband">Husband</option>
@@ -1006,8 +1006,8 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="singer-preference" class="required">Would you prefer a male or female singer?</label>
-              <select id="singer-preference" name="singer-preference" required>
+                          <label for="singer" class="required">Would you prefer a male or female singer?</label>
+            <select id="singer" name="singer" required>
                 <option value="">—Please choose an option—</option>
                 <option value="Female">Female</option>
                 <option value="Male">Male</option>
@@ -1016,8 +1016,8 @@
             </div>
           </div>
           <div class="form-group full-width">
-            <label for="vibe-style" class="required">What's the vibe/style?</label>
-            <select id="vibe-style" name="vibe-style" required>
+            <label for="your-multiple-items" class="required">What's the vibe/style?</label>
+            <select id="your-multiple-items" name="your-multiple-items" required>
               <option value="">—Please choose an option—</option>
               <option value="80s">80s</option>
               <option value="Acoustic Tape Recording">Acoustic Tape Recording</option>
@@ -1088,17 +1088,17 @@
         <div class="form-section">
           <h3>📝 Additional Details</h3>
           <div class="form-group full-width">
-            <label for="additional-info">Is there anything else you'd like us to know?</label>
-            <textarea id="additional-info" name="additional-info" rows="4" placeholder="Tell us about the person, special moments, inside jokes, or anything else that should be included in the song..."></textarea>
+            <label for="extra-notes">Is there anything else you'd like us to know?</label>
+            <textarea id="extra-notes" name="extra-notes" rows="4" placeholder="Tell us about the person, special moments, inside jokes, or anything else that should be included in the song..."></textarea>
             <div class="help-text">If you selected "Other" in the "Who is it for?" section, please let us know who the song should be addressed to.</div>
           </div>
           <div class="form-group full-width">
-            <label for="song-description" class="required">Tell us as much as you can about them. Please share any details that you want to be included in the song.</label>
-            <textarea id="song-description" name="song-description" rows="6" required placeholder="Describe their personality, interests, hobbies, achievements, or any special memories you share..."></textarea>
+            <label for="song-brief" class="required">Tell us as much as you can about them. Please share any details that you want to be included in the song.</label>
+            <textarea id="song-brief" name="song-brief" rows="6" required placeholder="Describe their personality, interests, hobbies, achievements, or any special memories you share..."></textarea>
           </div>
           <div class="form-group full-width">
-            <label for="similar-songs">Give us examples of any songs that are similar in style to the song you want to create</label>
-            <textarea id="similar-songs" name="similar-songs" rows="3" placeholder="Artist names, song titles, or just describe the style you're looking for..."></textarea>
+            <label for="reference-songs">Give us examples of any songs that are similar in style to the song you want to create</label>
+            <textarea id="reference-songs" name="reference-songs" rows="3" placeholder="Artist names, song titles, or just describe the style you're looking for..."></textarea>
           </div>
         </div>
 
@@ -1106,14 +1106,14 @@
          <div class="form-section">
            <h3>🖼️ Images for Video (Ultimate Package)</h3>
            <div class="form-group full-width">
-             <label for="video-images">If you selected the Ultimate package, please upload images for the lyric video</label>
-             <input type="file" id="video-images" name="video-images" accept="image/*" multiple style="display: none;" />
+             <label for="images">If you selected the Ultimate package, please upload images for the lyric video</label>
+             <input type="file" id="images" name="images" accept="image/*" multiple style="display: none;" />
              <div class="file-upload-area" id="fileUploadArea">
                <div class="file-upload-content">
                  <span class="file-upload-icon">📁</span>
                  <p class="file-upload-text">Click to select images or drag & drop here</p>
                  <p class="file-upload-subtext">Only JPG, PNG, GIF, WebP files accepted</p>
-                 <button type="button" class="btn secondary" onclick="document.getElementById('video-images').click()">Choose Images</button>
+                 <button type="button" class="btn secondary" onclick="document.getElementById('images').click()">Choose Images</button>
                </div>
              </div>
              <div id="selectedFiles" class="selected-files" style="display: none;">
@@ -1139,7 +1139,7 @@
     <div class="container footer-inner">
       <div class="footer-brand">
         <span class="brand-logo" aria-hidden="true"></span>
-        <span>© 2024 Songux</span>
+        <span>© 2024 Songux- testing</span>
       </div>
       <div>
         <a href="index.html#examples" class="btn secondary">Examples</a>
@@ -1157,7 +1157,7 @@
      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
 
      // File upload elements
-     const fileInput = document.getElementById('video-images');
+     const fileInput = document.getElementById('images');
      const fileUploadArea = document.getElementById('fileUploadArea');
      const selectedFilesDiv = document.getElementById('selectedFiles');
      const fileListDiv = document.getElementById('fileList');
@@ -1334,7 +1334,7 @@
 
       // Add selected image files
       selectedFiles.forEach((file, index) => {
-        fd.append(`video-images-${index}`, file);
+        fd.append(`images-${index}`, file);
       });
       fd.append('total-images', selectedFiles.length.toString());
 
@@ -1342,6 +1342,8 @@
       fd.append('_wpcf7', String(CF7.id));
       fd.append('_wpcf7_unit_tag', CF7.unitTag);
       fd.append('_wpcf7_container_post', '19588'); // container post ID
+      fd.append('_wpcf7_version', '5.7.7'); // CF7 version
+      fd.append('_wpcf7_locale', 'en_US'); // locale
       
       // Debug: Log form data being sent
       console.log('Form data being submitted:');
@@ -1354,7 +1356,27 @@
       }
 
       try {
-        const res = await fetch(CF7.endpoint, { method: 'POST', body: fd });
+        // Solution 1: Try with CORS proxy as fallback
+        let res;
+        try {
+          // First try direct request
+          res = await fetch(CF7.endpoint, { 
+            method: 'POST', 
+            body: fd,
+            mode: 'cors'
+          });
+        } catch (corsError) {
+          // If CORS fails, try with a CORS proxy
+          console.log('CORS error, trying proxy...');
+          const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+          res = await fetch(proxyUrl + CF7.endpoint, { 
+            method: 'POST', 
+            body: fd,
+            headers: {
+              'Origin': 'https://songux.com'
+            }
+          });
+        }
         
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
@@ -1383,7 +1405,7 @@
         }
       } catch (err) {
         console.error('Form submission error:', err);
-        msg.textContent = 'Network error. Please try again.';
+        msg.textContent = 'Network error. Please try again or contact us directly.';
         msg.style.color = '#dc2626';
       } finally {
         submitBtn.disabled = false;
