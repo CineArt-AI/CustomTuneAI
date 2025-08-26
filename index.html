@@ -386,6 +386,28 @@
       .price {
         font-size: 24px;
       }
+      
+      .cta-section {
+        padding: 60px 0;
+      }
+      
+      .cta-content h2 {
+        font-size: 28px;
+      }
+      
+      .cta-content p {
+        font-size: 16px;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .cta-buttons .btn {
+        width: 100%;
+        max-width: 280px;
+      }
     }
 
     /* Example songs */
@@ -814,6 +836,45 @@
       align-items: center;
     }
     
+    /* CTA Section */
+    .cta-section {
+      position: relative;
+      background: var(--ring);
+      padding: 80px 0;
+      margin-top: 0;
+      overflow: hidden;
+    }
+    
+    .cta-content {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .cta-content h2 {
+      font-size: 32px;
+      margin: 0 0 16px 0;
+      color: var(--text);
+    }
+    
+    .cta-content p {
+      font-size: 18px;
+      color: var(--muted);
+      margin: 0 0 32px 0;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .cta-buttons .btn {
+      min-width: 160px;
+    }
 
   </style>
 
@@ -1272,6 +1333,22 @@
       </h3>
     </div>
   </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section" style="margin-top: 0;">
+    <div class="confetti" aria-hidden="true"></div>
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to Create Your Custom Song?</h2>
+        <p>Choose your style and let us turn your story into music</p>
+        <div class="cta-buttons">
+          <a href="#examples" class="btn secondary">Hear Examples</a>
+          <a href="#pricing" class="btn primary">Start Your Song</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
 <!-- Contact Form -->
 <section id="contact" class="section">
   <div class="container">
