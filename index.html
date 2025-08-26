@@ -525,7 +525,12 @@
                   style="width:100%;padding:12px;border:1px solid #ccc;border-radius:10px;margin-top:6px;margin-bottom:12px;resize:vertical;font-family:inherit;"></textarea>
       </label>
 
-      <div id="contactMsg" style="margin:6px 0 12px; color:#64748b; font-size:14px;"></div>
+      <div id="contactMsg" style="margin:6px 0 12px; color:#64748b; font-size:14px;">
+        <div class="loading-spinner" style="display: none;">
+          <div class="spinner-ring"></div>
+          <span class="spinner-text">Sending...</span>
+        </div>
+      </div>
 
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <button id="cf7-submit" class="btn primary" type="submit">Submit</button>
@@ -547,11 +552,14 @@
   const msg  = document.getElementById('contactMsg');
   const submitBtn = document.getElementById('cf7-submit');
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    msg.style.color = '#64748b';
-    msg.textContent = 'Sending…';
-    submitBtn.disabled = true;
+      form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Show loading spinner
+      const spinner = msg.querySelector('.loading-spinner');
+      spinner.style.display = 'flex';
+      msg.style.color = '#64748b';
+      submitBtn.disabled = true;
 
     const fd = new FormData(form);
 
@@ -566,6 +574,9 @@
       const res = await fetch(CF7.endpoint, { method: 'POST', body: fd });
       const data = await res.json();
 
+      // Hide spinner and show result
+      const spinner = msg.querySelector('.loading-spinner');
+      spinner.style.display = 'none';
       msg.textContent = data.message || 'Unexpected response.';
       msg.style.color = (data.status === 'mail_sent') ? '#059669' : '#b91c1c';
 
@@ -573,7 +584,11 @@
         form.reset();
       }
     } catch (err) {
-      msg.textContent = 'Network error. Please try again.';
+      console.error('Form submission error:', err);
+      // Hide spinner and show error
+      const spinner = msg.querySelector('.loading-spinner');
+      spinner.style.display = 'none';
+      msg.textContent = 'Network error. Please try again or contact us directly.';
       msg.style.color = '#b91c1c';
     } finally {
       submitBtn.disabled = false;

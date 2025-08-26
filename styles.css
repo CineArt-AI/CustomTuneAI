@@ -1526,3 +1526,75 @@ input, textarea, select {
   font-size: 16px; /* Prevents zoom on iOS */
   line-height: 1.5;
 }
+
+/* ========================================
+   LOADING SPINNER ANIMATION
+   ======================================== */
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.spinner-ring {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #e5e7eb;
+  border-top: 3px solid var(--brand);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.spinner-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  text-align: center;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Mobile-friendly spinner adjustments */
+@media (max-width: 768px) {
+  .loading-spinner {
+    padding: 12px;
+    gap: 8px;
+  }
+  
+  .spinner-ring {
+    width: 28px;
+    height: 28px;
+    border-width: 2px;
+  }
+  
+  .spinner-text {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loading-spinner {
+    padding: 10px;
+    gap: 6px;
+  }
+  
+  .spinner-ring {
+    width: 24px;
+    height: 24px;
+    border-width: 2px;
+  }
+  
+  .spinner-text {
+    font-size: 12px;
+  }
+}

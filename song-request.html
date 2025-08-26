@@ -1120,7 +1120,7 @@
                <h4>Selected Images:</h4>
                <div id="fileList"></div>
              </div>
-             <div class="help-text">This is optional and only applies to the Ultimate package with lyric video. Maximum 10 images, 5MB each.</div>
+             <div class="help-text">This is optional and only applies to the Ultimate package with lyric video. Maximum 10 images, 2MB each. Supported formats: JPG, PNG, GIF, WebP</div>
            </div>
          </div>
 
@@ -1129,7 +1129,12 @@
            <button type="submit" class="btn primary">Submit Song Request</button>
          </div>
 
-        <div id="songRequestMsg" style="margin:20px 0 0; text-align:center; color:#64748b; font-size:14px;"></div>
+        <div id="songRequestMsg" style="margin:20px 0 0; text-align:center; color:#64748b; font-size:14px;">
+          <div class="loading-spinner" style="display: none;">
+            <div class="spinner-ring"></div>
+            <span class="spinner-text">Sending your song request...</span>
+          </div>
+        </div>
       </form>
     </div>
   </section>
@@ -1153,7 +1158,7 @@
      // File upload functionality
      let selectedFiles = [];
      const maxFiles = 10;
-     const maxFileSize = 5 * 1024 * 1024; // 5MB
+     const maxFileSize = 2 * 1024 * 1024; // 2MB (updated to match server limit)
      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
 
      // File upload elements
@@ -1218,7 +1223,7 @@
 
        // Check file size
        if (file.size > maxFileSize) {
-         alert(`File too large: ${file.name}. Maximum size is 5MB.`);
+         alert(`File too large: ${file.name}. Maximum size is 2MB.`);
          return false;
        }
 
@@ -1326,15 +1331,17 @@
         return;
       }
       
+      // Show loading spinner
+      const spinner = msg.querySelector('.loading-spinner');
+      spinner.style.display = 'flex';
       msg.style.color = '#64748b';
-      msg.textContent = 'Sending your song request…';
       submitBtn.disabled = true;
 
       const fd = new FormData(form);
 
-      // Add selected image files
-      selectedFiles.forEach((file, index) => {
-        fd.append(`images-${index}`, file);
+      // Add selected image files - Contact Form 7 expects 'images' for multiple files
+      selectedFiles.forEach((file) => {
+        fd.append('images', file);
       });
       fd.append('total-images', selectedFiles.length.toString());
 
@@ -1347,6 +1354,7 @@
       
       // Debug: Log form data being sent
       console.log('Form data being submitted:');
+      console.log('Total images to send:', selectedFiles.length);
       for (let [key, value] of fd.entries()) {
         if (value instanceof File) {
           console.log(`${key}:`, value.name, value.size, value.type);
@@ -1385,6 +1393,9 @@
         const data = await res.json();
         console.log('Form submission response:', data);
 
+        // Hide spinner and show result
+        const spinner = msg.querySelector('.loading-spinner');
+        spinner.style.display = 'none';
         msg.textContent = data.message || 'Unexpected response.';
         msg.style.color = (data.status === 'mail_sent') ? '#059669' : '#b91c1c';
 
@@ -1399,12 +1410,28 @@
             window.location.href = 'thank-you.html';
           }, 2000);
         } else {
-          // Show specific error message
-          msg.textContent = data.message || 'Submission failed. Please try again.';
+          // Show specific error message with field details
+          let errorMessage = data.message || 'Submission failed. Please try again.';
+          
+          // If there are specific field errors, show them
+          if (data.invalid_fields && data.invalid_fields.length > 0) {
+            const fieldErrors = data.invalid_fields.map(field => {
+              if (field.field === 'images') {
+                return 'Image file is too large. Please choose smaller images.';
+              }
+              return field.message;
+            });
+            errorMessage = fieldErrors.join('. ');
+          }
+          
+          msg.textContent = errorMessage;
           msg.style.color = '#dc2626';
         }
       } catch (err) {
         console.error('Form submission error:', err);
+        // Hide spinner and show error
+        const spinner = msg.querySelector('.loading-spinner');
+        spinner.style.display = 'none';
         msg.textContent = 'Network error. Please try again or contact us directly.';
         msg.style.color = '#dc2626';
       } finally {
