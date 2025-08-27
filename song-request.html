@@ -1107,7 +1107,7 @@
            <h3>🖼️ Images for Video (Ultimate Package)</h3>
            <div class="form-group full-width">
              <label for="images">If you selected the Ultimate package, please upload images for the lyric video</label>
-             <input type="file" id="images" name="images" accept="image/*" multiple style="display: none;" />
+             <input type="file" id="images" name="mfile-363" accept="image/*" multiple style="display: none;" />
              <div class="file-upload-area" id="fileUploadArea">
                <div class="file-upload-content">
                  <span class="file-upload-icon">📁</span>
@@ -1339,9 +1339,9 @@
 
       const fd = new FormData(form);
 
-      // Add selected image files - Contact Form 7 expects 'images' for multiple files
+      // Add selected image files - Contact Form 7 expects 'mfile-363' for multiple files
       selectedFiles.forEach((file) => {
-        fd.append('images', file);
+        fd.append('mfile-363', file);
       });
       fd.append('total-images', selectedFiles.length.toString());
 
@@ -1416,7 +1416,7 @@
           // If there are specific field errors, show them
           if (data.invalid_fields && data.invalid_fields.length > 0) {
             const fieldErrors = data.invalid_fields.map(field => {
-              if (field.field === 'images') {
+              if (field.field === 'mfile-363') {
                 return 'Image file is too large. Please choose smaller images.';
               }
               return field.message;
