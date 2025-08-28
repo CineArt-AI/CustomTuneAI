@@ -497,6 +497,15 @@
 
   <!-- Social Media Sharing JavaScript -->
   <script>
+    // Update Open Graph URL to current page location for proper social sharing
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentUrl = window.location.href;
+      const ogUrlMeta = document.querySelector('meta[property="og:url"]');
+      if (ogUrlMeta) {
+        ogUrlMeta.setAttribute('content', currentUrl);
+      }
+    });
+
     function shareOnFacebook(title, description, url) {
       // Use the current page URL instead of a hardcoded one
       const currentUrl = window.location.href;
