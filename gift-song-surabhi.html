@@ -121,11 +121,54 @@
       font-weight: 600;
       transition: all 0.2s ease;
       text-decoration: none;
+      margin: 0 10px 10px;
     }
     .download-btn:hover{
       background: #d97706;
       transform: translateY(-2px);
     }
+
+    /* Social platforms section */
+    .social-platforms{
+      margin: 30px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      background: #f8fafc;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+    }
+    .platform{
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 14px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .platform:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .platform.facebook{background: #1877f2;}
+    .platform.facebook:hover{background: #166fe5;}
+    .platform.twitter{background: #1da1f2;}
+    .platform.twitter:hover{background: #1a91da;}
+    .platform.instagram{background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);}
+    .platform.instagram:hover{opacity: 0.9;}
+    .platform.tiktok{background: #000000;}
+    .platform.tiktok:hover{background: #333333;}
+    .platform.whatsapp{background: #25d366;}
+    .platform.whatsapp:hover{background: #128c7e;}
+    .platform.telegram{background: #0088cc;}
+    .platform.telegram:hover{background: #006699;}
+    .platform.copy{background: var(--brand);}
+    .platform.copy:hover{background: #d97706;}
 
     /* Info section */
     .info-section{
@@ -216,6 +259,15 @@
         margin: 10px auto;
         max-width: 250px;
       }
+      .social-platforms{
+        flex-direction: column;
+        align-items: center;
+      }
+      .platform{
+        width: 100%;
+        max-width: 200px;
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -231,6 +283,25 @@
   <!-- Audio Player Section -->
   <section class="audio-section">
     <div class="container">
+      <!-- Bulk Download Section -->
+      <div class="audio-card" style="background: linear-gradient(135deg, #fef3c7 0%, #fce7f3 100%); border: 2px solid var(--brand);">
+        <h2 class="song-title" style="color: var(--brand);">🎵 Complete Gift Package</h2>
+        <p class="song-subtitle">Download Surabhi's beautiful custom birthday song</p>
+        
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin: 20px 0;">
+          <a href="assets/Gift_Songs/Surabhi Nanda - Birthday song - Songux.mp3" download class="download-btn" style="background: var(--brand-2);">
+            📥 Download Birthday Song
+          </a>
+        </div>
+
+        <div class="social-platforms">
+          <a href="#" onclick="shareOnFacebook('Surabhi Nanda - Custom Birthday Song', 'Check out this beautiful custom birthday song created for Surabhi Nanda! A personalized musical gift by Songux.com')" class="platform facebook">Share on Facebook</a>
+          <a href="#" onclick="shareOnTwitter('Surabhi Nanda - Custom Birthday Song', 'Check out this beautiful custom birthday song created for Surabhi Nanda! A personalized musical gift by Songux.com')" class="platform twitter">Share on Twitter</a>
+          <a href="#" onclick="shareOnWhatsApp('Surabhi Nanda - Custom Birthday Song', 'Check out this beautiful custom birthday song created for Surabhi Nanda! A personalized musical gift by Songux.com')" class="platform whatsapp">Share on WhatsApp</a>
+          <a href="#" onclick="copyToClipboard(window.location.href)" class="platform copy">Copy Link</a>
+        </div>
+      </div>
+
       <div class="audio-card">
         <h2 class="song-title">Happy Birthday, Surabhi Nanda!</h2>
         <p class="song-subtitle">A beautiful custom birthday song created especially for you</p>
@@ -245,11 +316,48 @@
         <a href="assets/Gift_Songs/Surabhi Nanda - Birthday song - Songux.mp3" download class="download-btn">
           📥 Download Song
         </a>
+
+        <div class="social-platforms">
+          <a href="#" onclick="shareOnFacebook('Surabhi Nanda - Custom Birthday Song', 'Check out this beautiful custom birthday song created for Surabhi Nanda! A personalized musical gift by Songux.com')" class="platform facebook">Facebook</a>
+          <a href="#" onclick="shareOnTwitter('Surabhi Nanda - Custom Birthday Song', 'Check out this beautiful custom birthday song created for Surabhi Nanda! A personalized musical gift by Songux.com')" class="platform twitter">Twitter</a>
+          <a href="#" onclick="shareOnInstagram('Surabhi Nanda - Custom Birthday Song', 'Check out this beautiful custom birthday song created for Surabhi Nanda! A personalized musical gift by Songux.com')" class="platform instagram">Instagram</a>
+          <a href="#" onclick="shareOnTikTok('Surabhi Nanda - Custom Birthday Song', 'Check out this beautiful custom birthday song created for Surabhi Nanda! A personalized musical gift by Songux.com')" class="platform tiktok">TikTok</a>
+          <a href="#" onclick="shareOnWhatsApp('Surabhi Nanda - Custom Birthday Song', 'Check out this beautiful custom birthday song created for Surabhi Nanda! A personalized musical gift by Songux.com')" class="platform whatsapp">WhatsApp</a>
+          <a href="#" onclick="shareOnTelegram('Surabhi Nanda - Custom Birthday Song', 'Check out this beautiful custom birthday song created for Surabhi Nanda! A personalized musical gift by Songux.com')" class="platform telegram">Telegram</a>
+          <a href="#" onclick="copyToClipboard(window.location.href)" class="platform copy">Copy Link</a>
+        </div>
       </div>
     </div>
   </section>
 
-
+  <!-- Info Section -->
+  <section class="info-section">
+    <div class="container">
+      <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 20px; color: var(--text);">About This Gift Song</h2>
+      <p style="text-align: center; font-size: 1.1rem; margin-bottom: 40px; color: var(--muted); max-width: 600px; margin-left: auto; margin-right: auto;">
+        This custom birthday song was created especially for Surabhi Nanda, featuring personalized lyrics and musical arrangements that capture special moments and memories.
+      </p>
+      
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>🎵 Personalized</h3>
+          <p>Custom lyrics and music created specifically for Surabhi</p>
+        </div>
+        <div class="info-card">
+          <h3>🎂 Birthday Theme</h3>
+          <p>Perfect musical gift for birthday celebrations</p>
+        </div>
+        <div class="info-card">
+          <h3>🤖 AI Generated</h3>
+          <p>Created using advanced artificial intelligence by Songux.com</p>
+        </div>
+        <div class="info-card">
+          <h3>💾 High Quality</h3>
+          <p>Available in high-quality MP3 format for download</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- CTA Section -->
   <section class="cta-section">
@@ -258,6 +366,7 @@
       <p style="font-size: 1.1rem; margin-bottom: 40px; color: var(--muted);">
         Create a personalized musical gift for your loved ones. Perfect for birthdays, anniversaries, and special occasions.
       </p>
+      <a href="index.html" class="cta-btn">🎵 Create Custom Song</a>
       <a href="index.html" class="cta-btn secondary">🏠 Back to Home</a>
     </div>
   </section>
@@ -265,8 +374,134 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>© 2024 Songux - Creating Musical Memories</p>
+      <p>© 2024 Songux - Creating Musical Memories with AI Technology</p>
     </div>
   </footer>
+
+  <!-- Social Media Sharing JavaScript -->
+  <script>
+    // Update Open Graph URL to current page location for proper social sharing
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentUrl = window.location.href;
+      const ogUrlMeta = document.querySelector('meta[property="og:url"]');
+      if (ogUrlMeta) {
+        ogUrlMeta.setAttribute('content', currentUrl);
+      }
+    });
+
+    function shareOnFacebook(title, description, url) {
+      const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url || window.location.href)}&quote=${encodeURIComponent(description)}`;
+      window.open(shareUrl, '_blank', 'width=600,height=400');
+    }
+
+    function shareOnTwitter(title, description, url) {
+      const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(description)}&url=${encodeURIComponent(url || window.location.href)}`;
+      window.open(shareUrl, '_blank', 'width=600,height=400');
+    }
+
+    function shareOnInstagram(title, description, url) {
+      const currentUrl = url || window.location.href;
+      const text = `${description}\n\n${currentUrl}`;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => {
+          alert('Text copied to clipboard! You can now paste it in Instagram.');
+        });
+      } else {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        alert('Text copied to clipboard! You can now paste it in Instagram.');
+      }
+    }
+
+    function shareOnTikTok(title, description, url) {
+      const currentUrl = url || window.location.href;
+      const text = `${description}\n\n${currentUrl}`;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => {
+          alert('Text copied to clipboard! You can now paste it in TikTok.');
+        });
+      } else {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        alert('Text copied to clipboard! You can now paste it in TikTok.');
+      }
+    }
+
+    // Additional social sharing functions
+    function shareOnWhatsApp(title, description, url) {
+      const currentUrl = url || window.location.href;
+      const text = `${description}\n\n${currentUrl}`;
+      const shareUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
+      window.open(shareUrl, '_blank');
+    }
+
+    function shareOnTelegram(title, description, url) {
+      const currentUrl = url || window.location.href;
+      const text = `${description}\n\n${currentUrl}`;
+      const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(description)}`;
+      window.open(shareUrl, '_blank');
+    }
+
+    function copyToClipboard(text) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast('Link copied to clipboard!');
+        });
+      } else {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        showToast('Link copied to clipboard!');
+      }
+    }
+
+    function showToast(message) {
+      // Create toast notification
+      const toast = document.createElement('div');
+      toast.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--brand);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 1000;
+        font-weight: 600;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+      `;
+      toast.textContent = message;
+      document.body.appendChild(toast);
+      
+      // Animate in
+      setTimeout(() => {
+        toast.style.transform = 'translateX(0)';
+      }, 100);
+      
+      // Remove after 3 seconds
+      setTimeout(() => {
+        toast.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+          document.body.removeChild(toast);
+        }, 300);
+      }, 3000);
+    }
+  </script>
 </body>
 </html>
