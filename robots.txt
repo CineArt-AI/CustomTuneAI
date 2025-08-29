@@ -1,30 +1,175 @@
+# ========================================
+# ENHANCED ROBOTS.TXT FOR SONGUX/CUSTOMTUNEAI
+# ========================================
+
+# ========================================
+# GLOBAL RULES FOR ALL SEARCH ENGINES
+# ========================================
 User-agent: *
 Allow: /
+Crawl-delay: 1
 
-# Allow all search engines to crawl the site
+# ========================================
+# SPECIFIC SEARCH ENGINE RULES
+# ========================================
+
+# Google Bot - Most important for SEO
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
+# Google Bot for Images
+User-agent: Googlebot-Image
+Allow: /assets/images/
+Allow: /assets/Samples_Songs/
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.png
+Allow: /*.gif
+Allow: /*.webp
+
+# Google Bot for Mobile
+User-agent: Googlebot-Mobile
+Allow: /
+
+# Bing Bot
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
+# Yahoo/Slurp Bot
 User-agent: Slurp
 Allow: /
+Crawl-delay: 2
 
-# Sitemap location (you can add this when you have a sitemap)
-# Sitemap: https://yourdomain.com/sitemap.xml
+# DuckDuckGo Bot
+User-agent: DuckDuckBot
+Allow: /
 
-# Disallow crawling of any admin or private areas (if you add them later)
-# Disallow: /admin/
-# Disallow: /private/
+# Facebook Bot
+User-agent: facebookexternalhit
+Allow: /
 
-# Allow crawling of assets
+# Twitter Bot
+User-agent: Twitterbot
+Allow: /
+
+# LinkedIn Bot
+User-agent: LinkedInBot
+Allow: /
+
+# Pinterest Bot
+User-agent: Pinterest
+Allow: /
+
+# ========================================
+# ALLOWED CONTENT AND ASSETS
+# ========================================
+
+# Allow all HTML pages
+Allow: /*.html
+
+# Allow all CSS and JavaScript files
+Allow: /*.css
+Allow: /*.js
+
+# Allow all image formats
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.png
+Allow: /*.gif
+Allow: /*.webp
+Allow: /*.svg
+
+# Allow audio files (important for music samples)
+Allow: /*.mp3
+Allow: /*.wav
+Allow: /*.ogg
+Allow: /*.m4a
+
+# Allow video files
+Allow: /*.mp4
+Allow: /*.webm
+Allow: /*.avi
+
+# Allow document files
+Allow: /*.pdf
+Allow: /*.txt
+
+# Allow asset directories
 Allow: /assets/
 Allow: /assets/images/
 Allow: /assets/Samples_Songs/
+Allow: /assets/Gift_Songs/
 
-# Allow crawling of all HTML pages
-Allow: /*.html
+# ========================================
+# DISALLOWED CONTENT (SECURITY & PRIVACY)
+# ========================================
 
-# Crawl delay (optional - helps prevent overwhelming your server)
-Crawl-delay: 1
+# Disallow admin areas (if added later)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /cache/
+Disallow: /logs/
+
+# Disallow system files
+Disallow: /.htaccess
+Disallow: /.htpasswd
+Disallow: /web.config
+Disallow: /robots.txt
+Disallow: /sitemap.xml
+
+# Disallow development files
+Disallow: /*.log
+Disallow: /*.sql
+Disallow: /*.bak
+Disallow: /*.tmp
+
+# Disallow search and filter pages (if they create duplicate content)
+Disallow: /search?
+Disallow: /filter?
+Disallow: /*?sort=
+Disallow: /*?page=
+
+# ========================================
+# SITEMAP LOCATION
+# ========================================
+Sitemap: https://songux.com/sitemap.xml
+
+# ========================================
+# ADDITIONAL SEO DIRECTIVES
+# ========================================
+
+# Allow crawling of all public pages
+Allow: /index.html
+Allow: /genera-and-styles.html
+Allow: /genera-list.html
+Allow: /song-request.html
+Allow: /gift-song-surabhi.html
+Allow: /bushra-spice-it-up.html
+Allow: /thank-you.html
+Allow: /image-gallery.html
+
+# Allow crawling of pricing and example sections
+Allow: /#pricing
+Allow: /#examples
+Allow: /#about
+
+# ========================================
+# CRAWLING INSTRUCTIONS
+# ========================================
+
+# Respect crawl delay to prevent server overload
+# Most bots will respect this setting
+# Google recommends 1 second for most sites
+
+# ========================================
+# NOTES FOR WEBMASTERS
+# ========================================
+# This robots.txt file is optimized for:
+# - Music gift service websites
+# - Custom song creation businesses
+# - SEO-friendly content discovery
+# - Proper asset crawling for media files
+# - Security through selective disallowing

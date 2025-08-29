@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- ======================================== -->
+  <!-- MAIN PAGES - HIGH PRIORITY -->
+  <!-- ======================================== -->
+
+  <!-- Homepage - Highest Priority -->
+  <url>
+    <loc>https://songux.com/index.html</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+
+  <!-- ======================================== -->
+  <!-- MUSIC GUIDES & RESOURCES - HIGH PRIORITY -->
+  <!-- ======================================== -->
+
+  <!-- Genera and Styles - New Comprehensive Guide -->
+  <url>
+    <loc>https://songux.com/genera-and-styles.html</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Genera List - Music Genres Guide -->
+  <url>
+    <loc>https://songux.com/genera-list.html</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ======================================== -->
+  <!-- EXAMPLE & SHOWCASE PAGES - MEDIUM PRIORITY -->
+  <!-- ======================================== -->
+
+  <!-- Gift Song - Surabhi Example -->
+  <url>
+    <loc>https://songux.com/gift-song-surabhi.html</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Bushra Spice It Up Example -->
+  <url>
+    <loc>https://songux.com/Bushra-spice-it-up.html</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Image Gallery -->
+  <url>
+    <loc>https://songux.com/image-gallery.html</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+
+  <!-- ======================================== -->
+  <!-- ASSET DIRECTORIES - LOWER PRIORITY -->
+  <!-- ======================================== -->
+
+  <!-- Music Samples Directory -->
+  <url>
+    <loc>https://songux.com/assets/Samples_Songs/</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Gift Songs Directory -->
+  <url>
+    <loc>https://songux.com/assets/Gift_Songs/</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Images Directory -->
+  <url>
+    <loc>https://songux.com/assets/images/</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <!-- ======================================== -->
+  <!-- ANCHOR LINKS & SECTIONS - MEDIUM PRIORITY -->
+  <!-- ======================================== -->
+
+  <!-- Homepage Sections -->
+  <url>
+    <loc>https://songux.com/index.html#pricing</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://songux.com/index.html#examples</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://songux.com/index.html#about</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- ======================================== -->
+  <!-- SITEMAP METADATA -->
+  <!-- ======================================== -->
+  
+  <!-- Total URLs: 20 -->
+  <!-- Last Updated: 2024-12-19 -->
+  <!-- Priority Scale: 0.0 (lowest) to 1.0 (highest) -->
+  <!-- Change Frequencies: always, hourly, daily, weekly, monthly, yearly, never -->
+
+</urlset>

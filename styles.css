@@ -805,6 +805,57 @@ audio[id^="song-"] {
   border-top: 1px solid var(--ring);
 }
 
+.genre-category {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--ring);
+}
+
+.genre-category h3 {
+  color: var(--brand);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.genre-category p {
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.vibes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.vibe-item {
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  background: var(--card);
+  border: 1px solid var(--ring);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.vibe-item:hover {
+  background: var(--brand);
+  color: white;
+  border-color: var(--brand);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+}
+
 /* ========================================
    CONTACT FORM
    ======================================== */
