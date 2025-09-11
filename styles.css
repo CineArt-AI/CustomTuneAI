@@ -927,6 +927,46 @@ footer {
 }
 
 /* ========================================
+   FOOTER SOCIAL MEDIA LINKS
+   ======================================== */
+.footer-social {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.social-link:hover {
+  color: var(--brand);
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.2);
+  transform: translateY(-1px);
+}
+
+.social-link svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.social-link span {
+  white-space: nowrap;
+}
+
+/* ========================================
    MOBILE STICKY NAVIGATION
    ======================================== */
 .m-sticky {
@@ -1234,6 +1274,22 @@ footer {
     justify-content: center;
   }
   
+  .footer-social {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .social-link {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+  
+  .social-link svg {
+    width: 18px;
+    height: 18px;
+  }
+  
   .plan ul li::before {
     width: 18px;
     height: 18px;
@@ -1422,6 +1478,20 @@ footer {
   
   .footer-inner {
     gap: 12px;
+  }
+  
+  .footer-social {
+    gap: 8px;
+  }
+  
+  .social-link {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+  
+  .social-link svg {
+    width: 16px;
+    height: 16px;
   }
   
   .m-sticky {
